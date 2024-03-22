@@ -50,12 +50,17 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-center gap-3">
         <Button asChild variant="ghost" size="icon">
-          <Link href="/resume" aria-label="Read more about me in Resume">
+          <Link
+            href="/resume/Emon-Singha.pdf"
+            aria-label="Read more about me in Resume"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <TbFileCv className="w-6 h-6" />
           </Link>
         </Button>
         <Button asChild variant="ghost" size="icon">
-          <Link href="/resume" aria-label="Contact with me via mail">
+          <Link href="mailto:emonsingha209@gmail.com" aria-label="Contact with me via mail">
             <BiLogoGmail className="w-6 h-6" />
           </Link>
         </Button>
