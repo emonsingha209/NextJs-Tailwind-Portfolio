@@ -15,7 +15,7 @@ import {
 import { MdConnectWithoutContact } from "react-icons/md";
 import { TbFileCv } from "react-icons/tb";
 import Typewriter from "./ui/Typewriter";
-import emon from "/public/img/emon.png";
+import emon from "/public/img/emon.webp";
 const socialIcons = [
   FaLinkedin,
   FaInstagram,

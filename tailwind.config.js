@@ -105,8 +105,8 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        scale: "scale 0.5s ease-in-out",
-        glow: "glow 4s linear infinite",
+        "scale": "scale 0.5s ease-in-out",
+        "glow": "glow 4s linear infinite",
       },
       transitionTimingFunction: {
         primary: "cubic-bezier(.47,1.64,0.41,0.8)",

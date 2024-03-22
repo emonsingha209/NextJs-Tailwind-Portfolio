@@ -14,8 +14,8 @@ const NavbarItem = () => {
         {navData.map((item, index) => (
           <li key={index} className="relative h-full ">
             <Link
-              href={item.path}
-              className="relative grid h-full place-items-center"
+              href="/#"
+              className="relative grid h-full transition-colors duration-300 place-items-center hover:text-blue-400"
               onClick={() => handleClick(item.text)}
               scroll={false}
             >
