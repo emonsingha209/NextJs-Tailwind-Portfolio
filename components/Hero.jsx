@@ -118,8 +118,9 @@ const Hero = () => {
           </Button>
           <Button asChild size="hero">
             <Link
-              href="/#"
+              href="/resume"
               className="relative overflow-hidden transition-all bg-transparent border-2 border-accent-foreground hover:bg-transparent group"
+              aria-label="Read more about me in Resume"
             >
               <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
               <span className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">

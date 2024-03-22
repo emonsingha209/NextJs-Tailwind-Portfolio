@@ -50,12 +50,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-center gap-3">
         <Button asChild variant="ghost" size="icon">
-          <Link
-            href="https://emonsingha.vercel.app/resume/Emon-Singha.pdf"
-            aria-label="Read more about me in Resume"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href="/resume" aria-label="Read more about me in Resume">
             <TbFileCv className="w-6 h-6" />
           </Link>
         </Button>

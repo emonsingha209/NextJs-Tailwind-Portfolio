@@ -5,7 +5,8 @@ import navData from "../public/data/navData.json";
 const NavbarItem = () => {
   const { activeSection, scrollToSection } = useScrollSpy();
 
-  const handleClick = (item) => {
+  const handleClick = (event, item) => {
+    event.preventDefault();
     scrollToSection(item);
   };
   return (
@@ -16,7 +17,7 @@ const NavbarItem = () => {
             <Link
               href="/#"
               className="relative grid h-full transition-colors duration-300 place-items-center hover:text-blue-400"
-              onClick={() => handleClick(item.text)}
+              onClick={(event) => handleClick(event, item.text)}
               scroll={false}
             >
               <span

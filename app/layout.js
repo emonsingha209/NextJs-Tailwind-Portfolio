@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lato, Oswald, Playfair_Display } from "next/font/google";
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 
 const oswald = Oswald({
@@ -31,13 +31,14 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Emon Singha",
-  description: "Web developer",
+  title: "Emon Singha | Front-End-Developer",
+  description:
+    "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className="!scroll-smooth">
+    <html lang="en" suppressHydrationWarning={true} className="!scroll-smooth">
       <body
         className={cn(
           "min-h-screen bg-background font-lato antialiased ",
