@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className="flex items-center justify-center gap-3">
         <Button asChild variant="ghost" size="icon">
           <Link
-            href="/resume/Emon-Singha.pdf"
+            href="https://emonsingha.vercel.app/resume/Emon-Singha.pdf"
             aria-label="Read more about me in Resume"
             target="_blank"
             rel="noopener noreferrer"
@@ -60,7 +60,10 @@ const Navbar = () => {
           </Link>
         </Button>
         <Button asChild variant="ghost" size="icon">
-          <Link href="mailto:emonsingha209@gmail.com" aria-label="Contact with me via mail">
+          <Link
+            href="mailto:emonsingha209@gmail.com"
+            aria-label="Contact with me via mail"
+          >
             <BiLogoGmail className="w-6 h-6" />
           </Link>
         </Button>
