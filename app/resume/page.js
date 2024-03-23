@@ -1,4 +1,3 @@
-// pages/page.js
 "use client";
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -21,12 +20,12 @@ export default function Resume() {
     <div className="grid pt-5 bg-background place-items-center">
       <Document file="/resume/resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(new Array(numPages), (_, index) => (
-          <>
+          <div key={index}>
             <Page key={index + 1} pageNumber={index + 1} />
             <p className="p-2 text-end">
               Page {index + 1} of {numPages}
             </p>
-          </>
+          </div>
         ))}
       </Document>
     </div>
