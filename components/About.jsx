@@ -18,10 +18,10 @@ const About = () => {
           About Me
         </h1>
         <h2 className="pb-2 mt-10 text-3xl font-semibold tracking-tight transition-colors border-b scroll-m-20 first:mt-0">
-          Hello, I&aposm Emon Singha
+          Hello, I&apos;m Emon Singha
         </h2>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          I&aposm a passionate Frontend Developer dedicated to creating immersive UI
+          I&apos;m a passionate Frontend Developer dedicated to creating immersive UI
           experiences that resonate with users. With a keen eye for detail and a
           love for clean code, I bring ideas to life through elegant and
           functional interfaces.
@@ -86,7 +86,7 @@ const About = () => {
             <p>
               I ensure websites adapt smoothly to different devices and screen
               sizes by employing responsive design techniques such as Bootstrap
-              and Tailwind&aposs responsive breakpoints and media queries. This
+              and Tailwind&apos; responsive breakpoints and media queries. This
               guarantees a consistent user experience across desktops, tablets,
               and smartphones.
             </p>
@@ -128,7 +128,7 @@ const About = () => {
             <p>
               I have foundational knowledge in backend technologies like NestJS,
               ASP.NET MVC, and PHP, acquired through academic study. Similarly,
-              I&aposve gained familiarity with database management systems such as
+              I&apos;ve gained familiarity with database management systems such as
               SQL Server, MySQL, and PostgreSQL. While not yet an expert, this
               understanding complements my frontend development skills, enabling
               effective collaboration on full-stack projects.
