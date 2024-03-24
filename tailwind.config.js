@@ -75,6 +75,17 @@ module.exports = {
           "0%": { transform: "scale(0)" },
           "100%": { transform: "scale(1)" },
         },
+        opacityUp: {
+          "0%": { opacity: 0 },
+          "50%": { opacity: 0 },
+          "70%": { opacity: 0.5 },
+          "100%": { opacity: 1 },
+        },
+        opacityDown: {
+          "0%": { opacity: 1 },
+          "10%": { opacity: 0 },
+          "100%": { opacity: 0 },
+        },
         glow: {
           "0%": {
             color: "hsl(var(--ring))",
@@ -107,6 +118,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "scale": "scale 0.5s ease-in-out",
         "glow": "glow 4s linear infinite",
+        "opacityUp": "opacityUp",
+        "opacityDown": "opacityDown",
       },
       transitionTimingFunction: {
         primary: "cubic-bezier(.47,1.64,0.41,0.8)",

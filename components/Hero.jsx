@@ -63,17 +63,17 @@ const Hero = () => {
     >
       <div className="flex flex-col w-full gap-4 md:pr-4 md:w-7/12 xl:w-2/3">
         <h1
-          className={`h-16 md:h-20 text-left delay-300 text-5xl font-extrabold tracking-tight text-transparent capitalize md:text-6xl xl:text-7xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text w-fit scroll-m-20 transition-all duration-300 ${
-            isInView ? " translate-y-0 opacity-100" : "translate-y-96 opacity-0"
+          className={`h-16 md:h-20 text-left delay-300 text-5xl font-extrabold tracking-tight text-transparent capitalize md:text-6xl xl:text-7xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text w-fit scroll-m-20 transition-all  ${
+            isInView ? " translate-y-0 opacity-100 duration-300" : "translate-y-96 opacity-0 duration-0"
           }`}
         >
           Emon Singha
         </h1>
         <h2
-          className={`min-h-12 delay-300 pb-2 xl:mt-3 text-3xl font-semibold tracking-tight border-b border-b-border scroll-m-20 first:mt-0 transition-all duration-700 ${
+          className={`min-h-12 delay-300 pb-2 xl:mt-3 text-3xl font-semibold tracking-tight border-b border-b-border scroll-m-20 first:mt-0 transition-all  ${
             isInView
-              ? " translate-y-0  opacity-100"
-              : "translate-y-96 opacity-0"
+              ? " translate-y-0  opacity-100 duration-700"
+              : "translate-y-96 opacity-0 duration-0"
           }`}
         >
           <Typewriter
@@ -85,10 +85,10 @@ const Hero = () => {
           />
         </h2>
         <p
-          className={`text-lg xl:text-justify delay-300 leading-7 [&:not(:first-child)]:mt-3 transition-all duration-1000 ${
+          className={`text-lg xl:text-justify delay-300 leading-7 [&:not(:first-child)]:mt-3 transition-all  ${
             isInView
-              ? " translate-y-0  opacity-100"
-              : "translate-y-96 opacity-0"
+              ? " translate-y-0  opacity-100 duration-1000"
+              : "translate-y-96 opacity-0 duration-0"
           }`}
         >
           As a Frontend Developer, I specialize in bringing ideas to life
@@ -98,10 +98,10 @@ const Hero = () => {
           into visually stunning digital experiences.
         </p>
         <div
-          className={`flex justify-center md:justify-start gap-3 md:gap-5 mt-3 transition-all delay-700 duration-1000 ${
+          className={`flex justify-center md:justify-start gap-3 md:gap-5 mt-3 transition-all delay-700 ${
             isInView
-              ? " translate-y-0  opacity-100"
-              : "translate-y-96 opacity-0"
+              ? " translate-y-0  opacity-100  duration-1000"
+              : "translate-y-96 opacity-0  duration-0"
           }`}
         >
           <Button asChild size="hero">
