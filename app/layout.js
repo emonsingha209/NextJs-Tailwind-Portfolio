@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning={true} className="!scroll-smooth">
       <body
         className={cn(
-          "min-h-screen bg-background font-lato antialiased ",
+          "bg-background font-lato antialiased ",
           lato.variable,
           oswald.variable,
           playfair.variable

@@ -1,10 +1,7 @@
 "use client";
-import useScrollInView from "@/hook/useScrollInView";
 import { useEffect, useState } from "react";
 
-const Typewriter = ({ texts, speed }) => {
-  const { isInView, ref } = useScrollInView();
-
+const Typewriter = ({ texts, speed, isInView }) => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
 
@@ -40,7 +37,7 @@ const Typewriter = ({ texts, speed }) => {
     return () => clearInterval(interval);
   }, [texts, speed, currentTextIndex, isInView]);
 
-  return <span ref={ref}>{displayText}</span>;
+  return <span>{displayText}</span>;
 };
 
 export default Typewriter;
