@@ -27,7 +27,7 @@ const navbarAnimate = {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.3,
+      duration: 1,
       ease: [0.47, 1.64, 0.41, 0.8],
     },
   },
