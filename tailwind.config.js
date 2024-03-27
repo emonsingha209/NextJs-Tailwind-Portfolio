@@ -112,6 +112,7 @@ module.exports = {
             textShadow: "none",
           },
         },
+        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

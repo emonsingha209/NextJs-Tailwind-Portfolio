@@ -17,7 +17,7 @@ export default function Resume() {
   }
 
   return (
-    <div className="grid pt-5 bg-background place-items-center">
+    <div className="grid w-full pt-5 overflow-auto bg-background place-items-center">
       <Document file="/resume/resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(new Array(numPages), (_, index) => (
           <div key={index}>

@@ -1,12 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Sheet,
   SheetContent,
   SheetHeader,
@@ -15,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import useScrollSpy from "@/hook/useScrollSpy";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { BiLogoGmail } from "react-icons/bi";
@@ -23,15 +18,43 @@ import { TbFileCv } from "react-icons/tb";
 import letters from "../public/data/name.json";
 import NavbarItem from "./NavbarItem";
 
+const navbarAnimate = {
+  initial: {
+    y: -400,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: [0.47, 1.64, 0.41, 0.8],
+    },
+  },
+};
+
 const Navbar = () => {
   const { activeSection, scrollToSection } = useScrollSpy();
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else if (theme === "dark") {
+      setTheme("light");
+    }
+  };
 
   const handleClick = (item) => {
     scrollToSection(item);
   };
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-around w-full h-16 shadow-md shadow-ring/10 backdrop-blur-md">
+    <motion.header
+      variants={navbarAnimate}
+      initial="initial"
+      animate="animate"
+      className="sticky top-0 z-50 flex items-center justify-around w-full h-16 shadow-md shadow-ring/10 backdrop-blur-md"
+    >
       <Link href="/" scroll={false} onClick={() => handleClick("home")}>
         <div className="flex text-2xl uppercase lg:text-3xl font-playfair">
           {letters.map((letter, index) => (
@@ -48,7 +71,7 @@ const Navbar = () => {
       <div className="hidden md:block">
         <NavbarItem />
       </div>
-      <div className="flex items-center justify-center gap-3">
+      <div className="flex items-center justify-center gap-1 md:gap-3">
         <Button asChild variant="ghost" size="icon">
           <Link href="/resume" aria-label="Read more about me in Resume">
             <TbFileCv className="w-6 h-6" />
@@ -62,35 +85,14 @@ const Navbar = () => {
             <BiLogoGmail className="w-6 h-6" />
           </Link>
         </Button>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              onClick={() => setTheme("light")}
-              className="cursor-pointer"
-            >
-              Light
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => setTheme("dark")}
-              className="cursor-pointer"
-            >
-              Dark
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => setTheme("system")}
-              className="cursor-pointer"
-            >
-              System
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Button variant="ghost" size="icon" onClick={toggleTheme}>
+          {theme === "light" ? (
+            <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          ) : (
+            <MoonIcon className="h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          )}
+          <span className="sr-only">Toggle theme</span>
+        </Button>
         <div className="block md:hidden">
           <Sheet>
             <SheetTrigger>
@@ -105,7 +107,7 @@ const Navbar = () => {
           </Sheet>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

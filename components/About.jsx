@@ -9,11 +9,13 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { motion } from "framer-motion";
+import Marquee from "react-fast-marquee";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { CgPerformance } from "react-icons/cg";
 import { DiDotnet } from "react-icons/di";
 import { FaBootstrap, FaCss3, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
+import { MdDateRange } from "react-icons/md";
 import {
   SiMicrosoftsqlserver,
   SiMysql,
@@ -25,7 +27,7 @@ import { TbBrandNextjs } from "react-icons/tb";
 
 const leftToRight = {
   initial: {
-    x: -200,
+    x: -300,
     opacity: 0,
   },
   animate: {
@@ -40,7 +42,7 @@ const leftToRight = {
 };
 const rightToLeft = {
   initial: {
-    x: 200,
+    x: 300,
     opacity: 0,
   },
   animate: {
@@ -53,6 +55,7 @@ const rightToLeft = {
     },
   },
 };
+
 const About = () => {
   return (
     <section className="flex flex-wrap min-h-screen pt-5" id="about">
@@ -201,8 +204,51 @@ const About = () => {
             variants={rightToLeft}
             initial="initial"
             whileInView="animate"
-            className="w-full md:w-4/5"
+            className="w-full space-y-5 md:w-4/5"
           >
+            <Marquee pauseOnHover>
+              <ul className="flex gap-5 pr-5 text-5xl flex-nowrap">
+                <li>
+                  <FaHtml5 />
+                </li>
+                <li>
+                  <FaCss3 />
+                </li>
+                <li>
+                  <IoLogoJavascript />
+                </li>
+                <li>
+                  <FaReact />
+                </li>
+                <li>
+                  <TbBrandNextjs />
+                </li>
+                <li>
+                  <FaBootstrap />
+                </li>
+                <li>
+                  <SiTailwindcss />
+                </li>
+                <li>
+                  <SiNestjs />
+                </li>
+                <li>
+                  <DiDotnet />
+                </li>
+                <li>
+                  <FaPhp />
+                </li>
+                <li>
+                  <SiMicrosoftsqlserver />
+                </li>
+                <li>
+                  <SiMysql />
+                </li>
+                <li>
+                  <BiLogoPostgresql />
+                </li>
+              </ul>
+            </Marquee>
             <Tabs defaultValue="experience">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="experience">Experience</TabsTrigger>
@@ -218,26 +264,13 @@ const About = () => {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="space-y-2">
-                      <h3 className="text-lg font-semibold leading-none tracking-wide ">
-                        Aamra Infotainment Ltd. - Intern
+                      <p className="flex items-center gap-1 text-sm">
+                        <MdDateRange />3 Sept 2023 - 31 Dec 2023
+                      </p>
+                      <h3 className="font-semibold leading-none tracking-wide ">
+                        Web Developer - Intern
                       </h3>
-                      <p className="text-sm ">3 Sept 2023 - 31 Dec 2023</p>
-                      <ul className=" ml-6 list-disc [&>li]:mt-2 ">
-                        <li>
-                          Worked as a frontend developer, contributing to the
-                          development of engaging and user-friendly web
-                          interfaces.
-                        </li>
-                        <li>
-                          Created reusable UI components using HTML, CSS,
-                          JavaScript, and Bootstrap.
-                        </li>
-                        <li>
-                          Developed web pages utilizing a page builder,
-                          customized pre-designed templates, and managed content
-                          management systems in WordPress.
-                        </li>
-                      </ul>
+                      <p>Aamra Infotainment Ltd.</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -252,27 +285,14 @@ const About = () => {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="space-y-2">
-                      <h3 className="text-lg font-semibold leading-none tracking-wide ">
-                        American International University-Bangladesh (AIUB)
-                      </h3>
-                      <p>
-                        Bachelor of Science in Computer Science & Engineering
+                      <p className="flex items-center gap-1 text-sm">
+                        <MdDateRange />
+                        2020 - 2023
                       </p>
-                      <p className="text-sm">2020 - 2023</p>
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-semibold leading-none tracking-wide ">
-                        Moulvibazar Govt College (MGC)
+                      <h3 className="font-semibold leading-none tracking-wide ">
+                        Bachelor of Science in Computer Science & Engineering
                       </h3>
-                      <p>HSC - Science</p>
-                      <p className="text-sm">2019</p>
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-semibold leading-none tracking-wide ">
-                        Moulvibazar Govt High School (MGHS)
-                      </h3>
-                      <p>SSC - Science</p>
-                      <p className="text-sm">2017</p>
+                      <p>American International University-Bangladesh (AIUB)</p>
                     </div>
                   </CardContent>
                 </Card>
