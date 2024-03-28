@@ -76,13 +76,13 @@ const Project = () => {
                     {item.name}
                   </CardTitle>
                   <CardDescription>
-                    <span className="flex flex-wrap gap-3 mt-5 text-lg md:text-3xl">
+                    <span className="flex flex-wrap gap-3 mt-5 text-xl md:text-3xl">
                       {item.technologies.map((Icon, i) => (
                         <Icon key={i} />
                       ))}
                     </span>
                   </CardDescription>
-                  <ul className="flex flex-wrap gap-3 mt-5 text-lg md:text-xl">
+                  <ul className="flex flex-wrap gap-5 mt-6 text-xl md:text-3xl">
                     {item.githubLinks.map((link, index) => (
                       <li key={index}>
                         <Link
@@ -111,7 +111,7 @@ const Project = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="leading-7 [&:not(:first-child)]:mt-6 text-sm">
+                <p className="leading-7 [&:not(:first-child)]:mt-6 text-sm md:text-base">
                   {item.description}
                 </p>
               </CardContent>
