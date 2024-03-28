@@ -14,12 +14,23 @@ import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import { MdDateRange } from "react-icons/md";
 import icons from "./icon/Skill";
+import { useEffect, useState } from "react";
 
 const About = () => {
   const isSmallScreen = useMediaQuery("(max-width: 370px)");
 
-  const lrValue = isSmallScreen ? -100 : -300;
-  const rlValue = isSmallScreen ? -100 : 300;
+  const [lrValue, setLrValue] = useState([]);
+  const [rlValue, setRlValue] = useState([]);
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      setLrValue(-100);
+      setRlValue(100);
+    } else {
+      setLrValue(-300);
+      setRlValue(300);
+    }
+  }, [isSmallScreen]);
 
   const leftToRight = {
     initial: {
