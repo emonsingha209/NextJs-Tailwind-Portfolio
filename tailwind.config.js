@@ -9,9 +9,6 @@ module.exports = {
   ],
   prefix: "",
   theme: {
-    screens: {
-      'xs': '360px',
-    },
     container: {
       center: true,
       padding: "2rem",
@@ -20,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: "360px",
+      },
       fontFamily: {
         oswald: ["var(--font-oswald)"],
         lato: ["var(--font-lato)"],
@@ -115,7 +115,6 @@ module.exports = {
             textShadow: "none",
           },
         },
-        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
