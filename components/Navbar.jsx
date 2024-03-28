@@ -56,7 +56,7 @@ const Navbar = () => {
       className="sticky top-0 z-50 flex items-center justify-around w-full h-16 shadow-md shadow-ring/10 backdrop-blur-md"
     >
       <Link href="/" scroll={false} onClick={() => handleClick("home")}>
-        <div className="flex text-2xl uppercase lg:text-3xl font-playfair">
+        <div className="flex text-base uppercase xs:text-2xl lg:text-3xl font-playfair">
           {letters.map((letter, index) => (
             <div
               key={index}

@@ -1,4 +1,5 @@
 import useScrollSpy from "@/hook/useScrollSpy";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import navData from "../public/data/navData.json";
 
@@ -19,13 +20,19 @@ const NavbarItem = () => {
               onClick={() => handleClick(item.text)}
               scroll={false}
             >
-              <span
+              {/* <span
                 className={`w-0 h-0 dark:bg-[#f2f2f2] bg-gray-800 shadow-[0_-2px_0px_0px_#fff] absolute -translate-x-2/4 transition-[width] duration-500 ease-in-out rounded-sm left-2/4 -bottom-1.5 md:bottom-0 ${
                   activeSection === item.text
                     ? "w-full h-1 shadow-[0_-2px_25px_2px_#fff] "
                     : ""
                 }`}
-              ></span>
+              ></span> */}
+              {item.text === activeSection ? (
+                <motion.div
+                  className="dark:bg-[#f2f2f2] bg-gray-800 absolute rounded-sm -bottom-1.5 md:bottom-0 w-full h-1 shadow-[0_-2px_25px_2px_#fff] "
+                  layoutId="light"
+                />
+              ) : null}
               {item.text}
             </Link>
           </li>

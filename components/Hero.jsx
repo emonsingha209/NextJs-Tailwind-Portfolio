@@ -89,7 +89,7 @@ const Hero = () => {
 
   return (
     <section
-      className="lg:h-[calc(100vh-64px)] py-5 md:py-10 lg:py-0 flex flex-wrap flex-col-reverse md:flex-row items-center justify-center overflow-hidden"
+      className="lg:h-[calc(100vh-64px)] h-full py-5 md:py-10 lg:py-0 flex flex-wrap flex-col-reverse md:flex-row items-center justify-center overflow-hidden"
       id="home"
     >
       <motion.div
@@ -100,7 +100,7 @@ const Hero = () => {
       >
         <motion.h1
           variants={uptoDownItem}
-          className="h-16 text-5xl font-extrabold tracking-tight text-left text-transparent capitalize md:h-20 md:text-6xl lg:text-7xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text w-fit scroll-m-20"
+          className="h-16 text-4xl font-extrabold tracking-tight text-left text-transparent capitalize xs:text-5xl md:h-20 md:text-6xl lg:text-7xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text w-fit scroll-m-20"
         >
           Emon Singha
         </motion.h1>
@@ -129,7 +129,7 @@ const Hero = () => {
         </motion.p>
         <motion.div
           variants={uptoDownItem}
-          className="flex justify-center gap-3 mt-3 md:justify-start md:gap-5 "
+          className="flex flex-col justify-center gap-3 mt-3 xs:flex-row md:justify-start md:gap-5 "
         >
           <Button asChild size="hero">
             <Link

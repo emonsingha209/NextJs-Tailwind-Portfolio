@@ -8,44 +8,50 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import useMediaQuery from "@/hook/useMediaQuery";
 import expertise from "@/public/data/expertise";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import { MdDateRange } from "react-icons/md";
 import icons from "./icon/Skill";
 
-const leftToRight = {
-  initial: {
-    x: -300,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-};
-const rightToLeft = {
-  initial: {
-    x: 300,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-};
-
 const About = () => {
+  const isSmallScreen = useMediaQuery("(max-width: 370px)");
+
+  const lrValue = isSmallScreen ? -100 : -300;
+  const rlValue = isSmallScreen ? -100 : 300;
+
+  const leftToRight = {
+    initial: {
+      x: lrValue,
+      opacity: 0,
+    },
+
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        type: "spring",
+        stiffness: 50,
+      },
+    },
+  };
+  const rightToLeft = {
+    initial: {
+      x: rlValue,
+      opacity: 0,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        type: "spring",
+        stiffness: 50,
+      },
+    },
+  };
   return (
     <section className="flex flex-wrap py-5" id="about">
       <div className="w-full md:w-1/2">
