@@ -169,7 +169,7 @@ const About = () => {
                         <MdDateRange />
                         2020 - 2023
                       </p>
-                      <h3 className="font-semibold leading-none tracking-wide ">
+                      <h3 className="font-semibold leading-none tracking-wide">
                         Bachelor of Science in Computer Science & Engineering
                       </h3>
                       <p>American International University-Bangladesh (AIUB)</p>
