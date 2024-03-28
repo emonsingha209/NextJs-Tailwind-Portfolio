@@ -29,6 +29,7 @@ const Footer = () => {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={item.label}
                 >
                   <item.Icon className="md:w-6 md:h-6 w-5 h-5 transition-all duration-300 ease-in-out hover:rotate-[360deg]" />
                 </Link>

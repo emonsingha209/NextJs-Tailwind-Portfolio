@@ -186,6 +186,7 @@ const Hero = () => {
               key={index}
               className="absolute grid w-12 h-12 transition-transform duration-1000 bg-gray-600 rounded-full dark:bg-border ease-primary place-items-center group"
               ref={(el) => (circlesRefs.current[index] = el)}
+              aria-label={item.label}
             >
               <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
             </Link>

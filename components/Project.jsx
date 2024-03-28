@@ -92,7 +92,7 @@ const Project = () => {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-violet-500"
+                            className="transition-colors duration-300 hover:text-violet-500"
                           >
                             <p className="flex items-center gap-3 flex-nowrap">
                               <span className="-mt-[1px]">{link.label}</span>
@@ -108,7 +108,7 @@ const Project = () => {
                             href={preview.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="transition-colors hover:text-violet-500"
+                            className="transition-colors duration-300 hover:text-violet-500"
                           >
                             <p className="flex items-center gap-3 flex-nowrap">
                               <span className="-mt-[1px]">{preview.label}</span>

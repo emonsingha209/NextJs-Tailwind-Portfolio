@@ -87,13 +87,13 @@ const Navbar = () => {
         </Button>
         <Button variant="ghost" size="icon" onClick={toggleTheme}>
           {theme === "light" ? (
-            <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <SunIcon className="w-6 h-6 transition-all duration-300 scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />
           ) : (
-            <MoonIcon className="h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <MoonIcon className="w-6 h-6 transition-all duration-300 scale-0 rotate-90 dark:rotate-0 dark:scale-100" />
           )}
           <span className="sr-only">Toggle theme</span>
         </Button>
-        <div className="block md:hidden">
+        <div className="grid md:hidden h-9 w-9 place-items-center">
           <Sheet>
             <SheetTrigger>
               <CgMenuRight className="w-6 h-6" />
