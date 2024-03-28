@@ -1,16 +1,27 @@
 import { BiLogoPostgresql } from "react-icons/bi";
 import { CgPerformance } from "react-icons/cg";
 import { DiDotnet } from "react-icons/di";
-import { FaBootstrap, FaCss3, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
+import {
+  FaBootstrap,
+  FaCss3,
+  FaGithub,
+  FaHtml5,
+  FaPhp,
+  FaReact,
+} from "react-icons/fa";
+import { FaGit } from "react-icons/fa6";
 import { IoLogoJavascript } from "react-icons/io";
 import {
+  SiLighthouse,
   SiMicrosoftsqlserver,
   SiMysql,
   SiNestjs,
   SiPagespeedinsights,
+  SiPostman,
   SiTailwindcss,
+  SiVercel,
 } from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
+import { TbBrandNextjs, TbBrandVscode } from "react-icons/tb";
 
 const expertise = [
   {
@@ -51,6 +62,13 @@ const expertise = [
   },
   {
     id: 5,
+    title: "Tools",
+    icons: [SiPostman, TbBrandVscode, FaGit, FaGithub, SiLighthouse, SiVercel],
+    description:
+      "I am proficient in using various tools for development, version control, testing, and deployment, including Postman, VScode, Git, Github, Lighthouse, and Vercel.",
+  },
+  {
+    id: 6,
     title: "Others",
     icons: [
       SiNestjs,
