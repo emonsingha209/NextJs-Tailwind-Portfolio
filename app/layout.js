@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }) {
         >
           <Navbar />
           {children}
+          <Footer />
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>

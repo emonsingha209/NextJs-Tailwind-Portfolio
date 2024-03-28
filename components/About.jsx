@@ -8,22 +8,11 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import expertise from "@/public/data/expertise";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
-import { BiLogoPostgresql } from "react-icons/bi";
-import { CgPerformance } from "react-icons/cg";
-import { DiDotnet } from "react-icons/di";
-import { FaBootstrap, FaCss3, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io";
 import { MdDateRange } from "react-icons/md";
-import {
-  SiMicrosoftsqlserver,
-  SiMysql,
-  SiNestjs,
-  SiPagespeedinsights,
-  SiTailwindcss,
-} from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
+import icons from "./icon/Skill";
 
 const leftToRight = {
   initial: {
@@ -58,7 +47,7 @@ const rightToLeft = {
 
 const About = () => {
   return (
-    <section className="flex flex-wrap min-h-screen pt-5" id="about">
+    <section className="flex flex-wrap py-5" id="about">
       <div className="w-full md:w-1/2">
         <motion.h1
           variants={leftToRight}
@@ -95,111 +84,36 @@ const About = () => {
         >
           Experties Area
         </motion.h2>
-        <Card motionVariant={leftToRight} className="mt-6">
-          <CardHeader>
-            <CardTitle>Frontend Development</CardTitle>
-            <CardDescription>
-              <span className="flex flex-wrap gap-3 mt-1 text-lg">
-                <FaHtml5 /> <FaCss3 /> <IoLogoJavascript />
-                <FaReact />
-                <TbBrandNextjs />
-                <FaBootstrap />
-                <SiTailwindcss />
-              </span>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              I specialize in creating captivating digital experiences using
-              HTML, CSS, and JavaScript. With expertise in ReactJS and Next.js,
-              I design dynamic and scalable user interfaces that leverage modern
-              web technologies for seamless interactions.
-            </p>
-          </CardContent>
-        </Card>
-        <Card motionVariant={leftToRight} className="mt-6">
-          <CardHeader>
-            <CardTitle>Web Design</CardTitle>
-            <CardDescription>
-              <span className="flex flex-wrap gap-3 mt-1 text-lg">
-                <FaHtml5 /> <FaCss3 /> <IoLogoJavascript />
-                <FaBootstrap />
-                <SiTailwindcss />
-              </span>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              I translate concepts into visually captivating interfaces,
-              prioritizing aesthetics and user experience. My designs enhance
-              brand identity and effectively engage users, ensuring a cohesive
-              and impactful online presence.
-            </p>
-          </CardContent>
-        </Card>
-        <Card motionVariant={leftToRight} className="mt-6">
-          <CardHeader>
-            <CardTitle>Responsive Design</CardTitle>
-            <CardDescription>
-              <span className="flex flex-wrap gap-3 mt-1 text-lg">
-                <FaCss3 /> <IoLogoJavascript />
-                <FaBootstrap />
-                <SiTailwindcss />
-              </span>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              I ensure websites adapt seamlessly to all devices using responsive
-              design techniques like Bootstrap and Tailwind&apos;s breakpoints
-              and media queries, ensuring consistent user experience.
-            </p>
-          </CardContent>
-        </Card>
-        <Card motionVariant={leftToRight} className="mt-6">
-          <CardHeader>
-            <CardTitle>Performance Optimization</CardTitle>
-            <CardDescription>
-              <span className="flex flex-wrap gap-3 mt-1 text-lg">
-                <CgPerformance />
-                <SiPagespeedinsights />
-              </span>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              I optimize websites for speed and efficiency through code
-              optimization, image compression, and lazy loading, enhancing user
-              satisfaction and engagement.
-            </p>
-          </CardContent>
-        </Card>
-        <Card motionVariant={leftToRight} className="mt-6">
-          <CardHeader>
-            <CardTitle>Others</CardTitle>
-            <CardDescription>
-              <span className="flex flex-wrap gap-3 mt-1 text-lg">
-                <SiNestjs />
-                <DiDotnet />
-                <FaPhp />
-                <SiMicrosoftsqlserver />
-                <SiMysql />
-                <BiLogoPostgresql />
-              </span>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              I have basic backend skills in NestJS, ASP.NET MVC, and PHP,
-              alongside familiarity with SQL Server, MySQL, and PostgreSQL
-              databases. This complements my frontend expertise for effective
-              full-stack collaboration.
-            </p>
-          </CardContent>
-        </Card>
+        {expertise.map((item, index) => (
+          <motion.div
+            key={index}
+            className="mt-6"
+            variants={leftToRight}
+            initial="initial"
+            whileInView="animate"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>{item.title}</CardTitle>
+                <CardDescription>
+                  <span className="flex flex-wrap gap-3 mt-1 text-lg">
+                    {item.icons.map((Icon, i) => (
+                      <Icon key={i} />
+                    ))}
+                  </span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="leading-7 [&:not(:first-child)]:mt-6">
+                  {item.description}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
       </div>
       <div className="w-full mt-6 md:w-1/2 md:mt-0">
-        <div className="sticky top-16 flex justify-center items-center lg:min-h-[calc(100vh-64px)] overflow-hidden">
+        <div className="sticky top-16 flex justify-center items-center md:min-h-[calc(100vh-64px)] overflow-hidden">
           <motion.div
             variants={rightToLeft}
             initial="initial"
@@ -207,46 +121,12 @@ const About = () => {
             className="w-full space-y-5 md:w-4/5"
           >
             <Marquee pauseOnHover>
-              <ul className="flex gap-5 pr-5 text-5xl flex-nowrap">
-                <li>
-                  <FaHtml5 />
-                </li>
-                <li>
-                  <FaCss3 />
-                </li>
-                <li>
-                  <IoLogoJavascript />
-                </li>
-                <li>
-                  <FaReact />
-                </li>
-                <li>
-                  <TbBrandNextjs />
-                </li>
-                <li>
-                  <FaBootstrap />
-                </li>
-                <li>
-                  <SiTailwindcss />
-                </li>
-                <li>
-                  <SiNestjs />
-                </li>
-                <li>
-                  <DiDotnet />
-                </li>
-                <li>
-                  <FaPhp />
-                </li>
-                <li>
-                  <SiMicrosoftsqlserver />
-                </li>
-                <li>
-                  <SiMysql />
-                </li>
-                <li>
-                  <BiLogoPostgresql />
-                </li>
+              <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
+                {icons.map((IconSlider, iconIndex) => (
+                  <li key={iconIndex}>
+                    <IconSlider />
+                  </li>
+                ))}
               </ul>
             </Marquee>
             <Tabs defaultValue="experience">

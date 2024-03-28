@@ -3,26 +3,12 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import {
-  FaFacebook,
-  FaFacebookMessenger,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaWhatsapp,
-} from "react-icons/fa";
+
 import { MdConnectWithoutContact } from "react-icons/md";
 import { TbFileCv } from "react-icons/tb";
+import socialIcons from "./icon/Social";
 import Typewriter from "./ui/Typewriter";
 import emon from "/public/img/emon.webp";
-const socialIcons = [
-  FaLinkedin,
-  FaInstagram,
-  FaWhatsapp,
-  FaFacebook,
-  FaFacebookMessenger,
-  FaGithub,
-];
 
 import { useInView } from "framer-motion";
 import Image from "next/image";
@@ -192,14 +178,17 @@ const Hero = () => {
             />
           </motion.div>
 
-          {socialIcons.map((Icon, index) => (
-            <div
+          {socialIcons.map((item, index) => (
+            <Link
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
               key={index}
               className="absolute grid w-12 h-12 transition-transform duration-1000 bg-gray-600 rounded-full dark:bg-border ease-primary place-items-center group"
               ref={(el) => (circlesRefs.current[index] = el)}
             >
-              <Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
-            </div>
+              <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
+            </Link>
           ))}
         </div>
       </div>

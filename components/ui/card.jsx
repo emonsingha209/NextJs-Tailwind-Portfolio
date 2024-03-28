@@ -2,13 +2,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { motion } from "framer-motion";
-
-const Card = React.forwardRef(({ motionVariant, className, ...props }, ref) => (
-  <motion.div
-    variants={motionVariant}
-    initial="initial"
-    whileInView="animate"
+const Card = React.forwardRef(({ className, ...props }, ref) => (
+  <div
     ref={ref}
     className={cn(
       "rounded-xl border bg-card text-card-foreground shadow",

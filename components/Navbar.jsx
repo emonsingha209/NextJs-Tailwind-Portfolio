@@ -34,7 +34,7 @@ const navbarAnimate = {
 };
 
 const Navbar = () => {
-  const { activeSection, scrollToSection } = useScrollSpy();
+  const { scrollToSection } = useScrollSpy();
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
