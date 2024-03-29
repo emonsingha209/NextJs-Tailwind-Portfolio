@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       screens: {
         xs: "360px",
+        xns: "480px",
       },
       fontFamily: {
         oswald: ["var(--font-oswald)"],

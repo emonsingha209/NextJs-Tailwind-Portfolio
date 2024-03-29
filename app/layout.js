@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -35,6 +36,19 @@ export const metadata = {
   title: "Emon Singha | Front-End-Developer",
   description:
     "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
+  keywords:
+    "Emon Singha, Frontend Developer, ReactJs Developer, NextJs Developer, Web Developer, Web Development",
+  author: "Emon Singha",
+  robots: "index, follow",
+  og: {
+    title: "Emon Singha | Front-End-Developer",
+    type: "website",
+    url: "https://emonsingha.vercel.app/",
+    image: "/img/ogImage.webp",
+    description:
+      "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
+    site_name: "Emon Singha Portfolio",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -56,6 +70,7 @@ export default function RootLayout({ children }) {
         >
           <Navbar />
           {children}
+          <Toaster />
           <Footer />
           <Analytics />
           <SpeedInsights />
