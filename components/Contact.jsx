@@ -89,9 +89,9 @@ const Contact = () => {
   });
 
   async function onSubmit(event) {
-    const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID;
-    const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+    const serviceID = process.env.SERVICE_ID;
+    const templateID = process.env.TEMPLATE_ID;
+    const publicKey = process.env.PUBLIC_KEY;
     try {
       setIsLoading(true);
       await emailjs.sendForm(serviceID, templateID, formRef.current, publicKey);
