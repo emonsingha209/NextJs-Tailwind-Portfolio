@@ -20,9 +20,9 @@ const useScrollSpy = () => {
       });
     };
 
-    // window.addEventListener("contextmenu", function (event) {
-    //   event.preventDefault();
-    // });
+    window.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
+    });
 
     handleScroll();
 
