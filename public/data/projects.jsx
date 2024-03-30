@@ -19,7 +19,7 @@ const projects = [
     technologies: [SiOpengl],
     githubLinks: [
       {
-        label: "Repo",
+        label: "Repository",
         url: "https://github.com/emonsingha209/London-Tower-Bridge--Opengl",
       },
     ],
@@ -34,7 +34,7 @@ const projects = [
     technologies: [FaJava],
     githubLinks: [
       {
-        label: "Repo",
+        label: "Repository",
         url: "https://github.com/emonsingha209/Health_Consultant",
       },
     ],
@@ -49,7 +49,7 @@ const projects = [
     technologies: [SiNestjs, BiLogoPostgresql],
     githubLinks: [
       {
-        label: "Repo",
+        label: "Repository",
         url: "https://github.com/Ratul41Bhatt/Nutrition-and-Workout-System",
       },
     ],
@@ -64,7 +64,7 @@ const projects = [
     technologies: [FaHtml5, FaCss3, IoLogoJavascript, SiTailwindcss, FaReact],
     githubLinks: [
       {
-        label: "Repo",
+        label: "Repository",
         url: "https://github.com/emonsingha209/Portfolio-reactjs",
       },
     ],
@@ -89,11 +89,11 @@ const projects = [
     ],
     githubLinks: [
       {
-        label: "Repo Frontend",
+        label: "Repository Frontend",
         url: "https://github.com/AdibAhmed317/RoadSaints-ReactJS",
       },
       {
-        label: "Repo Backend",
+        label: "Repository Backend",
         url: "https://github.com/AdibAhmed317/RoadSaints-ASPDotNet",
       },
     ],

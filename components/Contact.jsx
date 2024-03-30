@@ -91,7 +91,8 @@ const Contact = () => {
   async function onSubmit(event) {
     const serviceID = process.env.SERVICE_ID;
     const templateID = process.env.TEMPLATE_ID;
-    const publicKey = process.env.PUBLIC_KEY;
+    const publicKey = process.env.Email_PUBLIC_KEY;
+
     try {
       setIsLoading(true);
       await emailjs.sendForm(serviceID, templateID, formRef.current, publicKey);
@@ -215,10 +216,15 @@ const Contact = () => {
                   )}
                 />
                 <div className="flex justify-center w-full">
-                  <Button type="submit" className="w-full xns:w-3/5" disabled={isLoading}>
+                  <Button
+                    type="submit"
+                    className="w-full xns:w-3/5"
+                    disabled={isLoading}
+                  >
                     {isLoading ? (
                       <>
-                        <FaHourglassEnd className="w-4 h-4 mr-2 animate-spin" /> Sending...
+                        <FaHourglassEnd className="w-4 h-4 mr-2 animate-spin" />{" "}
+                        Sending...
                       </>
                     ) : (
                       "Send Message"

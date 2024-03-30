@@ -43,7 +43,7 @@ const Project = () => {
         <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
           Projects
         </h1>
-        <h2 className="pb-2 mt-10 text-3xl font-semibold tracking-tight transition-colors border-b scroll-m-20 first:mt-0">
+        <h2 className="pb-2 mt-5 text-3xl font-semibold tracking-tight transition-colors border-b md:mt-10 scroll-m-20 first:mt-0">
           Crafting the Web: A Showcase of My Web Development Projects
         </h2>
       </motion.div>
@@ -85,7 +85,7 @@ const Project = () => {
                         ))}
                       </span>
                     </CardDescription>
-                    <ul className="flex flex-col gap-1 mt-6 text-base md:text-xl font-oswald">
+                    <ul className="flex flex-wrap gap-5 mt-6 text-base md:text-xl font-oswald">
                       {item.githubLinks.map((link, index) => (
                         <li key={index}>
                           <Link
@@ -94,7 +94,7 @@ const Project = () => {
                             rel="noopener noreferrer"
                             className="transition-colors duration-300 hover:text-violet-500"
                           >
-                            <p className="flex items-center gap-3 flex-nowrap">
+                            <p className="flex items-center gap-3 flex-nowrap w-fit">
                               <span className="-mt-[1px]">{link.label}</span>
 
                               <FaGithub />
