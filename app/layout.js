@@ -41,10 +41,10 @@ export const metadata = {
   author: "Emon Singha",
   robots: "index, follow",
   og: {
-    title: "Emon Singha | Front-End-Developer",
+    title: "Emon Singha | Front End Developer",
     type: "website",
     url: "https://emonsingha.vercel.app/",
-    image: "https://emonsingha.vercel.app/img/ogImage.webp",
+    image: "https://emonsingha.vercel.app/img/ogImage.jpg",
     description:
       "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
     site_name: "Emon Singha Portfolio",
