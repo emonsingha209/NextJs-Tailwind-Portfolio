@@ -10,8 +10,8 @@ const NavbarItem = () => {
     scrollToSection(item);
   };
   return (
-    <nav className="flex items-center justify-center h-full font-oswald">
-      <ul className="flex flex-col items-center gap-5 px-5 text-2xl uppercase list-none rounded-md md:text-lg md:rounded-full h-fit md:h-12 md:flex-row text-nowrap bg-background/50">
+    <nav className="flex items-center justify-center h-full font-oswald ">
+      <ul className="flex flex-col items-center gap-5 px-5 -mt-40 text-2xl uppercase list-none rounded-md md:mt-0 md:text-lg md:rounded-full h-fit md:h-12 md:flex-row text-nowrap bg-background/50">
         {navData.map((item, index) => (
           <li key={index} className="relative h-full ">
             <Link
