@@ -62,7 +62,7 @@ const About = () => {
           variants={leftToRight}
           initial="initial"
           whileInView="animate"
-          className="pb-2 mt-5 text-3xl font-semibold tracking-tight transition-colors border-b md:mt-10 scroll-m-20 first:mt-0"
+          className="pb-2 mt-8 text-3xl font-semibold tracking-tight transition-colors border-b md:mt-10 scroll-m-20 first:mt-0"
         >
           Hello, I&apos;m Emon Singha
         </motion.h2>

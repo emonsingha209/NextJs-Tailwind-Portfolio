@@ -15,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import icons from "./icon/Skill";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -89,9 +90,9 @@ const Contact = () => {
   });
 
   async function onSubmit(event) {
-    const serviceID = process.env.SERVICE_ID;
-    const templateID = process.env.TEMPLATE_ID;
-    const publicKey = process.env.Email_PUBLIC_KEY;
+    const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID;
+    const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_Email_PUBLIC_KEY;
 
     try {
       setIsLoading(true);
@@ -141,7 +142,7 @@ const Contact = () => {
                 consistent and accessible UI components.
               </li>
               <li>
-                <span className="font-semibold">Framer Motion:</span>Implemented
+                <span className="font-semibold">Framer Motion:</span> Implemented
                 for engaging animations and transitions.
               </li>
             </ul>
