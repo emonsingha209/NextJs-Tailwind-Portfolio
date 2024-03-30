@@ -40,7 +40,7 @@ export const metadata = {
     "Emon Singha, Frontend Developer, ReactJs Developer, NextJs Developer, Web Developer, Web Development",
   author: "Emon Singha",
   robots: "index, follow",
-  og: {
+  openGraph: {
     title: "Emon Singha | Front End Developer",
     type: "website",
     url: "https://emonsingha.vercel.app/",
