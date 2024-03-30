@@ -86,11 +86,8 @@ const Navbar = () => {
           </Link>
         </Button>
         <Button variant="ghost" size="icon" onClick={toggleTheme}>
-          {theme === "light" ? (
-            <SunIcon className="w-6 h-6 transition-all duration-300 scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />
-          ) : (
-            <MoonIcon className="w-6 h-6 transition-all duration-300 scale-0 rotate-90 dark:rotate-0 dark:scale-100" />
-          )}
+          <SunIcon className="block w-6 h-6 transition-all duration-1000 scale-100 rotate-0 dark:hidden dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="hidden w-6 h-6 transition-all duration-1000 scale-0 rotate-90 dark:block dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
         <div className="grid md:hidden h-9 w-9 place-items-center">
