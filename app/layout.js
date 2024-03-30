@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lato, Oswald, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { openGraphImage } from "./shared-metadata";
 
 const oswald = Oswald({
   weight: "400",
@@ -41,10 +42,10 @@ export const metadata = {
   author: "Emon Singha",
   robots: "index, follow",
   openGraph: {
+    ...openGraphImage,
     title: "Emon Singha | Front End Developer",
     type: "website",
     url: "https://emonsingha.vercel.app/",
-    image: "https://i.postimg.cc/bvtywGP1/ogImage.webp",
     description:
       "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
     site_name: "Emon Singha Portfolio",
