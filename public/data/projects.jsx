@@ -77,7 +77,7 @@ const projects = [
     name: "RoadSaints: Unleash Your Ride's Potential with Premium Motorcycle Accessories",
     image: "/img/roadSaints.webp",
     description:
-      "Welcome to Road Saints, your premier destination for top-tier motorcycle accessories. Discover meticulously curated high-performance helmets, innovative luggage solutions, and more. Elevate your biking experience with a seamless shopping journey, detailed insights, and responsive assistance. Join us to enhance your motorcycle adventures with unparalleled style and safety. Your journey to excellence begins here.",
+      "Presenting Road Saints, a showcase of our premier project featuring top-tier motorcycle accessories. Leveraging ReactJS and TailwindCSS for the frontend and ASP.NET for the backend, we have crafted a seamless web experience. Explore meticulously curated high-performance helmets, innovative luggage solutions, and more, with a user-friendly interface designed for effortless navigation and intuitive purchasing. Detailed product insights and responsive assistance ensure a superior shopping journey, enhancing motorcycle adventures with unparalleled style and safety. Join us as we elevate the biking experience – your journey to excellence begins here.",
     technologies: [
       FaHtml5,
       FaCss3,
