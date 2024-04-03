@@ -197,9 +197,9 @@ const Hero = () => {
               ref={(el) => (circlesRefs.current[index] = el)}
               aria-label={item.label}
             >
-              <span className="absolute w-24 h-24 border-2 border-gray-800 rounded-full opacity-0 pointer-events-none -z-30 animate-ringOne"></span>
-              <span className="absolute w-24 h-24 border-2 border-gray-800 rounded-full opacity-0 pointer-events-none -z-30 animate-ringTwo"></span>
-              <span className="absolute w-24 h-24 border-2 border-gray-800 rounded-full opacity-0 pointer-events-none -z-30 animate-ringThree"></span>
+              <span className="absolute w-24 h-24 border-2 rounded-full opacity-0 pointer-events-none border-violet-500 -z-30 animate-ringOne"></span>
+              <span className="absolute w-24 h-24 border-2 rounded-full opacity-0 pointer-events-none border-violet-500 -z-30 animate-ringTwo"></span>
+              <span className="absolute w-24 h-24 border-2 rounded-full opacity-0 pointer-events-none border-violet-500 -z-30 animate-ringThree"></span>
               <div className="z-10 grid w-full h-full bg-gray-800 rounded-full place-items-center">
                 <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
               </div>
