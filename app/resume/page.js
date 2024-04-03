@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { IoMdDownload } from "react-icons/io";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
@@ -18,10 +19,10 @@ export default function Resume() {
 
   return (
     <div className="grid w-full pt-5 overflow-auto bg-background place-items-center">
-      <div className="flex justify-start w-full mb-5 jus md:justify-center">
+      <div className="flex justify-start w-full mb-5 font-bold uppercase md:justify-center font-oswald">
         <Button asChild>
-          <a href="/resume/resume.pdf" download="Emon-Singha-Resume">
-            Download Resume
+          <a href="/resume/resume.pdf" className="font-bold" download="Emon-Singha-Resume">
+            Download Resume<IoMdDownload className="w-4 h-4 ml-2" />
           </a>
         </Button>
       </div>

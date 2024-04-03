@@ -85,6 +85,19 @@ module.exports = {
           "70%": { opacity: 0.5 },
           "100%": { opacity: 1 },
         },
+        ring: {
+          "0%": {
+            opacity: 1,
+            transform: "scale(0)",
+          },
+          "20%": {
+            opacity: 1,
+          },
+          "80%, 100%": {
+            opacity: 0,
+            transform: "scale(1)",
+          },
+        },
         opacityDown: {
           "0%": { opacity: 1 },
           "10%": { opacity: 0 },
@@ -124,6 +137,9 @@ module.exports = {
         glow: "glow 4s linear infinite",
         opacityUp: "opacityUp",
         opacityDown: "opacityDown",
+        ringOne: "ring 4s ease-out 1s infinite",
+        ringTwo: "ring 4s ease-out 2s infinite",
+        ringThree: "ring 4s ease-out 3s infinite",
       },
       transitionTimingFunction: {
         primary: "cubic-bezier(.47,1.64,0.41,0.8)",

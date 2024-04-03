@@ -169,14 +169,14 @@ const Hero = () => {
       </motion.div>
       <div className="w-full p-8 md:w-5/12 lg:w-1/3">
         <div
-          className="relative grid p-8 border-2 border-gray-600 rounded-full dark:border-border place-items-center"
+          className="relative z-20 grid p-8 border-2 border-gray-800 rounded-full dark:border-border place-items-center"
           ref={containerRef}
         >
           <motion.div
             variants={scaling}
             initial="initial"
             whileInView="animate"
-            className="z-10"
+            className="z-30 overflow-hidden rounded-full"
           >
             <Image
               src={emon}
@@ -193,11 +193,16 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               key={index}
-              className="absolute grid w-12 h-12 transition-transform duration-1000 bg-gray-600 rounded-full dark:bg-border ease-primary place-items-center group"
+              className="absolute z-10 grid w-12 h-12 transition-transform duration-1000 rounded-full bg-border dark:bg-border ease-primary place-items-center group"
               ref={(el) => (circlesRefs.current[index] = el)}
               aria-label={item.label}
             >
-              <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
+              <span className="absolute w-24 h-24 border-2 border-gray-800 rounded-full opacity-0 pointer-events-none -z-30 animate-ringOne"></span>
+              <span className="absolute w-24 h-24 border-2 border-gray-800 rounded-full opacity-0 pointer-events-none -z-30 animate-ringTwo"></span>
+              <span className="absolute w-24 h-24 border-2 border-gray-800 rounded-full opacity-0 pointer-events-none -z-30 animate-ringThree"></span>
+              <div className="z-10 grid w-full h-full bg-gray-800 rounded-full place-items-center">
+                <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
+              </div>
             </Link>
           ))}
         </div>

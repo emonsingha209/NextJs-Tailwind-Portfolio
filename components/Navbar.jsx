@@ -92,7 +92,7 @@ const Navbar = () => {
         </Button>
         <div className="grid md:hidden h-9 w-9 place-items-center">
           <Sheet>
-            <SheetTrigger>
+            <SheetTrigger  title="MenuBar">
               <CgMenuRight className="w-6 h-6" />
             </SheetTrigger>
             <SheetContent>
