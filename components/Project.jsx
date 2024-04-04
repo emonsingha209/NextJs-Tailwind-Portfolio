@@ -71,7 +71,7 @@ const Project = () => {
                       width={400}
                       height={300}
                       alt={item.name}
-                      className="object-cover w-full aspect-[23/10] group-hover:scale-105 transition-all duration-300 "
+                      className="object-cover w-full aspect-[19/10] md:aspect-[23/10] group-hover:scale-105 transition-all duration-300 "
                     />
                   </div>
                   <div className="flex flex-col justify-center pt-5 md:pr-0 md:p-5 basis-1/2">
