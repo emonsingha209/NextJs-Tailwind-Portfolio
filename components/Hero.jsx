@@ -162,9 +162,9 @@ const Hero = () => {
               <div className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
                 Get Resume
                 <div className="relative w-6 h-6 ">
-                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-violet-500 animate-ringOne -z-10"></span>
-                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-violet-500 animate-ringTwo -z-10"></span>
-                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-violet-500 animate-ringThree -z-10"></span>
+                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-primary group-hover:border-muted animate-ringOne -z-10"></span>
+                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-primary group-hover:border-muted animate-ringTwo -z-10"></span>
+                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-primary group-hover:border-muted animate-ringThree -z-10"></span>
                   <TbFileCv className="w-6 h-6 bg-card rounded-full z-40 group-hover:bg-accent-foreground" />
                 </div>
               </div>
