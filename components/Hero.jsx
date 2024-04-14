@@ -152,17 +152,22 @@ const Hero = () => {
               </span>
             </Link>
           </Button>
-          <Button asChild size="hero">
+          <Button asChild size="hero" className="bg-card">
             <Link
               href="/resume"
-              className="relative overflow-hidden transition-all bg-transparent border-2 border-accent-foreground hover:bg-transparent group"
+              className="relative overflow-hidden transition-all border-2 border-accent-foreground group"
               aria-label="Read more about me in Resume"
             >
               <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
-              <span className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
+              <div className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
                 Get Resume
-                <TbFileCv className="w-6 h-6" />
-              </span>
+                <div className="relative w-6 h-6 ">
+                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-violet-500 animate-ringOne -z-10"></span>
+                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-violet-500 animate-ringTwo -z-10"></span>
+                  <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-violet-500 animate-ringThree -z-10"></span>
+                  <TbFileCv className="w-6 h-6 bg-card rounded-full z-40 group-hover:bg-accent-foreground" />
+                </div>
+              </div>
             </Link>
           </Button>
         </motion.div>
@@ -197,9 +202,6 @@ const Hero = () => {
               ref={(el) => (circlesRefs.current[index] = el)}
               aria-label={item.label}
             >
-              <span className="absolute w-24 h-24 border-2 rounded-full opacity-0 pointer-events-none border-violet-500 -z-30 animate-ringOne"></span>
-              <span className="absolute w-24 h-24 border-2 rounded-full opacity-0 pointer-events-none border-violet-500 -z-30 animate-ringTwo"></span>
-              <span className="absolute w-24 h-24 border-2 rounded-full opacity-0 pointer-events-none border-violet-500 -z-30 animate-ringThree"></span>
               <div className="z-10 grid w-full h-full bg-gray-800 rounded-full place-items-center">
                 <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
               </div>

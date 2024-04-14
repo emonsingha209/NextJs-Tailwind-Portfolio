@@ -1,6 +1,13 @@
 import { BiLogoPostgresql } from "react-icons/bi";
 import { DiDotnet } from "react-icons/di";
-import { FaBootstrap, FaCss3, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
+import {
+  FaBootstrap,
+  FaCss3,
+  FaHtml5,
+  FaPhp,
+  FaReact,
+  FaShopify,
+} from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
 import {
   SiMicrosoftsqlserver,
@@ -18,6 +25,7 @@ const icons = [
   TbBrandNextjs,
   FaBootstrap,
   SiTailwindcss,
+  FaShopify,
   DiDotnet,
   SiNestjs,
   FaPhp,
