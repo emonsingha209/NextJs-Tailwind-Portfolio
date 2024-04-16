@@ -103,7 +103,7 @@ const Contact = () => {
         description: (
           <>
             Your message has been sent.
-            <IoIosDoneAll className=" w-4 h-4 ml-2" />
+            <IoIosDoneAll className="inline-block w-4 h-4 ml-2" />
           </>
         ),
       });
