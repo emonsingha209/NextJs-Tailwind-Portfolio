@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { FaHourglassEnd } from "react-icons/fa";
+import { IoIosDoneAll, IoMdSend } from "react-icons/io";
 import { z } from "zod";
 
 import {
@@ -15,7 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import icons from "./icon/Skill";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -100,7 +100,12 @@ const Contact = () => {
       form.reset();
       setIsEmailSent(true);
       toast({
-        description: "Your message has been sent.",
+        description: (
+          <>
+            Your message has been sent.
+            <IoIosDoneAll className=" w-4 h-4 ml-2" />
+          </>
+        ),
       });
     } catch (error) {
       console.error("Error sending email:", error);
@@ -142,8 +147,8 @@ const Contact = () => {
                 consistent and accessible UI components.
               </li>
               <li>
-                <span className="font-semibold">Framer Motion:</span> Implemented
-                for engaging animations and transitions.
+                <span className="font-semibold">Framer Motion:</span>{" "}
+                Implemented for engaging animations and transitions.
               </li>
             </ul>
           </CardContent>
@@ -228,7 +233,10 @@ const Contact = () => {
                         Sending...
                       </>
                     ) : (
-                      "Send Message"
+                      <>
+                        Send Message
+                        <IoMdSend className="w-4 h-4 ml-2" />
+                      </>
                     )}
                   </Button>
                 </div>
