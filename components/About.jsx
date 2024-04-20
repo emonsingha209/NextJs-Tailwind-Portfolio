@@ -126,7 +126,10 @@ const About = () => {
       <div className="w-full mt-8 md:w-1/2 md:mt-0">
         <div
           ref={divRef}
-          className={`md:sticky md:top-[calc(50%-${divHeight}px)] flex justify-center items-center overflow-hidden`}
+          className="sticky flex items-center justify-center overflow-hidden"
+          style={{
+            top: `calc(50%  - ${divHeight}px)`,
+          }}
         >
           <motion.div
             variants={rightToLeft}
