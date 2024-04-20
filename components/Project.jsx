@@ -64,7 +64,11 @@ const Project = () => {
                     <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
                   </div>
                 </div>
-                <CardHeader className="flex flex-col md:flex-row ">
+                <CardHeader
+                  className={`flex flex-col ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                >
                   <div className="overflow-hidden rounded-lg basis-1/2">
                     <Image
                       src={item.image}

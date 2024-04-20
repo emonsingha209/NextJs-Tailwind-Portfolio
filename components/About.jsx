@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useRef, useState } from "react";
 
 import expertise from "@/public/data/expertise";
 import { motion } from "framer-motion";
@@ -47,6 +48,15 @@ const rightToLeft = {
 };
 
 const About = () => {
+  const divRef = useRef(null);
+  const [divHeight, setDivHeight] = useState(0);
+
+  useEffect(() => {
+    if (divRef.current) {
+      const height = divRef.current.clientHeight;
+      setDivHeight(height / 2);
+    }
+  }, [divRef]);
   return (
     <section className="flex flex-wrap py-5" id="about">
       <div className="w-full md:w-1/2">
@@ -113,8 +123,11 @@ const About = () => {
           </motion.div>
         ))}
       </div>
-      <div className="w-full mt-6 md:w-1/2 md:mt-0">
-        <div className="sticky top-16 flex justify-center items-center md:min-h-[calc(100vh-64px)] overflow-hidden">
+      <div className="w-full mt-8 md:w-1/2 md:mt-0">
+        <div
+          ref={divRef}
+          className={`md:sticky md:top-[calc(50%-${divHeight}px)] flex justify-center items-center overflow-hidden`}
+        >
           <motion.div
             variants={rightToLeft}
             initial="initial"
