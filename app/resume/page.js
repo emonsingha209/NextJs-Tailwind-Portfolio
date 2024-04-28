@@ -21,13 +21,21 @@ export default function Resume() {
     <div className="grid w-full pt-5 overflow-auto bg-background place-items-center">
       <div className="flex justify-start w-full mb-5 font-bold uppercase md:justify-center font-oswald">
         <Button asChild>
-          <a href="/resume/resume.pdf" className="font-bold" download="Emon-Singha-Resume">
-            Download Resume<IoMdDownload className="w-4 h-4 ml-2" />
+          <a
+            href="/resume/Emon-Singha-Resume.pdf"
+            className="font-bold"
+            download="Emon-Singha-Resume"
+          >
+            Download Resume
+            <IoMdDownload className="w-4 h-4 ml-2" />
           </a>
         </Button>
       </div>
 
-      <Document file="/resume/resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document
+        file="/resume/Emon-Singha-Resume.pdf"
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
         {Array.from(new Array(numPages), (_, index) => (
           <div key={index}>
             <Page key={index + 1} pageNumber={index + 1} />
