@@ -8,11 +8,14 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useRef, useState } from "react";
+import SpotifyLoading from "./SpotifyLoading";
 
 import expertise from "@/public/data/expertise";
+import axios from "axios";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import { MdDateRange } from "react-icons/md";
+import SvgRenderer from "./SvgRenderer";
 import icons from "./icon/Skill";
 
 const leftToRight = {
@@ -50,13 +53,49 @@ const rightToLeft = {
 const About = () => {
   const divRef = useRef(null);
   const [divHeight, setDivHeight] = useState(0);
+  const [screenHeight, setScreenHeight] = useState(0);
+  const [spotifyData, setSpotifyData] = useState(null);
 
   useEffect(() => {
-    if (divRef.current) {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/spotify", {
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+            Expires: "0",
+          },
+        });
+        setSpotifyData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+
+    const updateDimensions = () => {
+      setScreenHeight(window.innerHeight - 72);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateDimensions);
+
+      updateDimensions();
+
+      return () => {
+        window.removeEventListener("resize", updateDimensions);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (divRef.current && screenHeight > divRef.current.clientHeight) {
       const height = divRef.current.clientHeight;
       setDivHeight(height / 2);
     }
-  }, [divRef]);
+  }, [divRef, screenHeight]);
+
   return (
     <section className="flex flex-wrap py-5" id="about">
       <div className="w-full md:w-1/2">
@@ -128,15 +167,32 @@ const About = () => {
           ref={divRef}
           className="sticky flex items-center justify-center overflow-hidden"
           style={{
-            top: `calc(50%  - ${divHeight}px)`,
+            top: divHeight ? `calc(50% - ${divHeight}px + 32px)` : "80px",
           }}
         >
           <motion.div
             variants={rightToLeft}
             initial="initial"
             whileInView="animate"
-            className="w-full space-y-5 md:w-4/5"
+            className="w-full space-y-5 md:w-4/5 "
           >
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-center"
+            >
+              <div>
+                <p className="mb-3">Currently Coding & Listening to:</p>
+                <div className="w-80 h-[100px]">
+                  {spotifyData ? (
+                    <SvgRenderer svgContent={spotifyData} />
+                  ) : (
+                    <SpotifyLoading />
+                  )}
+                </div>
+              </div>
+            </motion.div>
             <Marquee pauseOnHover>
               <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
                 {icons.map((IconSlider, iconIndex) => (
