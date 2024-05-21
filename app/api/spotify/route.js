@@ -5,13 +5,14 @@ export async function GET() {
     );
     const data = await res.text();
 
-    const cacheDuration = 1;
-
     return new Response(data, {
       status: 200,
       headers: {
         "Content-Type": "text/plain",
-        "Cache-Control": `max-age=${cacheDuration}, public`,
+        "Cache-Control":
+          "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
       },
     });
   } catch (error) {
@@ -20,7 +21,10 @@ export async function GET() {
       status: 500,
       headers: {
         "Content-Type": "text/plain",
-        "Cache-Control": `max-age=${cacheDuration}, public`,
+        "Cache-Control":
+          "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
       },
     });
   }
