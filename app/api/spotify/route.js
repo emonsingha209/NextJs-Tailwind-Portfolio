@@ -1,7 +1,8 @@
 export async function GET() {
   try {
     const res = await fetch(
-      "https://spotify-github-profile.vercel.app/api/view?uid=31gzuyg6pmldhpme7zik3oi6y4sa&cover_image=true&theme=novatorem&show_offline=true&bar_color=53b14f&bar_color_cover=false"
+      "https://spotify-github-profile.vercel.app/api/view?uid=31gzuyg6pmldhpme7zik3oi6y4sa&cover_image=true&theme=novatorem&show_offline=true&bar_color=53b14f&bar_color_cover=false",
+      { cache: "no-store" }
     );
     const data = await res.text();
 
@@ -9,8 +10,7 @@ export async function GET() {
       status: 200,
       headers: {
         "Content-Type": "text/plain",
-        "Cache-Control":
-          "no-cache, no-store, must-revalidate",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
         Pragma: "no-cache",
         Expires: "0",
       },
@@ -21,8 +21,7 @@ export async function GET() {
       status: 500,
       headers: {
         "Content-Type": "text/plain",
-        "Cache-Control":
-          "no-cache, no-store, must-revalidate",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
         Pragma: "no-cache",
         Expires: "0",
       },
