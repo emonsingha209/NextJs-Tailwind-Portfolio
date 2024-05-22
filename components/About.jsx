@@ -74,7 +74,7 @@ const About = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 5000);
+    const intervalId = setInterval(fetchData, 3000);
 
     const updateDimensions = () => {
       setScreenHeight(window.innerHeight - 72);

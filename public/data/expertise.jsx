@@ -49,8 +49,16 @@ const expertise = [
     description:
       "I translate concepts into visually captivating interfaces, prioritizing aesthetics and user experience. My designs enhance brand identity and effectively engage users, ensuring a cohesive and impactful online presence.",
   },
+
   {
     id: 3,
+    title: "Responsive Design",
+    icons: [FaCss3, IoLogoJavascript, FaBootstrap, SiTailwindcss],
+    description:
+      "I ensure websites adapt seamlessly to all devices using responsive design techniques like Bootstrap and Tailwind's breakpoints and media queries, ensuring consistent user experience.",
+  },
+  {
+    id: 4,
     title: "Shopify Integration with Next.js",
     icons: [
       FaHtml5,
@@ -63,13 +71,6 @@ const expertise = [
     ],
     description:
       "I specialize in integrating Shopify stores with Next.js for custom design solutions. Leveraging the capabilities of Next.js, I create seamless and highly customizable user experiences tailored to the specific needs and branding of the Shopify store.",
-  },
-  {
-    id: 4,
-    title: "Responsive Design",
-    icons: [FaCss3, IoLogoJavascript, FaBootstrap, SiTailwindcss],
-    description:
-      "I ensure websites adapt seamlessly to all devices using responsive design techniques like Bootstrap and Tailwind's breakpoints and media queries, ensuring consistent user experience.",
   },
   {
     id: 5,

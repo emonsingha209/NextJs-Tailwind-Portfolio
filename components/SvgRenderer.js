@@ -17,7 +17,7 @@ const SvgRenderer = ({ svgContent }) => {
         })
         .replace(
           /class="container"/g,
-          'class="flex items-center p-2.5 rounded-lg bg-[#1E0342] "'
+          'class="flex items-center p-2.5 rounded-lg bg-[#1E293B]"'
         )
         .replace(
           /href="\{\}"/g,

@@ -7,22 +7,19 @@ async function fetchData() {
       { cache: "no-store" }
     );
     const data = await res.text();
-    cachedData = data; // update cached data
+    cachedData = data;
   } catch (error) {
     console.error("Error fetching Spotify profile:", error);
   }
 }
 
 export async function GET() {
-  await fetchData(); // Fetch data initially
+  await fetchData();
 
-  // Fetch data every 5 seconds
-  const intervalId = setInterval(fetchData, 5000);
+  const intervalId = setInterval(fetchData, 3000);
 
-  // Clean up interval on request completion
   const cleanup = () => clearInterval(intervalId);
 
-  // Return cached data
   return new Response(cachedData, {
     status: 200,
     headers: {
