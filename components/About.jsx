@@ -74,6 +74,8 @@ const About = () => {
 
     fetchData();
 
+    const intervalId = setInterval(fetchData, 5000);
+
     const updateDimensions = () => {
       setScreenHeight(window.innerHeight - 72);
     };
@@ -85,6 +87,7 @@ const About = () => {
 
       return () => {
         window.removeEventListener("resize", updateDimensions);
+        clearInterval(intervalId);
       };
     }
   }, []);
@@ -183,10 +186,16 @@ const About = () => {
               className="flex justify-center"
             >
               <div>
-                <p className="mb-3">Currently Coding & Listening to:</p>
+                <p className="mb-3 font-oswald text-xl tracking-wide border-b pb-2">
+                  Currently Coding & Listening to:
+                </p>
                 <div className="w-80 h-[100px]">
-                  {spotifyData ? (
+                  {spotifyData && spotifyData.startsWith("<svg") ? (
                     <SvgRenderer svgContent={spotifyData} />
+                  ) : spotifyData && spotifyData.startsWith("<!DOCTYPE") ? (
+                    <div className="w-full h-full flex justify-center items-center border rounded-md text-gray-300 font-oswald">
+                      <p>Advertisements are playing on Spotify.</p>
+                    </div>
                   ) : (
                     <SpotifyLoading />
                   )}

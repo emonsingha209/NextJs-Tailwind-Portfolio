@@ -15,7 +15,14 @@ const SvgRenderer = ({ svgContent }) => {
             .replace(/div\s*{[^}]*}/g, "");
           return `<style>${modifiedStyleContent}</style>`;
         })
-        .replace(/class="container"/g, 'class="flex items-center p-2.5 rounded-lg bg-[#1E0342] "');
+        .replace(
+          /class="container"/g,
+          'class="flex items-center p-2.5 rounded-lg bg-[#1E0342] "'
+        )
+        .replace(
+          /href="\{\}"/g,
+          'href="https://open.spotify.com/user/31gzuyg6pmldhpme7zik3oi6y4sa"'
+        );
 
       svgRef.current.innerHTML = modifiedSvgContent;
     }
