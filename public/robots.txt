@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://emonsingha.vercel.app
+
+# Sitemaps
+Sitemap: https://emonsingha.vercel.app/sitemap.xml

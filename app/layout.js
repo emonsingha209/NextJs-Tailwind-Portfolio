@@ -34,21 +34,30 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Emon Singha | Front-End-Developer",
+  title: "Emon Singha | Frontend Developer",
   description:
-    "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
+    "Emon Singha is a passionate Frontend Developer dedicated to crafting immersive UI experiences with React and Next.js. Known for clean code and elegant interfaces.",
   keywords:
-    "Emon Singha, Frontend Developer, ReactJs Developer, NextJs Developer, Web Developer, Web Development",
+    "Emon Singha, Frontend Developer, React Developer, Next.js Developer, Web Developer, UI Developer, Web Development, JavaScript, HTML, CSS",
   author: "Emon Singha",
   robots: "index, follow",
+  canonical: "https://emonsingha.vercel.app",
   openGraph: {
     ...openGraphImage,
-    title: "Emon Singha | Front End Developer",
+    title: "Emon Singha | Frontend Developer",
     type: "website",
     url: "https://emonsingha.vercel.app/",
     description:
-      "I am Emon Singha. I am a passionate Frontend Developer dedicated to creating immersive UI experiences that resonate with users. With a keen eye for detail and a love for clean code, I bring ideas to life through elegant and functional interfaces.",
+      "Emon Singha is a passionate Frontend Developer who excels in creating engaging UI experiences with a focus on React and Next.js. Explore his portfolio to see his work.",
     site_name: "Emon Singha Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@EmonSingha209",
+    title: "Emon Singha | Frontend Developer",
+    description:
+      "Discover the work of Emon Singha, a dedicated Frontend Developer specializing in React and Next.js, known for clean code and beautiful UI designs.",
+    image: "https://emonsingha.vercel.app/img/ogImage.webp",
   },
 };
 

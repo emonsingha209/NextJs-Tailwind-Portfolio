@@ -183,7 +183,7 @@ const About = () => {
               className="flex justify-center"
             >
               <div>
-                <p className="mb-3 font-oswald text-xl tracking-wide border-b pb-2">
+                <p className="mb-3 font-semibold leading-none tracking-wider text-lg md:text-xl font-oswald border-b pb-2">
                   Currently Coding & Listening to:
                 </p>
                 <div className="w-80 h-[100px]">

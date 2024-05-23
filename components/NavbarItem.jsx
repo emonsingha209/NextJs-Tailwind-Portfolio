@@ -16,13 +16,17 @@ const NavbarItem = () => {
           <li key={index} className="relative h-full ">
             <Link
               href="/"
-              className="relative grid h-full transition-colors duration-300 place-items-center hover:text-blue-400"
+              className={`relative grid h-full transition-colors duration-300 place-items-center ${
+                item.text === activeSection
+                  ? "dark:text-white text-black"
+                  : "dark:text-slate-300 text-gray-800 hover:text-black dark:hover:text-white"
+              }`}
               onClick={() => handleClick(item.text)}
               scroll={false}
             >
               {item.text === activeSection ? (
                 <motion.div
-                  className="dark:bg-[#f2f2f2] bg-gray-800 absolute rounded-sm -bottom-1.5 md:bottom-0 w-full h-1 shadow-[0_-2px_25px_2px_#fff] "
+                  className="dark:bg-[#f2f2f2] text-black bg-gray-800 absolute rounded-sm -bottom-1.5 md:bottom-0 w-full h-1 shadow-[0_-2px_25px_2px_#fff] "
                   layoutId="light"
                 />
               ) : null}
