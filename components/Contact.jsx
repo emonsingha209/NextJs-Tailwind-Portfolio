@@ -4,6 +4,7 @@ import { useToast } from "@/components/ui/use-toast";
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FaHourglassEnd } from "react-icons/fa";
 import { IoIosDoneAll, IoMdSend } from "react-icons/io";
@@ -16,6 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import contactDetails from "@/public/data/CourseDetails";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -117,7 +119,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex flex-wrap-reverse py-6 overflow-hidden"
+      className="flex flex-wrap-reverse py-6 gap-5 md:gap-0 overflow-hidden"
     >
       <motion.div
         variants={contactLeft}
@@ -125,32 +127,39 @@ const Contact = () => {
         whileInView="animate"
         className="grid md:basis-1/2 place-items-center"
       >
-        <Card className="w-full mt-8 md:mt-0">
+        <Card className="w-full xns:w-11/12 h-full flex flex-col justify-between">
           <CardHeader>
-            <CardTitle>Behind the Scenes: Tech Choices</CardTitle>
+            <CardTitle>Reach Out</CardTitle>
             <CardDescription>
-              This portfolio is crafted with the following modern technologies:
+              Reach out to me anytime using the following contact details.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <ul className="mb-6 ml-6 list-disc [&>li]:mt-2">
-              <li>
-                <span className="font-semibold">Next.js: </span>Utilized for
-                optimized performance and server-side rendering.
-              </li>
-              <li>
-                <span className="font-semibold">Tailwind CSS: </span>Employed
-                for efficient styling with a utility-first approach.
-              </li>
-              <li>
-                <span className="font-semibold">Shadcn UI: </span>Integrated for
-                consistent and accessible UI components.
-              </li>
-              <li>
-                <span className="font-semibold">Framer Motion:</span>{" "}
-                Implemented for engaging animations and transitions.
-              </li>
-            </ul>
+          <CardContent className="">
+            <div className="grid gap-4 ">
+              {contactDetails.map((detail) => (
+                <Link
+                  href={detail.link}
+                  key={detail.id}
+                  className={`${
+                    detail.link === "#"
+                      ? "cursor-not-allowed pointer-events-none"
+                      : "cursor-pointer "
+                  }`}
+                >
+                  <div className="flex items-center space-x-4 rounded-lg transition-colors duration-1000 ease-primary border p-4 dark:hover:border-violet-500 hover:border-gray-300  cursor-pointer ">
+                    <div>{<detail.icon className="w-6 h-6" />}</div>
+                    <div className="flex-1 space-y-1">
+                      <p className="text-sm font-medium leading-none">
+                        {detail.type}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {detail.value}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </motion.div>
@@ -160,11 +169,11 @@ const Contact = () => {
         whileInView="animate"
         className="grid md:basis-1/2 place-items-center"
       >
-        <Card className="w-full xns:w-4/5">
+        <Card className="w-full xns:w-11/12 ">
           <CardHeader>
             <CardTitle>Get in Touch With Me</CardTitle>
             <CardDescription>
-              Use the form below to send me a message or ask any questions
+              Use the form below to send me a message or ask any questions.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -238,7 +247,7 @@ const Contact = () => {
                         <IoMdSend className="w-4 h-4 ml-2" />
                       </>
                     )}
-                  </Button>
+                  </Button>                  
                 </div>
               </form>
             </Form>

@@ -53,7 +53,7 @@ const Navbar = () => {
       variants={navbarAnimate}
       initial="initial"
       animate="animate"
-      className="sticky top-0 z-50 flex items-center justify-around w-full h-16 shadow-md shadow-ring/10 backdrop-blur-md"
+      className="sticky top-0 z-50 flex items-center justify-around w-full h-16 shadow-md shadow-ring/10 backdrop-blur-md "
     >
       <Link href="/" scroll={false} onClick={() => handleClick("home")}>
         <div className="flex text-base uppercase xs:text-2xl lg:text-3xl font-playfair">
@@ -68,7 +68,7 @@ const Navbar = () => {
           ))}
         </div>
       </Link>
-      <div className="hidden md:block">
+      <div className="absolute top-[70px] flex justify-center w-full md:w-fit md:block md:static left-0 ">
         <NavbarItem />
       </div>
       <div className="flex items-center justify-center gap-1 md:gap-3">
@@ -90,19 +90,7 @@ const Navbar = () => {
           <MoonIcon className="hidden w-6 h-6 transition-all duration-1000 scale-0 rotate-90 dark:block dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
-        <div className="grid md:hidden h-9 w-9 place-items-center">
-          <Sheet>
-            <SheetTrigger  title="MenuBar">
-              <CgMenuRight className="w-6 h-6" />
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <NavbarItem />
-            </SheetContent>
-          </Sheet>
-        </div>
+
       </div>
     </motion.header>
   );

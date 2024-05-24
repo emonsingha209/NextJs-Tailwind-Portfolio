@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 
 const useScrollSpy = () => {
   const [activeSection, setActiveSection] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); 
+    };
+
     const handleScroll = () => {
       const sections = document.querySelectorAll("section[id]");
       const scrollY = window.scrollY;
@@ -20,25 +25,31 @@ const useScrollSpy = () => {
       });
     };
 
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+
+    // Prevent context menu from opening
     window.addEventListener("contextmenu", function (event) {
       event.preventDefault();
     });
 
+    // Initial call
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
-
     return () => {
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const scrollToSection = (item) => {
     const section = document.getElementById(item);
+    const offset = isMobile ? 120 : 64;
 
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 64,
+        top: section.offsetTop - offset,
         behavior: "smooth",
       });
     } else {

@@ -96,7 +96,7 @@ const Hero = () => {
 
   return (
     <section
-      className="lg:h-[calc(100vh-64px)] h-full py-5 md:py-10 lg:py-0 flex flex-wrap flex-col-reverse md:flex-row items-center justify-center overflow-hidden"
+      className="lg:h-[calc(100vh-64px)] h-full py-5 pt-16 md:py-10 lg:py-0 lg:pt-0 flex flex-wrap flex-col-reverse md:flex-row items-center justify-center overflow-hidden"
       id="home"
     >
       <motion.div

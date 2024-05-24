@@ -10,10 +10,10 @@ const NavbarItem = () => {
     scrollToSection(item);
   };
   return (
-    <nav className="flex items-center justify-center h-full font-oswald ">
-      <ul className="flex flex-col items-center gap-5 px-5 -mt-40 text-2xl uppercase list-none rounded-md md:mt-0 md:text-lg md:rounded-full h-fit md:h-12 md:flex-row text-nowrap bg-background/50">
+    <nav className="flex items-center justify-center z-40 h-full font-oswald ">
+      <ul className="flex items-center gap-5 px-5  uppercase list-none text-base  md:text-lg rounded-full h-12 flex-row text-nowrap bg-secondary md:bg-secondary/50">
         {navData.map((item, index) => (
-          <li key={index} className="relative h-full ">
+          <li key={index} className="relative h-full">
             <Link
               href="/"
               className={`relative grid h-full transition-colors duration-300 place-items-center ${
@@ -26,7 +26,7 @@ const NavbarItem = () => {
             >
               {item.text === activeSection ? (
                 <motion.div
-                  className="dark:bg-[#f2f2f2] text-black bg-gray-800 absolute rounded-sm -bottom-1.5 md:bottom-0 w-full h-1 shadow-[0_-2px_25px_2px_#fff] "
+                  className="dark:bg-[#f2f2f2] text-black bg-gray-800 absolute rounded-sm bottom-0 w-full h-1 shadow-[0_-2px_25px_2px_#fff] "
                   layoutId="light"
                 />
               ) : null}

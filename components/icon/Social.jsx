@@ -4,8 +4,10 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedin,
+  FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const socialIcons = [
   {
@@ -29,6 +31,16 @@ const socialIcons = [
     Icon: FaInstagram,
     link: "https://www.instagram.com/thounaojam_emon/",
     label: "Instagram",
+  },
+  {
+    Icon: FaTwitter,
+    link: "https://x.com/EmonSingha209",
+    label: "Twitter",
+  },
+  {
+    Icon: MdEmail,
+    link: "mailto:emonsingha209@gmail.com",
+    label: "Mail",
   },
 ];
 

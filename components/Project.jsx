@@ -12,10 +12,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 const containerTitle = {
-  hidden: { opacity: 0, rotate: 90 },
+  hidden: { opacity: 0, scale: 0 },
   visible: {
     opacity: 1,
-    rotate: 0,
+    scale: 1,
     transition: {
       duration: 0.5,
     },
@@ -89,7 +89,7 @@ const Project = () => {
                         ))}
                       </span>
                     </CardDescription>
-                    <ul className="flex flex-wrap gap-5 mt-6 text-base md:text-xl font-oswald">
+                    <ul className="flex flex-wrap gap-x-5 gap-y-3 mt-6 text-base md:text-xl font-oswald">
                       {item.githubLinks.map((link, index) => (
                         <li key={index}>
                           <Link
@@ -100,7 +100,6 @@ const Project = () => {
                           >
                             <p className="flex items-center gap-3 flex-nowrap w-fit">
                               <span className="-mt-[1px]">{link.label}</span>
-
                               <FaGithub />
                             </p>
                           </Link>
