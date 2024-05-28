@@ -119,7 +119,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex flex-wrap-reverse py-6 gap-5 md:gap-0 overflow-hidden"
+      className="flex md:flex-row flex-col py-6 gap-5 md:gap-0 overflow-hidden"
     >
       <motion.div
         variants={contactLeft}
