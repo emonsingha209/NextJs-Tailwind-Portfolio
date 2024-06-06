@@ -1,19 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import useScrollSpy from "@/hook/useScrollSpy";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { BiLogoGmail } from "react-icons/bi";
-import { CgMenuRight } from "react-icons/cg";
 import { TbFileCv } from "react-icons/tb";
 import letters from "../public/data/name.json";
 import NavbarItem from "./NavbarItem";

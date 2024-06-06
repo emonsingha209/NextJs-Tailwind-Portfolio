@@ -222,14 +222,25 @@ const About = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="space-y-2">
-                      <p className="flex items-center gap-1 text-sm">
-                        <MdDateRange />3 Sept 2023 - 31 Dec 2023
-                      </p>
-                      <h3 className="font-semibold leading-none tracking-wide ">
-                        Web Developer - Intern
-                      </h3>
-                      <p>Aamra Infotainment Ltd.</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-2">
+                        <p className="flex items-center gap-1 text-sm">
+                          <MdDateRange />3 Sept 2023 - 31 Dec 2023
+                        </p>
+                        <h3 className="font-semibold leading-none tracking-wide ">
+                          Web Developer - Intern
+                        </h3>
+                        <p>Aamra Infotainment Ltd.</p>
+                      </div>
+                      <div className="space-y-2 ">
+                        <p className="flex items-center gap-1 text-sm">
+                          <MdDateRange />3 June 2024 - Present
+                        </p>
+                        <h3 className="font-semibold leading-none tracking-wide ">
+                          Intern Frontend Developer
+                        </h3>
+                        <p>SJ Innovation LLC</p>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
