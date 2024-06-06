@@ -6,7 +6,7 @@ import Project from "@/components/Project";
 
 export default function Home() {
   return (
-    <main className="container">
+    <main>
       <Hero />
       <About />
       <Project />
