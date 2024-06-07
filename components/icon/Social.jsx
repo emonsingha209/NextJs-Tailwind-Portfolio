@@ -7,6 +7,7 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
 const socialIcons = [
@@ -33,7 +34,7 @@ const socialIcons = [
     label: "Instagram",
   },
   {
-    Icon: FaTwitter,
+    Icon: FaXTwitter,
     link: "https://x.com/EmonSingha209",
     label: "Twitter",
   },

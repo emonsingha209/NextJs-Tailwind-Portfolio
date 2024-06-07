@@ -34,7 +34,7 @@ const projectItem = {
 };
 const Project = () => {
   return (
-    <section id="projects" className="py-5 md:mt-12 overflow-hidden container">
+    <section id="projects" className="py-5 md:mt-5 overflow-hidden container">
       <motion.div
         variants={containerTitle}
         initial="hidden"
