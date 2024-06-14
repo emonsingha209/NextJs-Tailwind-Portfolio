@@ -1,13 +1,23 @@
 import { BiLogoPostgresql } from "react-icons/bi";
 import { DiDotnet } from "react-icons/di";
-import { FaBootstrap, FaCss3, FaHtml5, FaJava, FaReact } from "react-icons/fa";
+import {
+  FaBootstrap,
+  FaCss3,
+  FaHtml5,
+  FaJava,
+  FaReact,
+  FaPhp,
+} from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
 import {
   SiMicrosoftsqlserver,
   SiNestjs,
   SiOpengl,
   SiTailwindcss,
+  SiMongodb,
+  SiMysql,
 } from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
 
 const projects = [
   {
@@ -19,11 +29,11 @@ const projects = [
     technologies: [SiOpengl],
     githubLinks: [
       {
-        label: "Repository",
+        label: "Code",
         url: "https://github.com/emonsingha209/London-Tower-Bridge--Opengl",
       },
     ],
-    liveDemoLinks: [{ label: "Video Demo", url: "/video/bridge.webm" }],
+    liveDemoLinks: [{ label: "Demo", url: "/video/bridge.webm" }],
   },
   {
     id: 2,
@@ -34,7 +44,7 @@ const projects = [
     technologies: [FaJava],
     githubLinks: [
       {
-        label: "Repository",
+        label: "Code",
         url: "https://github.com/emonsingha209/Health_Consultant",
       },
     ],
@@ -49,7 +59,7 @@ const projects = [
     technologies: [SiNestjs, BiLogoPostgresql],
     githubLinks: [
       {
-        label: "Repository",
+        label: "Code",
         url: "https://github.com/Ratul41Bhatt/Nutrition-and-Workout-System",
       },
     ],
@@ -64,12 +74,12 @@ const projects = [
     technologies: [FaHtml5, FaCss3, IoLogoJavascript, SiTailwindcss, FaReact],
     githubLinks: [
       {
-        label: "Repository",
+        label: "Code",
         url: "https://github.com/emonsingha209/Portfolio-reactjs",
       },
     ],
     liveDemoLinks: [
-      { label: "Live Demo", url: "https://emonsinghav1.netlify.app/" },
+      { label: "Live", url: "https://emonsinghav1.netlify.app/" },
     ],
   },
   {
@@ -89,11 +99,11 @@ const projects = [
     ],
     githubLinks: [
       {
-        label: "Repository Frontend",
+        label: "Frontend",
         url: "https://github.com/AdibAhmed317/RoadSaints-ReactJS",
       },
       {
-        label: "Repository Backend",
+        label: "Backend",
         url: "https://github.com/AdibAhmed317/RoadSaints-ASPDotNet",
       },
     ],
@@ -108,9 +118,37 @@ const projects = [
     technologies: [FaHtml5, FaCss3, IoLogoJavascript, FaBootstrap],
     githubLinks: [],
     liveDemoLinks: [
-      { label: "Merlin Technology", url: "https://www.merlintechbd.com/" },
+      { label: "Merlin", url: "https://www.merlintechbd.com/" },
       { label: "Hayashimu", url: "https://www.hayashimu.com/" },
     ],
+  },
+  {
+    id: 7,
+    name: "SJI Prompting is the ultimate hub for SJI developers",
+    image: "/img/sji-prompt.webp",
+    technologies: [TbBrandNextjs, SiTailwindcss, SiMongodb],
+    githubLinks: [],
+    liveDemoLinks: [
+      { label: "Live", url: "https://sji-prompting.vercel.app/" },
+    ],
+  },
+  {
+    id: 8,
+    name: "Swimming Club Management System",
+    image: "/img/swim-club.webp",
+    description: "a",
+    technologies: [
+      FaHtml5,
+      FaCss3,
+      IoLogoJavascript,
+      FaBootstrap,
+      FaPhp,
+      SiMysql,
+    ],
+    githubLinks: [
+      { label: "Code", url: "https://github.com/emonsingha209/swim_club" },
+    ],
+    liveDemoLinks: [],
   },
 ];
 

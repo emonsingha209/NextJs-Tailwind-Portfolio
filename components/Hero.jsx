@@ -95,7 +95,8 @@ const Hero = () => {
   const multipleSpaces = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0";
 
   return (
-    <section id="home" className="bg-[url('/img/bg-image.svg')] bg-cover">
+    <section id="home" className="relative z-10">
+      <div className="bg-[url('/img/bg-image.svg')] bg-cover absolute z-0 w-full md:h-full aspect-square"></div>
       <div className="lg:h-[calc(100vh-64px)] container h-full py-5 pt-16 md:py-10 lg:py-0 lg:pt-0 flex flex-wrap flex-col-reverse md:flex-row items-center justify-center overflow-hidden ">
         <motion.div
           variants={uptoDown}
@@ -141,7 +142,7 @@ const Hero = () => {
                 href="/"
                 scroll={false}
                 onClick={() => handleClick("contact")}
-                className="relative overflow-hidden transition-all bg-transparent border-2 border-accent-foreground hover:bg-transparent group"
+                className="relative dark:bg-cardBg overflow-hidden transition-all bg-transparent border-2 border-accent-foreground hover:bg-transparent group"
               >
                 <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
                 <span className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
@@ -153,7 +154,7 @@ const Hero = () => {
             <Button asChild size="hero" className="bg-card">
               <Link
                 href="/resume"
-                className="relative overflow-hidden transition-all border-2 border-accent-foreground group"
+                className="relative dark:bg-cardBg overflow-hidden transition-all border-2 border-accent-foreground group"
                 aria-label="Read more about me in Resume"
               >
                 <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>

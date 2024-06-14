@@ -17,6 +17,7 @@ import Marquee from "react-fast-marquee";
 import { MdDateRange } from "react-icons/md";
 import SvgRenderer from "./SvgRenderer";
 import icons from "./icon/Skill";
+import Link from "next/link";
 
 const leftToRight = {
   initial: {
@@ -142,7 +143,7 @@ const About = () => {
             initial="initial"
             whileInView="animate"
           >
-            <Card>
+            <Card className=" dark:bg-cardBg">
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
                 <CardDescription>
@@ -165,7 +166,7 @@ const About = () => {
       <div className="w-full mt-8 md:w-1/2 md:mt-0">
         <div
           ref={divRef}
-          className="sticky flex items-center justify-center overflow-hidden"
+          className="sticky flex items-center justify-center  overflow-hidden"
           style={{
             top: divHeight ? `calc(50% - ${divHeight}px + 32px)` : "80px",
           }}
@@ -223,7 +224,10 @@ const About = () => {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="space-y-2">
+                      <Link
+                        href="https://aamrainfotainment.com/"
+                        className="space-y-2 group relative "
+                      >
                         <p className="flex items-center gap-1 text-sm">
                           <MdDateRange />3 Sept 2023 - 31 Dec 2023
                         </p>
@@ -231,8 +235,12 @@ const About = () => {
                           Web Developer - Intern
                         </h3>
                         <p>Aamra Infotainment Ltd.</p>
-                      </div>
-                      <div className="space-y-2 ">
+                        <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                      </Link>
+                      <Link
+                        href="https://sjinnovation.com/"
+                        className="space-y-2 group relative"
+                      >
                         <p className="flex items-center gap-1 text-sm">
                           <MdDateRange />3 June 2024 - Present
                         </p>
@@ -240,7 +248,8 @@ const About = () => {
                           Intern Frontend Developer
                         </h3>
                         <p>SJ Innovation LLC</p>
-                      </div>
+                        <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -254,7 +263,10 @@ const About = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="space-y-2">
+                    <Link
+                      href="https://www.aiub.edu/"
+                      className="space-y-2 group relative"
+                    >
                       <p className="flex items-center gap-1 text-sm">
                         <MdDateRange />
                         2020 - 2023
@@ -263,7 +275,8 @@ const About = () => {
                         Bachelor of Science in Computer Science & Engineering
                       </h3>
                       <p>American International University-Bangladesh (AIUB)</p>
-                    </div>
+                      <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                    </Link>
                   </CardContent>
                 </Card>
               </TabsContent>

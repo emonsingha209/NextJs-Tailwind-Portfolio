@@ -21,6 +21,10 @@ module.exports = {
         xs: "360px",
         xns: "480px",
       },
+      backgroundImage: {
+        "cardBg":
+          "radial-gradient(150% 150% at 0% 100%, #261c45 0%, rgba(35, 25, 74, 0) 100%)",
+      },
       fontFamily: {
         oswald: ["var(--font-oswald)"],
         lato: ["var(--font-lato)"],
