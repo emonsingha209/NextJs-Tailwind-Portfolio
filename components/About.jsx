@@ -227,6 +227,9 @@ const About = () => {
                       <Link
                         href="https://aamrainfotainment.com/"
                         className="space-y-2 group relative "
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="AIL"
                       >
                         <p className="flex items-center gap-1 text-sm">
                           <MdDateRange />3 Sept 2023 - 31 Dec 2023
@@ -240,6 +243,9 @@ const About = () => {
                       <Link
                         href="https://sjinnovation.com/"
                         className="space-y-2 group relative"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SJI"
                       >
                         <p className="flex items-center gap-1 text-sm">
                           <MdDateRange />3 June 2024 - Present
@@ -266,6 +272,9 @@ const About = () => {
                     <Link
                       href="https://www.aiub.edu/"
                       className="space-y-2 group relative"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="AIUB"
                     >
                       <p className="flex items-center gap-1 text-sm">
                         <MdDateRange />
