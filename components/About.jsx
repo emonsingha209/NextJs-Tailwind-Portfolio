@@ -166,7 +166,7 @@ const About = () => {
       <div className="w-full mt-8 md:w-1/2 md:mt-0">
         <div
           ref={divRef}
-          className="sticky flex items-center justify-center  overflow-hidden"
+          className="sticky flex items-center justify-center overflow-hidden"
           style={{
             top: divHeight ? `calc(50% - ${divHeight}px + 32px)` : "80px",
           }}
@@ -223,7 +223,7 @@ const About = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
                       <Link
                         href="https://aamrainfotainment.com/"
                         className="space-y-2 group relative "

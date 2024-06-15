@@ -76,8 +76,8 @@ const Project = () => {
               .slice()
               .reverse()
               .map((item, index) => (
-                <CarouselItem key={index}>
-                  <Card className="h-full dark:bg-cardBg w-72 transition-colors duration-1000 ease-primary hover:shadow-lg dark:hover:border-violet-500 hover:border-gray-300 group">
+                <CarouselItem key={index} className=" md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <Card className="h-full dark:bg-cardBg transition-colors duration-1000 ease-primary hover:shadow-lg dark:hover:border-violet-500 hover:border-gray-300 group">
                     <div className="flex justify-center -translate-y-[1px]">
                       <div className="w-3/4">
                         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
