@@ -55,25 +55,25 @@ const About = () => {
   const divRef = useRef(null);
   const [divHeight, setDivHeight] = useState(0);
   const [screenHeight, setScreenHeight] = useState(0);
-  const [spotifyData, setSpotifyData] = useState(null);
+  // const [spotifyData, setSpotifyData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/spotify", {
-          headers: {
-            "Cache-Control": "no-cache",
-            Pragma: "no-cache",
-            Expires: "0",
-          },
-        });
-        setSpotifyData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await axios.get("/api/spotify", {
+    //       headers: {
+    //         "Cache-Control": "no-cache",
+    //         Pragma: "no-cache",
+    //         Expires: "0",
+    //       },
+    //     });
+    //     setSpotifyData(response.data);
+    //   } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //   }
+    // };
 
-    fetchData();
+    // fetchData();
 
     const updateDimensions = () => {
       setScreenHeight(window.innerHeight - 72);
@@ -177,7 +177,7 @@ const About = () => {
             whileInView="animate"
             className="w-full space-y-5 md:w-4/5 "
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -199,7 +199,7 @@ const About = () => {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </motion.div> */}
             <Marquee pauseOnHover>
               <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
                 {icons.map((IconSlider, iconIndex) => (
