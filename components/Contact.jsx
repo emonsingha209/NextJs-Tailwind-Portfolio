@@ -118,8 +118,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative z-10 mt-5">
-      <div className="bg-[url('/img/bg-image.svg')] bg-cover absolute z-0 w-full h-full rotate-180">
-      </div>
+      <div className="bg-[url('/img/bg-image.svg')] bg-cover absolute z-0 w-full h-full rotate-180"></div>
       <div className="flex md:flex-row flex-col py-8 gap-5 md:gap-0 overflow-hidden container">
         <motion.div
           variants={contactLeft}

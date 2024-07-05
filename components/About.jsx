@@ -200,6 +200,7 @@ const About = () => {
                 </div>
               </div>
             </motion.div> */}
+           
             <Marquee pauseOnHover>
               <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
                 {icons.map((IconSlider, iconIndex) => (
