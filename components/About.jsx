@@ -1,4 +1,3 @@
-"use client";
 import {
   Card,
   CardContent,
@@ -7,15 +6,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useEffect, useRef, useState } from "react";
-import SpotifyLoading from "./SpotifyLoading";
 
 import expertise from "@/public/data/expertise";
-import axios from "axios";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import { MdDateRange } from "react-icons/md";
-import SvgRenderer from "./SvgRenderer";
 import icons from "./icon/Skill";
 import Link from "next/link";
 
@@ -52,50 +47,7 @@ const rightToLeft = {
 };
 
 const About = () => {
-  const divRef = useRef(null);
-  const [divHeight, setDivHeight] = useState(0);
-  const [screenHeight, setScreenHeight] = useState(0);
-  // const [spotifyData, setSpotifyData] = useState(null);
 
-  useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get("/api/spotify", {
-    //       headers: {
-    //         "Cache-Control": "no-cache",
-    //         Pragma: "no-cache",
-    //         Expires: "0",
-    //       },
-    //     });
-    //     setSpotifyData(response.data);
-    //   } catch (error) {
-    //     console.error("Error fetching data:", error);
-    //   }
-    // };
-
-    // fetchData();
-
-    const updateDimensions = () => {
-      setScreenHeight(window.innerHeight - 72);
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updateDimensions);
-
-      updateDimensions();
-
-      return () => {
-        window.removeEventListener("resize", updateDimensions);
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    if (divRef.current && screenHeight > divRef.current.clientHeight) {
-      const height = divRef.current.clientHeight;
-      setDivHeight(height / 2);
-    }
-  }, [divRef, screenHeight]);
 
   return (
     <section className="flex flex-wrap py-5 container" id="about">
@@ -163,44 +115,14 @@ const About = () => {
           </motion.div>
         ))}
       </div>
-      <div className="w-full mt-8 md:w-1/2 md:mt-0">
-        <div
-          ref={divRef}
-          className="sticky flex items-center justify-center overflow-hidden"
-          style={{
-            top: divHeight ? `calc(50% - ${divHeight}px + 32px)` : "80px",
-          }}
-        >
+      <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] bg-blue-600 top-16 overflow-auto">
+       
           <motion.div
             variants={rightToLeft}
             initial="initial"
             whileInView="animate"
-            className="w-full space-y-5 md:w-4/5 "
+            className="w-full space-y-5 md:w-4/5 h-full top-1/2 overflow-auto "
           >
-            {/* <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex justify-center"
-            >
-              <div>
-                <p className="mb-3 font-semibold leading-none tracking-wider text-lg md:text-xl font-oswald border-b pb-2">
-                  Currently Coding & Listening to:
-                </p>
-                <div className="w-80 h-[100px]">
-                  {spotifyData && spotifyData.startsWith("<svg") ? (
-                    <SvgRenderer svgContent={spotifyData} />
-                  ) : spotifyData && spotifyData.startsWith("<!DOCTYPE") ? (
-                    <div className="w-full h-full flex justify-center items-center border rounded-md text-gray-300 font-oswald">
-                      <p>Advertisements are playing on Spotify.</p>
-                    </div>
-                  ) : (
-                    <SpotifyLoading />
-                  )}
-                </div>
-              </div>
-            </motion.div> */}
-           
             <Marquee pauseOnHover>
               <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
                 {icons.map((IconSlider, iconIndex) => (
@@ -293,7 +215,6 @@ const About = () => {
             </Tabs>
           </motion.div>
         </div>
-      </div>
     </section>
   );
 };

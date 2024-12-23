@@ -30,9 +30,9 @@ const useScrollSpy = () => {
     window.addEventListener("scroll", handleScroll);
 
     // Prevent context menu from opening
-    window.addEventListener("contextmenu", function (event) {
-      event.preventDefault();
-    });
+    // window.addEventListener("contextmenu", function (event) {
+    //   event.preventDefault();
+    // });
 
     // Initial call
     handleScroll();
