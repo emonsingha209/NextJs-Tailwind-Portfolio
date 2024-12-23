@@ -115,13 +115,13 @@ const About = () => {
           </motion.div>
         ))}
       </div>
-      <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] bg-blue-600 top-16 overflow-auto">
+      <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] top-16 overflow-auto grid place-items-center">
        
           <motion.div
             variants={rightToLeft}
             initial="initial"
             whileInView="animate"
-            className="w-full space-y-5 md:w-4/5 h-full top-1/2 overflow-auto "
+            className="w-full space-y-5 md:w-4/5 overflow-auto"
           >
             <Marquee pauseOnHover>
               <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
@@ -146,7 +146,7 @@ const About = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-6">
                       <Link
                         href="https://aamrainfotainment.com/"
                         className="space-y-2 group relative "
@@ -171,10 +171,26 @@ const About = () => {
                         aria-label="SJI"
                       >
                         <p className="flex items-center gap-1 text-sm">
-                          <MdDateRange />3 June 2024 - Present
+                          <MdDateRange />3 June 2024 - 30 November 2024
                         </p>
                         <h3 className="font-semibold leading-none tracking-wide ">
                           Intern Frontend Developer
+                        </h3>
+                        <p>SJ Innovation LLC</p>
+                        <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                      </Link>
+                      <Link
+                        href="https://sjinnovation.com/"
+                        className="space-y-2 group relative"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SJI"
+                      >
+                        <p className="flex items-center gap-1 text-sm">
+                          <MdDateRange />1 December 2024 - Present
+                        </p>
+                        <h3 className="font-semibold leading-none tracking-wide ">
+                          Jr. Frontend Developer
                         </h3>
                         <p>SJ Innovation LLC</p>
                         <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
