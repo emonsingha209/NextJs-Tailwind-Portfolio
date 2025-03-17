@@ -47,10 +47,8 @@ const rightToLeft = {
 };
 
 const About = () => {
-
-
   return (
-    <section className="flex flex-wrap py-5 container" id="about">
+    <section className="container flex flex-wrap py-5" id="about">
       <div className="w-full md:w-1/2">
         <motion.h1
           variants={leftToRight}
@@ -116,121 +114,120 @@ const About = () => {
         ))}
       </div>
       <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] top-16 overflow-auto grid place-items-center">
-       
-          <motion.div
-            variants={rightToLeft}
-            initial="initial"
-            whileInView="animate"
-            className="w-full space-y-5 md:w-4/5 overflow-auto"
-          >
-            <Marquee pauseOnHover>
-              <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
-                {icons.map((IconSlider, iconIndex) => (
-                  <li key={iconIndex}>
-                    <IconSlider />
-                  </li>
-                ))}
-              </ul>
-            </Marquee>
-            <Tabs defaultValue="experience">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="experience">Experience</TabsTrigger>
-                <TabsTrigger value="education">Education</TabsTrigger>
-              </TabsList>
-              <TabsContent value="experience">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Experience</CardTitle>
-                    <CardDescription>
-                      Gained valuable industry insights.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-6">
-                      <Link
-                        href="https://aamrainfotainment.com/"
-                        className="space-y-2 group relative "
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="AIL"
-                      >
-                        <p className="flex items-center gap-1 text-sm">
-                          <MdDateRange />3 Sept 2023 - 31 Dec 2023
-                        </p>
-                        <h3 className="font-semibold leading-none tracking-wide ">
-                          Web Developer - Intern
-                        </h3>
-                        <p>Aamra Infotainment Ltd.</p>
-                        <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
-                      </Link>
-                      <Link
-                        href="https://sjinnovation.com/"
-                        className="space-y-2 group relative"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="SJI"
-                      >
-                        <p className="flex items-center gap-1 text-sm">
-                          <MdDateRange />3 June 2024 - 30 November 2024
-                        </p>
-                        <h3 className="font-semibold leading-none tracking-wide ">
-                          Intern Frontend Developer
-                        </h3>
-                        <p>SJ Innovation LLC</p>
-                        <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
-                      </Link>
-                      <Link
-                        href="https://sjinnovation.com/"
-                        className="space-y-2 group relative"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="SJI"
-                      >
-                        <p className="flex items-center gap-1 text-sm">
-                          <MdDateRange />1 December 2024 - Present
-                        </p>
-                        <h3 className="font-semibold leading-none tracking-wide ">
-                          Jr. Frontend Developer
-                        </h3>
-                        <p>SJ Innovation LLC</p>
-                        <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="education">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Education</CardTitle>
-                    <CardDescription>
-                      Academic Background and Qualifications.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
+        <motion.div
+          variants={rightToLeft}
+          initial="initial"
+          whileInView="animate"
+          className="w-full space-y-5 overflow-auto md:w-4/5"
+        >
+          <Marquee pauseOnHover>
+            <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
+              {icons.map((IconSlider, iconIndex) => (
+                <li key={iconIndex}>
+                  <IconSlider />
+                </li>
+              ))}
+            </ul>
+          </Marquee>
+          <Tabs defaultValue="experience">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="experience">Experience</TabsTrigger>
+              <TabsTrigger value="education">Education</TabsTrigger>
+            </TabsList>
+            <TabsContent value="experience">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Experience</CardTitle>
+                  <CardDescription>
+                    Gained valuable industry insights.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-6">
                     <Link
-                      href="https://www.aiub.edu/"
-                      className="space-y-2 group relative"
+                      href="https://aamrainfotainment.com/"
+                      className="relative space-y-2 group "
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="AIUB"
+                      aria-label="AIL"
                     >
                       <p className="flex items-center gap-1 text-sm">
-                        <MdDateRange />
-                        2020 - 2023
+                        <MdDateRange />3 Sept 2023 - 31 Dec 2023
                       </p>
-                      <h3 className="font-semibold leading-none tracking-wide">
-                        Bachelor of Science in Computer Science & Engineering
+                      <h3 className="font-semibold leading-none tracking-wide ">
+                        Web Developer - Intern
                       </h3>
-                      <p>American International University-Bangladesh (AIUB)</p>
+                      <p>Aamra Infotainment Ltd.</p>
                       <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
                     </Link>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </motion.div>
-        </div>
+                    <Link
+                      href="https://sjinnovation.com/"
+                      className="relative space-y-2 group"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="SJI"
+                    >
+                      <p className="flex items-center gap-1 text-sm">
+                        <MdDateRange />3 June 2024 - 30 November 2024
+                      </p>
+                      <h3 className="font-semibold leading-none tracking-wide ">
+                        Intern Frontend Developer
+                      </h3>
+                      <p>SJ Innovation LLC</p>
+                      <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                    </Link>
+                    <Link
+                      href="https://sjinnovation.com/"
+                      className="relative space-y-2 group"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="SJI"
+                    >
+                      <p className="flex items-center gap-1 text-sm">
+                        <MdDateRange />1 December 2024 - Present
+                      </p>
+                      <h3 className="font-semibold leading-none tracking-wide ">
+                        Jr. Software Engineer
+                      </h3>
+                      <p>SJ Innovation LLC</p>
+                      <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="education">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Education</CardTitle>
+                  <CardDescription>
+                    Academic Background and Qualifications.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <Link
+                    href="https://www.aiub.edu/"
+                    className="relative space-y-2 group"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="AIUB"
+                  >
+                    <p className="flex items-center gap-1 text-sm">
+                      <MdDateRange />
+                      2020 - 2023
+                    </p>
+                    <h3 className="font-semibold leading-none tracking-wide">
+                      Bachelor of Science in Computer Science & Engineering
+                    </h3>
+                    <p>American International University-Bangladesh (AIUB)</p>
+                    <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                  </Link>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </motion.div>
+      </div>
     </section>
   );
 };

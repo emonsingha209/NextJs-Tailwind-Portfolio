@@ -19,8 +19,8 @@ const ResumeViewer = ({ file, downloadName }) => {
   }
 
   return (
-    <div >
-      <div className="flex justify-start w-full mb-5 ml-5 md:ml-0 font-bold uppercase md:justify-center font-oswald">
+    <div>
+      <div className="flex justify-start w-full mb-5 ml-5 font-bold uppercase md:ml-0 md:justify-center font-oswald">
         <Button asChild>
           <a href={file} className="font-bold" download={downloadName}>
             Download Resume

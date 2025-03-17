@@ -17,7 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import contactDetails from "@/public/data/CourseDetails";
+import contactDetails from "@/public/data/contact-details";
 
 import { Button } from "@/components/ui/button";
 import {

@@ -82,7 +82,6 @@ const Navbar = () => {
           <MoonIcon className="hidden w-6 h-6 transition-all duration-1000 scale-0 rotate-90 dark:block dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
-
       </div>
     </motion.header>
   );

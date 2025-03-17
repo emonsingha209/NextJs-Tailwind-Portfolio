@@ -46,7 +46,7 @@ const projectItem = {
 };
 const Project = () => {
   return (
-    <section id="projects" className="py-5 md:mt-5 space-y-8 container">
+    <section id="projects" className="container py-5 space-y-8 md:mt-5">
       <motion.div
         variants={containerTitle}
         initial="hidden"
@@ -76,14 +76,17 @@ const Project = () => {
               .slice()
               .reverse()
               .map((item, index) => (
-                <CarouselItem key={index} className=" md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                  <Card className="h-full dark:bg-cardBg transition-colors duration-1000 ease-primary hover:shadow-lg dark:hover:border-violet-500 hover:border-gray-300 group">
+                <CarouselItem
+                  key={index}
+                  className=" md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                >
+                  <Card className="h-full transition-colors duration-1000 dark:bg-cardBg ease-primary hover:shadow-lg dark:hover:border-violet-500 hover:border-gray-300 group">
                     <div className="flex justify-center -translate-y-[1px]">
                       <div className="w-3/4">
                         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
                       </div>
                     </div>
-                    <div className="overflow-hidden rounded-2xl scale-105 border">
+                    <div className="overflow-hidden scale-105 border rounded-2xl">
                       <Image
                         src={item.image}
                         width={400}
@@ -101,7 +104,7 @@ const Project = () => {
                             </CardTitle>
                           </TooltipTrigger>
                           <TooltipContent
-                            className="z-50 relative"
+                            className="relative z-50"
                             side="bottom"
                           >
                             <p> {item.name}</p>
@@ -118,7 +121,7 @@ const Project = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <ul className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-lato">
+                      <ul className="flex flex-wrap text-sm gap-x-5 gap-y-1 font-lato">
                         {item.githubLinks.map((link, index) => (
                           <li key={index}>
                             <Link
