@@ -1,25 +1,20 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+"use client"
 
-import expertise from "@/public/data/expertise";
-import { motion } from "framer-motion";
-import Marquee from "react-fast-marquee";
-import { MdDateRange } from "react-icons/md";
-import icons from "./icon/Skill";
-import Link from "next/link";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import expertise from "@/public/data/expertise"
+import { motion } from "framer-motion"
+import Marquee from "react-fast-marquee"
+import { MdDateRange } from "react-icons/md"
+import icons from "./icon/Skill"
+import Link from "next/link"
+import { PortfolioData } from "@/public/data/portfolio-data"
 
 const leftToRight = {
   initial: {
     x: -200,
     opacity: 0,
   },
-
   animate: {
     x: 0,
     opacity: 1,
@@ -29,7 +24,7 @@ const leftToRight = {
       stiffness: 50,
     },
   },
-};
+}
 const rightToLeft = {
   initial: {
     x: 200,
@@ -44,7 +39,7 @@ const rightToLeft = {
       stiffness: 50,
     },
   },
-};
+}
 
 const About = () => {
   return (
@@ -64,7 +59,7 @@ const About = () => {
           whileInView="animate"
           className="pb-2 mt-8 text-3xl font-semibold tracking-tight transition-colors border-b md:mt-10 scroll-m-20 first:mt-0"
         >
-          Hello, I&apos;m Emon Singha
+          {PortfolioData.about.greeting}
         </motion.h2>
         <motion.p
           variants={leftToRight}
@@ -72,10 +67,7 @@ const About = () => {
           whileInView="animate"
           className="leading-7 [&:not(:first-child)]:mt-6"
         >
-          I&apos;m a passionate Frontend Developer dedicated to creating
-          immersive UI experiences that resonate with users. With a keen eye for
-          detail and a love for clean code, I bring ideas to life through
-          elegant and functional interfaces.
+          {PortfolioData.about.aboutDescription}
         </motion.p>
         <motion.h2
           variants={leftToRight}
@@ -83,17 +75,11 @@ const About = () => {
           whileInView="animate"
           className="pb-2 mt-10 text-3xl font-semibold tracking-tight transition-colors border-b scroll-m-20 first:mt-0"
         >
-          Experties Area
+          {PortfolioData.about.expertiseTitle}
         </motion.h2>
         {expertise.map((item, index) => (
-          <motion.div
-            key={index}
-            className="mt-6"
-            variants={leftToRight}
-            initial="initial"
-            whileInView="animate"
-          >
-            <Card className=" dark:bg-cardBg">
+          <motion.div key={index} className="mt-6" variants={leftToRight} initial="initial" whileInView="animate">
+            <Card className="dark:bg-cardBg">
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
                 <CardDescription>
@@ -105,15 +91,13 @@ const About = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="leading-7 [&:not(:first-child)]:mt-6">
-                  {item.description}
-                </p>
+                <p className="leading-7 [&:not(:first-child)]:mt-6">{item.description}</p>
               </CardContent>
             </Card>
           </motion.div>
         ))}
       </div>
-      <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] top-16 overflow-auto grid place-items-center">
+      <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] top-16 overflow-hidden grid place-items-center">
         <motion.div
           variants={rightToLeft}
           initial="initial"
@@ -130,98 +114,85 @@ const About = () => {
             </ul>
           </Marquee>
           <Tabs defaultValue="experience">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="experience">Experience</TabsTrigger>
-              <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 p-1 mb-4 rounded-lg bg-violet-100 dark:bg-violet-900/30">
+              <TabsTrigger
+                value="experience"
+                className="rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-violet-800 data-[state=active]:text-violet-700 dark:data-[state=active]:text-violet-100 data-[state=active]:shadow-sm"
+              >
+                Experience
+              </TabsTrigger>
+              <TabsTrigger
+                value="education"
+                className="rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-violet-800 data-[state=active]:text-violet-700 dark:data-[state=active]:text-violet-100 data-[state=active]:shadow-sm"
+              >
+                Education
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="experience">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Experience</CardTitle>
+              <Card className="overflow-hidden shadow-lg">
+                <CardHeader className="border-b">
+                  <CardTitle>{PortfolioData.about.experienceCard.title}</CardTitle>
                   <CardDescription>
-                    Gained valuable industry insights.
+                    {PortfolioData.about.experienceCard.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-6">
+                <CardContent className="p-0">
+                  {PortfolioData.about.experience.map((exp, index) => (
                     <Link
-                      href="https://aamrainfotainment.com/"
-                      className="relative space-y-2 group "
+                      key={index}
+                      href={exp.link}
+                      className="group block p-4 hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all duration-300"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="AIL"
+                      aria-label={exp.ariaLabel}
                     >
-                      <p className="flex items-center gap-1 text-sm">
-                        <MdDateRange />3 Sept 2023 - 31 Dec 2023
-                      </p>
-                      <h3 className="font-semibold leading-none tracking-wide ">
-                        Web Developer - Intern
-                      </h3>
-                      <p>Aamra Infotainment Ltd.</p>
-                      <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                        <div className="space-y-1">
+                          <h3 className="font-bold text-lg group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                            {exp.title}
+                          </h3>
+                          <p className="text-muted-foreground font-medium">{exp.company}</p>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm px-3 py-1 text-nowrap  rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 w-fit">
+                          <MdDateRange className="shrink-0" /> {exp.dateRange}
+                        </div>
+                      </div>
                     </Link>
-                    <Link
-                      href="https://sjinnovation.com/"
-                      className="relative space-y-2 group"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="SJI"
-                    >
-                      <p className="flex items-center gap-1 text-sm">
-                        <MdDateRange />3 June 2024 - 30 November 2024
-                      </p>
-                      <h3 className="font-semibold leading-none tracking-wide ">
-                        Intern Frontend Developer
-                      </h3>
-                      <p>SJ Innovation LLC</p>
-                      <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
-                    </Link>
-                    <Link
-                      href="https://sjinnovation.com/"
-                      className="relative space-y-2 group"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="SJI"
-                    >
-                      <p className="flex items-center gap-1 text-sm">
-                        <MdDateRange />1 December 2024 - Present
-                      </p>
-                      <h3 className="font-semibold leading-none tracking-wide ">
-                        Jr. Software Engineer
-                      </h3>
-                      <p>SJ Innovation LLC</p>
-                      <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
-                    </Link>
-                  </div>
+                  ))}
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="education">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Education</CardTitle>
-                  <CardDescription>
-                    Academic Background and Qualifications.
+              <Card className="overflow-hidden shadow-lg">
+                <CardHeader className="border-b">
+                  <CardTitle>{PortfolioData.about.educationCard.title}</CardTitle>
+                  <CardDescription className="text-violet-100">
+                    {PortfolioData.about.educationCard.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <Link
-                    href="https://www.aiub.edu/"
-                    className="relative space-y-2 group"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="AIUB"
-                  >
-                    <p className="flex items-center gap-1 text-sm">
-                      <MdDateRange />
-                      2020 - 2023
-                    </p>
-                    <h3 className="font-semibold leading-none tracking-wide">
-                      Bachelor of Science in Computer Science & Engineering
-                    </h3>
-                    <p>American International University-Bangladesh (AIUB)</p>
-                    <div className="absolute w-0 transition-all duration-500 ease-primary group-hover:w-full h-0.5 bg-violet-500 rounded-md -bottom-2"></div>
-                  </Link>
+                <CardContent className="p-0">
+                  {PortfolioData.about.education.map((edu, index) => (
+                    <Link
+                      key={index}
+                      href={edu.link}
+                      className="group block p-4 hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all duration-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={edu.ariaLabel}
+                    >
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                        <div className="space-y-1">
+                          <h3 className="font-bold text-lg group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                            {edu.title}
+                          </h3>
+                          <p className="text-muted-foreground font-medium">{edu.institution}</p>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm px-3 py-1 text-nowrap rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 w-fit">
+                          <MdDateRange className="shrink-0" /> {edu.dateRange}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
                 </CardContent>
               </Card>
             </TabsContent>
@@ -229,7 +200,8 @@ const About = () => {
         </motion.div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default About;
+export default About
+
