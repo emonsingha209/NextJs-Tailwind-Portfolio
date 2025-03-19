@@ -1,8 +1,54 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
+import contactDetails from "@/public/data/contact-details";
+import projects from "@/public/data/projects"; 
+import expertise from "@/public/data/expertise"; 
+import { PortfolioData } from "@/public/data/portfolio-data";
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+// Helper functions to format data into prompt-friendly text
+const formatProjects = () => {
+  return projects
+    .map(
+      (p) =>
+        `- **${p.name}**: ${p.description} (Technologies: ${p.technologies
+          .map((t) => t.name || t.displayName || "Tech")
+          .join(", ")})`
+    )
+    .join("\n");
+};
+
+const formatExpertise = () => {
+  return expertise
+    .map((e) => `- **${e.title}**: ${e.description}`)
+    .join("\n");
+};
+
+const formatContact = () => {
+  return contactDetails
+    .map((c) => `- **${c.type}**: ${c.value}`)
+    .join("\n");
+};
+
+const formatExperience = () => {
+  return PortfolioData.about.experience
+    .map(
+      (exp) =>
+        `- **${exp.title}** at ${exp.company} (${exp.dateRange}): Gained valuable industry insights.`
+    )
+    .join("\n");
+};
+
+const formatEducation = () => {
+  return PortfolioData.about.education
+    .map(
+      (edu) =>
+        `- **${edu.title}** at ${edu.institution} (${edu.dateRange}): Academic foundation in Computer Science & Engineering.`
+    )
+    .join("\n");
+};
 
 export async function POST(req) {
   try {
@@ -17,27 +63,37 @@ export async function POST(req) {
       );
     }
 
-    // Initialize the model
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 
-    // Professional system prompt mimicking your voice
+    // Professional system prompt with dynamic data and updated role
     const systemPrompt = `
-      You are me, [Your Full Name], responding professionally to visitors on my Next.js portfolio website. My goal is to showcase my expertise and assist users with information about my work. Here’s my profile:
+      You are me, Emon Singha, responding professionally to visitors on my Next.js portfolio website. My goal is to showcase my expertise and assist users with information about my work. Here’s my profile, dynamically pulled from my portfolio data:
 
       ### About Me
-      - **Name**: [Your Full Name]
-      - **Profession**: [e.g., Software Engineer, UI/UX Designer]
-      - **Bio**: I’m a dedicated [your profession] with [X years] of experience in [e.g., software development, design]. I specialize in [e.g., building scalable web applications, creating intuitive interfaces] and am passionate about delivering high-quality solutions.
-      - **Projects**: 
-        - **[Project 1 Name]**: [e.g., Developed a responsive web application using Next.js and Tailwind CSS to streamline user workflows.]
-        - **[Project 2 Name]**: [e.g., Designed and implemented a [describe project] with [technologies].]
-      - **Skills**: [e.g., JavaScript, TypeScript, Next.js, Tailwind CSS, project management]
-      - **Contact**: Feel free to reach out at [your-email@example.com] or connect with me on [e.g., LinkedIn: linkedin.com/in/yourprofile].
+      - **Name**: Emon Singha
+      - **Profession**: Jr. Software Engineer
+      - **Bio**: ${PortfolioData.profileDescription}
+      - **About**: ${PortfolioData.about.aboutDescription}
+
+      ### Projects
+      ${formatProjects()}
+
+      ### Expertise
+      ${formatExpertise()}
+
+      ### Contact Details
+      ${formatContact()}
+
+      ### Experience
+      ${formatExperience()}
+
+      ### Education
+      ${formatEducation()}
 
       ### How I Communicate
       - Speak as I would in a professional setting: clear, concise, and approachable.
-      - Maintain a confident yet friendly tone, e.g., “I’d be glad to share more about that” or “That’s a great question.”
-      - If I don’t have the info, say: “I don’t have the details on that, but I’d be happy to discuss my work or skills instead.”
+      - Maintain a confident yet friendly tone, e.g., “I’m pleased to share more about that” or “That’s an excellent question.”
+      - If I don’t have the info, say: “I don’t have specific details on that, but I’d be happy to discuss my projects or expertise instead.”
       - Keep responses under 150 words for brevity and professionalism.
       - For off-topic questions (e.g., weather), redirect politely: “I’m here to focus on my portfolio—may I tell you about my projects or experience instead?”
 

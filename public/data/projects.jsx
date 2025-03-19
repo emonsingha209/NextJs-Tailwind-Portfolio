@@ -1,23 +1,19 @@
-import { BiLogoPostgresql } from "react-icons/bi";
 import { DiDotnet } from "react-icons/di";
 import {
   FaBootstrap,
   FaCss3,
   FaHtml5,
   FaJava,
-  FaReact,
   FaPhp,
+  FaReact,
 } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
 import {
   SiMicrosoftsqlserver,
-  SiNestjs,
+  SiMysql,
   SiOpengl,
   SiTailwindcss,
-  SiMongodb,
-  SiMysql,
 } from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
 
 const projects = [
   {
@@ -52,25 +48,10 @@ const projects = [
   },
   {
     id: 3,
-    name: "Nutrition and Workout System (API): Empowering Nutritionists, Trainers, and Clients for Optimal Fitness Success",
-    image: "/img/nws.webp",
-    description:
-      "Nutrition-and-workout-System is a software system built to provide a simple and convenient system for certified nutritionists and trainers to work with clients using the many useful features of the application. We hope that through this platform the certified nutritionists, trainers and clients can come together and collaborate to build perfect system for achieving fitness goals as effectively as possible.",
-    technologies: [SiNestjs, BiLogoPostgresql],
-    githubLinks: [
-      {
-        label: "Code",
-        url: "https://github.com/Ratul41Bhatt/Nutrition-and-Workout-System",
-      },
-    ],
-    liveDemoLinks: [],
-  },
-  {
-    id: 4,
     name: "Version One of My Personal Portfolio",
     image: "/img/portfolio.webp",
     description:
-      "Explore the first iteration of my personal portfolio, built using ReactJS and Tailwind CSS. Version One represents the beginning of my journey in frontend development, showcasing my early skills and creativity in crafting digital experiences. While subsequent versions may have emerged, this original rendition remains a testament to my growth and evolution as a frontend developer.",
+      "Explore the first iteration of my personal portfolio, built using ReactJS and Tailwind CSS. Version One represents the beginning of my journey in frontend development, showcasing my early skills and creativity in crafting digital experiences. While subsequent versions may have emerged, this original rendition remains a testament to my growth and evolution as a Jr. Software Engineer.",
     technologies: [FaHtml5, FaCss3, IoLogoJavascript, SiTailwindcss, FaReact],
     githubLinks: [
       {
@@ -83,7 +64,7 @@ const projects = [
     ],
   },
   {
-    id: 5,
+    id: 4,
     name: "RoadSaints: Unleash Your Ride's Potential with Premium Motorcycle Accessories",
     image: "/img/roadSaints.webp",
     description:
@@ -110,7 +91,7 @@ const projects = [
     liveDemoLinks: [],
   },
   {
-    id: 6,
+    id: 5,
     name: "Innovative Frontend Development for Merlin Technology",
     image: "/img/merlin.webp",
     description:
@@ -123,20 +104,11 @@ const projects = [
     ],
   },
   {
-    id: 7,
-    name: "SJI Prompting is the ultimate hub for SJI developers",
-    image: "/img/sji-prompt.webp",
-    technologies: [TbBrandNextjs, SiTailwindcss, SiMongodb],
-    githubLinks: [],
-    liveDemoLinks: [
-      { label: "Live", url: "https://sji-prompting.vercel.app/" },
-    ],
-  },
-  {
-    id: 8,
-    name: "Swimming Club Management System",
+    id: 6,
+    name: "Swim Club System",
     image: "/img/swim-club.webp",
-    description: "a",
+    description:
+      "A web-based system for managing swimming club activities, including member registration, schedules, and events, built with PHP and MySQL.",
     technologies: [
       FaHtml5,
       FaCss3,
