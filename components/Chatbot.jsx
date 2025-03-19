@@ -64,7 +64,7 @@ export default function Chatbot() {
           setMessages((prev) => [
             ...prev,
             {
-              text: `Error: ${data.error || "Couldn't get a response"}`,
+              text: `Error: ${data.error || "Couldn&apos;t get a response"}`,
               sender: "bot",
               timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             },
@@ -130,7 +130,7 @@ export default function Chatbot() {
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground mt-6">
                   <p className="mb-4">
-                    Welcome! I'm Emon Singha—ask me anything about my work or expertise.
+                    Welcome! I&apos;m Emon Singha—ask me anything about my work or expertise.
                   </p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {templateQuestions.map((question, idx) => (
