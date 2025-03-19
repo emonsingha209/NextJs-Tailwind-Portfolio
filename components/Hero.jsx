@@ -3,21 +3,18 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-
 import { MdConnectWithoutContact } from "react-icons/md";
 import { TbFileCv } from "react-icons/tb";
 import socialIcons from "./icon/Social";
 import Typewriter from "./ui/Typewriter";
 import emon from "/public/img/emon.webp";
-
 import useScrollSpy from "@/hook/useScrollSpy";
 import { useInView } from "framer-motion";
 import Image from "next/image";
+import { PortfolioData } from "@/public/data/portfolio-data";
 
 const uptoDown = {
-  initial: {
-    opacity: 0,
-  },
+  initial: { opacity: 0 },
   animate: {
     opacity: 1,
     transition: {
@@ -27,10 +24,7 @@ const uptoDown = {
   },
 };
 const uptoDownItem = {
-  initial: {
-    y: 400,
-    opacity: 0,
-  },
+  initial: { y: 400, opacity: 0 },
   animate: {
     y: 0,
     opacity: 1,
@@ -42,10 +36,7 @@ const uptoDownItem = {
   },
 };
 const scaling = {
-  initial: {
-    opacity: 0,
-    scale: 0,
-  },
+  initial: { opacity: 0, scale: 0 },
   animate: {
     scale: 1,
     opacity: 1,
@@ -61,7 +52,6 @@ const Hero = () => {
   const containerRef = useRef(null);
   const circlesRefs = useRef([]);
   const isInView = useInView(containerRef);
-
   const { scrollToSection } = useScrollSpy();
 
   const handleClick = (item) => {
@@ -108,17 +98,14 @@ const Hero = () => {
             variants={uptoDownItem}
             className="h-16 text-4xl font-extrabold tracking-tight text-left text-transparent capitalize xs:text-5xl md:h-20 md:text-6xl lg:text-7xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text w-fit scroll-m-20"
           >
-            Emon Singha
+            {PortfolioData.name}
           </motion.h1>
           <motion.h2
             variants={uptoDownItem}
             className="pb-2 text-3xl font-semibold tracking-tight border-b min-h-12 lg:mt-3 border-b-border scroll-m-20 first:mt-0"
           >
             <Typewriter
-              texts={[
-                `Frontend Developer${multipleSpaces}`,
-                `Converting Ideas to User Interface${multipleSpaces}`,
-              ]}
+              texts={PortfolioData.typewriterTexts.map(text => `${text}${multipleSpaces}`)}
               speed={100}
               isInView={isInView}
             />
@@ -127,11 +114,7 @@ const Hero = () => {
             variants={uptoDownItem}
             className="text-lg lg:text-justify leading-7 [&:not(:first-child)]:mt-3"
           >
-            As a Frontend Developer, I specialize in bringing ideas to life
-            through captivating user interfaces. With expertise in CSS,
-            Bootstrap, and Tailwind CSS, I meticulously craft designs that
-            exceed expectations. Every line of code is dedicated to transforming
-            concepts into visually stunning digital experiences.
+            {PortfolioData.profileDescription}
           </motion.p>
           <motion.div
             variants={uptoDownItem}
@@ -142,7 +125,7 @@ const Hero = () => {
                 href="/"
                 scroll={false}
                 onClick={() => handleClick("contact")}
-                className="relative dark:bg-cardBg overflow-hidden transition-all bg-transparent border-2 border-accent-foreground hover:bg-transparent group"
+                className="relative overflow-hidden transition-all bg-transparent border-2 dark:bg-cardBg border-accent-foreground hover:bg-transparent group"
               >
                 <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
                 <span className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
@@ -154,17 +137,17 @@ const Hero = () => {
             <Button asChild size="hero" className="bg-card">
               <Link
                 href="/resume"
-                className="relative dark:bg-cardBg overflow-hidden transition-all border-2 border-accent-foreground group"
+                className="relative overflow-hidden transition-all border-2 dark:bg-cardBg border-accent-foreground group"
                 aria-label="Read more about me in Resume"
               >
                 <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
                 <div className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
                   Get Resume
                   <div className="relative w-6 h-6 ">
-                    <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-primary group-hover:border-muted animate-ringOne -z-10"></span>
-                    <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-primary group-hover:border-muted animate-ringTwo -z-10"></span>
-                    <span className="absolute w-12 h-12 -top-1/2 -left-1/2 border rounded-full opacity-0 pointer-events-none border-primary group-hover:border-muted animate-ringThree -z-10"></span>
-                    <TbFileCv className="w-6 h-6 bg-card rounded-full z-40 group-hover:bg-accent-foreground" />
+                    <span className="absolute w-12 h-12 border rounded-full opacity-0 pointer-events-none -top-1/2 -left-1/2 border-primary group-hover:border-muted animate-ringOne -z-10"></span>
+                    <span className="absolute w-12 h-12 border rounded-full opacity-0 pointer-events-none -top-1/2 -left-1/2 border-primary group-hover:border-muted animate-ringTwo -z-10"></span>
+                    <span className="absolute w-12 h-12 border rounded-full opacity-0 pointer-events-none -top-1/2 -left-1/2 border-primary group-hover:border-muted animate-ringThree -z-10"></span>
+                    <TbFileCv className="z-40 w-6 h-6 rounded-full bg-card group-hover:bg-accent-foreground" />
                   </div>
                 </div>
               </Link>

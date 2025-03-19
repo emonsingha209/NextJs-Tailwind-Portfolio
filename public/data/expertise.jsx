@@ -55,7 +55,7 @@ const expertise = [
     title: "Responsive Design",
     icons: [FaCss3, IoLogoJavascript, FaBootstrap, SiTailwindcss],
     description:
-      "I ensure websites adapt seamlessly to all devices using responsive design techniques like Bootstrap and Tailwind's breakpoints and media queries, ensuring consistent user experience.",
+      "I ensure websites adapt seamlessly to all devices using responsive design techniques like Bootstrap and Tailwind breakpoints and media queries, ensuring consistent user experience.",
   },
   {
     id: 4,
