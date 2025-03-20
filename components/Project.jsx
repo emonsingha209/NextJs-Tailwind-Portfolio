@@ -10,21 +10,27 @@ const Project = () => {
   const displayedProjects = [...projects].reverse();
 
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 sm:mb-14 text-center text-white"
-        >
-          Project Showcase 🚀
-        </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
-          {displayedProjects.map((project, i) => (
-            <ProjectCard key={`p_${project.id}`} project={project} index={i} />
-          ))}
-        </div>
+    <section className="container flex flex-wrap py-5" id="projects">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-8 text-center text-white"
+      >
+        Project Showcase
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-lg sm:text-xl text-center text-gray-300 mb-8"
+      >
+        A collection of my latest works and creations
+      </motion.p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+        {displayedProjects.map((project, i) => (
+          <ProjectCard key={`p_${project.id}`} project={project} index={i} />
+        ))}
       </div>
     </section>
   );
@@ -47,17 +53,20 @@ function ProjectCard({ project, index }) {
           shadow-md hover:shadow-lg 
           transition-all duration-300 
           overflow-hidden 
-          flex flex-col
+          flex flex-col h-full
         "
       >
         {/* Image Section with 16/9 ratio */}
-        <div className="relative w-full" style={{ paddingTop: "56.25%" /* 16/9 ratio */ }}>
+        <div
+          className="relative w-full"
+          style={{ paddingTop: "56.25%" /* 16/9 ratio */ }}
+        >
           <Image
             src={project.image}
             alt={`${project.name} preview`}
-            layout="fill"
-            objectFit="cover"
-            className="absolute top-0 left-0 w-full h-full transition-transform duration-300 hover:scale-105"
+            width={500}
+            height={300}
+            className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             loading={index > 2 ? "lazy" : "eager"}
           />
         </div>

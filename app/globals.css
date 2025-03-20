@@ -81,3 +81,25 @@
   scrollbar-width: thin;
   scrollbar-color: #4f15ac #000002;
 }
+
+.chatbot-messages a {
+  text-decoration: underline !important;
+}
+.no-scroll {
+  overflow: hidden;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-from-right {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
