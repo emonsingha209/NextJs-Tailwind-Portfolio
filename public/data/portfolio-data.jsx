@@ -12,9 +12,9 @@ export const PortfolioData = {
       concepts into visually stunning digital experiences.
     `,
   about: {
-    greeting: "Hello, I&apos;m Emon Singha",
+    greeting: "Hello, I'm Emon Singha",
     aboutDescription: `
-        I&apos;m a passionate Jr. Software Engineer dedicated to creating
+        I'm a passionate Jr. Software Engineer dedicated to creating
         immersive UI experiences that resonate with users. With a keen eye for
         detail and a love for clean code, I bring ideas to life through
         elegant and functional interfaces.

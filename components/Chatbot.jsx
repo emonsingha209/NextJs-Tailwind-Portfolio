@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge"; // Added shadcn Badge
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,7 +12,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { MessageSquare, X, Send } from "lucide-react";
+import { MessageSquare, X, Send, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Markdown from "react-markdown";
 import emon from "@/public/img/emon2.webp";
@@ -39,15 +40,12 @@ export default function Chatbot() {
     "How can I contact you?",
   ];
 
-  // Effect to handle scrolling behavior when modal is open/closed
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("no-scroll"); // Disable background scroll
+      document.body.classList.add("no-scroll");
     } else {
-      document.body.classList.remove("no-scroll"); // Re-enable background scroll
+      document.body.classList.remove("no-scroll");
     }
-
-    // Cleanup: Remove the class when the component unmounts
     return () => {
       document.body.classList.remove("no-scroll");
     };
@@ -133,71 +131,75 @@ export default function Chatbot() {
 
   return (
     <>
-     {isCardVisible && (
+      {isCardVisible && (
         <motion.div
-          initial={{ x: "100%", opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: "100%", opacity: 0 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-          className="fixed right-6 bottom-20 z-50 w-64 rounded-xl bg-gradient-to-tr from-pink-500 via-purple-500 to-blue-500 shadow-lg shadow-purple-500/50 p-4 flex items-center justify-between"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 250, damping: 25 }}
+          className={cn(
+            "fixed right-6 bottom-20 z-50 w-72 rounded-lg bg-background shadow-lg border border-border p-4",
+            "hover:shadow-xl transition-shadow duration-300"
+          )}
         >
-          <div
+          {/* Header */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <Image
+                src={emon}
+                alt="Emon Singha"
+                width={40}
+                height={40}
+                className="rounded-full object-cover"
+              />
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">
+                  Emon Singha
+                </h3>
+              </div>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleDismiss}
+              className="h-6 w-6 text-muted-foreground hover:text-foreground hover:bg-muted rounded-full"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Content */}
+          <div className="mb-4">
+            <p className="text-sm text-muted-foreground">
+              Need help? Chat with me about projects or skills!
+            </p>
+          </div>
+
+          {/* Action */}
+          <Button
+            variant="default"
+            size="sm"
             onClick={() => {
               handleOpen();
-              setIsCardVisible(false); // Open chatbot and hide card
+              setIsCardVisible(false);
             }}
-            className="cursor-pointer flex items-center gap-3"
+            className="w-full flex items-center justify-center gap-2 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground"
           >
-            {/* Speech Bubble SVG */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="h-8 w-8 text-white drop-shadow-md"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M21 11.5a8.38 8.38 0 0 1-11.5 7.5L3 21l2-6.5A8.38 8.38 0 0 1 12.5 3a8.38 8.38 0 0 1 8.5 8.5z" />
-              <motion.g>
-                <motion.circle
-                  cx="8"
-                  cy="10"
-                  r="1"
-                  fill="currentColor"
-                  animate={{ y: [0, -1, 0] }}
-                  transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
-                />
-                <motion.circle
-                  cx="12"
-                  cy="10"
-                  r="1"
-                  fill="currentColor"
-                  animate={{ y: [0, -1, 0] }}
-                  transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
-                />
-                <motion.circle
-                  cx="16"
-                  cy="10"
-                  r="1"
-                  fill="currentColor"
-                  animate={{ y: [0, -1, 0] }}
-                  transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
-                />
-              </motion.g>
-            </svg>
-            <span className="text-white font-semibold text-sm drop-shadow-md">
-              Chat with me!
-            </span>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleDismiss}
-            className="h-8 w-8 text-white hover:bg-white/20 rounded-full"
-          >
-            <X className="h-5 w-5" />
+            <MessageSquare className="h-4 w-4" />
+            Start Chat
           </Button>
         </motion.div>
+      )}
+
+      {!isCardVisible && !isOpen && (
+        <Button
+          variant="default"
+          size="icon"
+          onClick={handleOpen}
+          className="fixed right-6 bottom-6 z-50 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+        >
+          <MessageSquare className="h-5 w-5" />
+        </Button>
       )}
 
       {isOpen && (
@@ -233,8 +235,8 @@ export default function Chatbot() {
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground mt-6">
                   <p className="mb-4">
-                    Welcome! I&apos;m Emon Singha—ask me anything about my work or
-                    expertise.
+                    Welcome! I&apos;m Emon Singha—ask me anything about my work
+                    or expertise.
                   </p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {templateQuestions.map((question, idx) => (
