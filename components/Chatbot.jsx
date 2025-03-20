@@ -145,7 +145,7 @@ export default function Chatbot() {
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-            <Image
+              <Image
                 src={emon}
                 alt="Emon Singha"
                 width={40}
@@ -153,8 +153,9 @@ export default function Chatbot() {
                 className="rounded-full object-cover"
               />
               <div>
-                <h3 className="text-sm font-semibold text-foreground">Emon Singha</h3>
-
+                <h3 className="text-sm font-semibold text-foreground">
+                  Emon Singha
+                </h3>
               </div>
             </div>
             <Button
@@ -190,6 +191,17 @@ export default function Chatbot() {
         </motion.div>
       )}
 
+      {!isCardVisible && !isOpen && (
+        <Button
+          variant="default"
+          size="icon"
+          onClick={handleOpen}
+          className="fixed right-6 bottom-6 z-50 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+        >
+          <MessageSquare className="h-5 w-5" />
+        </Button>
+      )}
+
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <Card className="w-full max-w-lg h-[600px] flex flex-col shadow-xl border-none bg-background/95 backdrop-blur-sm rounded-3xl overflow-hidden">
@@ -223,8 +235,8 @@ export default function Chatbot() {
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground mt-6">
                   <p className="mb-4">
-                    Welcome! I'm Emon Singha—ask me anything about my work or
-                    expertise.
+                    Welcome! I&apos;m Emon Singha—ask me anything about my work
+                    or expertise.
                   </p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {templateQuestions.map((question, idx) => (
