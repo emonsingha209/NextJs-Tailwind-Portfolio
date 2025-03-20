@@ -1,9 +1,10 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 import contactDetails from "@/public/data/contact-details";
-import projects from "@/public/data/projects"; 
-import expertise from "@/public/data/expertise"; 
+import projects from "@/public/data/projects";
+import expertise from "@/public/data/expertise";
 import { PortfolioData } from "@/public/data/portfolio-data";
+import socialIcons from "@/components/icon/Social";
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -21,14 +22,16 @@ const formatProjects = () => {
 };
 
 const formatExpertise = () => {
-  return expertise
-    .map((e) => `- **${e.title}**: ${e.description}`)
-    .join("\n");
+  return expertise.map((e) => `- **${e.title}**: ${e.description}`).join("\n");
 };
 
 const formatContact = () => {
-  return contactDetails
-    .map((c) => `- **${c.type}**: ${c.value}`)
+  return contactDetails.map((c) => `- **${c.type}**: ${c.value}`).join("\n");
+};
+
+const formatSocialIcons = () => {
+  return socialIcons
+    .map((s) => `- **${s.label}**: [${s.label}](${s.link})`)
     .join("\n");
 };
 
@@ -56,7 +59,11 @@ export async function POST(req) {
     const body = await req.json();
     const { message } = body;
 
-    if (!message || typeof message !== "string" || message.trim().length === 0) {
+    if (
+      !message ||
+      typeof message !== "string" ||
+      message.trim().length === 0
+    ) {
       return NextResponse.json(
         { error: "I’d be happy to assist—please provide a valid question." },
         { status: 400 }
@@ -83,6 +90,8 @@ export async function POST(req) {
 
       ### Contact Details
       ${formatContact()}
+      ### Social Media
+      ${formatSocialIcons()}
 
       ### Experience
       ${formatExperience()}
@@ -96,6 +105,7 @@ export async function POST(req) {
       - If I don’t have the info, say: “I don’t have specific details on that, but I’d be happy to discuss my projects or expertise instead.”
       - Keep responses under 150 words for brevity and professionalism.
       - For off-topic questions (e.g., weather), redirect politely: “I’m here to focus on my portfolio—may I tell you about my projects or experience instead?”
+      - When sharing links (e.g., social media), use Markdown format: [label](URL) to ensure they’re clickable.
 
       ### Rules
       - Respond as if I’m personally addressing the user—no robotic or generic phrasing.
@@ -109,8 +119,8 @@ export async function POST(req) {
     const result = await model.generateContent(prompt);
     let response = await result.response.text();
 
-    // Clean up response for readability
-    response = response.trim().replace(/\n+/g, " ").replace(/\s+/g, " ");
+    // Clean up response while preserving Markdown structure
+    response = response.trim().replace(/\s+/g, " ");
 
     return NextResponse.json({ reply: response });
   } catch (error) {
@@ -122,17 +132,33 @@ export async function POST(req) {
 
     if (error.message.includes("API key")) {
       return NextResponse.json(
-        { error: "I apologize—there’s a configuration issue on my end. Please try again later." },
+        {
+          error:
+            "I apologize—there’s a configuration issue on my end. Please try again later.",
+        },
         { status: 500 }
       );
     } else if (error.message.includes("network")) {
       return NextResponse.json(
-        { error: "It seems there’s a network issue. Could you try again shortly?" },
+        {
+          error:
+            "It seems there’s a network issue. Could you try again shortly?",
+        },
         { status: 503 }
+      );
+    } else if (error.status === 429) {
+      return NextResponse.json(
+        {
+          error: "I’m currently at capacity—please try again in a few moments.",
+        },
+        { status: 429 }
       );
     } else {
       return NextResponse.json(
-        { error: "Something unexpected occurred. I’ll address it—please try again." },
+        {
+          error:
+            "Something unexpected occurred. I’ll address it—please try again.",
+        },
         { status: 500 }
       );
     }

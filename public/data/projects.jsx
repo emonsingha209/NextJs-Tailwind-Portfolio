@@ -18,7 +18,7 @@ import {
 const projects = [
   {
     id: 1,
-    name: "OpenGL London Tower Bridge - A Digital Remake",
+    name: "London Tower Bridge in OpenGL",
     image: "/img/bridge.webp",
     description:
       "An OpenGL project about London iconic Tower Bridge, meticulously recreated with meticulous attention to detail, capturing its majesty and architectural finesse. This visually stunning experience offers viewers a captivating glimpse into the beauty of this historical landmark.",
@@ -33,7 +33,7 @@ const projects = [
   },
   {
     id: 2,
-    name: " HealthConsult Pro: Your Personalized Symptom Analysis and Medical Scheduling Tool",
+    name: "HealthConsult Pro App",
     image: "/img/health.webp",
     description:
       "The Health Consultant Application is a Java-based tool that empowers users to input symptoms and receive personalized health recommendations. It employs evidence-based practices to predict potential diseases based on symptoms. Additionally, users can conveniently schedule appointments with doctors, ensuring timely and accurate medical attention to cater to their unique needs and preferences.",
@@ -48,7 +48,7 @@ const projects = [
   },
   {
     id: 3,
-    name: "Version One of My Personal Portfolio",
+    name: "My Portfolio Version One",
     image: "/img/portfolio.webp",
     description:
       "Explore the first iteration of my personal portfolio, built using ReactJS and Tailwind CSS. Version One represents the beginning of my journey in frontend development, showcasing my early skills and creativity in crafting digital experiences. While subsequent versions may have emerged, this original rendition remains a testament to my growth and evolution as a Jr. Software Engineer.",
@@ -65,7 +65,7 @@ const projects = [
   },
   {
     id: 4,
-    name: "RoadSaints: Unleash Your Ride's Potential with Premium Motorcycle Accessories",
+    name: "RoadSaints Motorcycle Shop",
     image: "/img/roadSaints.webp",
     description:
       "Presenting Road Saints, a showcase of our premier project featuring top-tier motorcycle accessories. Leveraging ReactJS and TailwindCSS for the frontend and ASP.NET for the backend, we have crafted a seamless web experience. Explore meticulously curated high-performance helmets, innovative luggage solutions, and more, with a user-friendly interface designed for effortless navigation and intuitive purchasing. Detailed product insights and responsive assistance ensure a superior shopping journey, enhancing motorcycle adventures with unparalleled style and safety. Join us as we elevate the biking experience – your journey to excellence begins here.",
@@ -92,7 +92,7 @@ const projects = [
   },
   {
     id: 5,
-    name: "Innovative Frontend Development for Merlin Technology",
+    name: "Merlin Technology Frontend",
     image: "/img/merlin.webp",
     description:
       "Crafted with precision, the frontend of Merlin Technology’s website showcases a sleek and modern design that enhances user experience. As the architect of this digital interface, I have implemented responsive layouts and interactive elements that seamlessly guide visitors through the company’s extensive portfolio of power generation, elevator, escalator, and solar energy solutions. My work reflects a commitment to aesthetic excellence and functional innovation, providing a robust platform that stands at the forefront of Merlin Technology’s online presence.",
@@ -105,7 +105,7 @@ const projects = [
   },
   {
     id: 6,
-    name: "Swim Club System",
+    name: "Swim Club Management",
     image: "/img/swim-club.webp",
     description:
       "A web-based system for managing swimming club activities, including member registration, schedules, and events, built with PHP and MySQL.",
