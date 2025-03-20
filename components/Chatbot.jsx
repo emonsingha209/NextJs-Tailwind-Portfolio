@@ -233,7 +233,7 @@ export default function Chatbot() {
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground mt-6">
                   <p className="mb-4">
-                    Welcome! I'm Emon Singha—ask me anything about my work or
+                    Welcome! I&apos;m Emon Singha—ask me anything about my work or
                     expertise.
                   </p>
                   <div className="flex flex-wrap justify-center gap-2">
