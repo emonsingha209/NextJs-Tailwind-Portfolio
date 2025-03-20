@@ -10,23 +10,26 @@ const Project = () => {
   const displayedProjects = [...projects].reverse();
 
   return (
-    <section className="container flex flex-wrap py-5" id="projects">
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-8 text-center text-white"
-      >
-        Project Showcase
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-lg sm:text-xl text-center text-gray-300 mb-8"
-      >
-        A collection of my latest works and creations
-      </motion.p>
+    <section className="container flex flex-wrap py-4" id="projects">
+      <div>
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 text-white"
+        >
+          Project Showcase
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-lg sm:text-xl text-gray-300 mb-8"
+        >
+          A collection of my latest works and creations
+        </motion.p>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
         {displayedProjects.map((project, i) => (
           <ProjectCard key={`p_${project.id}`} project={project} index={i} />
