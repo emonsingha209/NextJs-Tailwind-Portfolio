@@ -137,7 +137,7 @@ const About = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
-                  {PortfolioData.about.experience.map((exp, index) => (
+                  {PortfolioData.about.experience.slice().reverse().map((exp, index) => (
                     <Link
                       key={index}
                       href={exp.link}
