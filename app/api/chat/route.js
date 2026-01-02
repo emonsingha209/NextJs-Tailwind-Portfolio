@@ -57,7 +57,7 @@ export async function POST(req) {
   try {
     // Parse and validate request body
     const body = await req.json();
-    const { message } = body;
+    const { message, history } = body;
 
     if (
       !message ||
@@ -69,8 +69,6 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 
     // Professional system prompt with dynamic data and updated role
     const systemPrompt = `
@@ -114,9 +112,21 @@ export async function POST(req) {
       Now, reply as me in a professional tone!
     `;
 
-    // Combine system prompt with user message
-    const prompt = `${systemPrompt}\n\nUser: ${message.trim()}`;
-    const result = await model.generateContent(prompt);
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.0-flash-lite",
+      systemInstruction: systemPrompt,
+    });
+
+    const chatHistory = (history || []).map((msg) => ({
+      role: msg.sender === "user" ? "user" : "model",
+      parts: [{ text: msg.text }],
+    }));
+
+    const chat = model.startChat({
+      history: chatHistory,
+    });
+
+    const result = await chat.sendMessage(message);
     let response = await result.response.text();
 
     // Clean up response while preserving Markdown structure
