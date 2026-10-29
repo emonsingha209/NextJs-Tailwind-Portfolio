@@ -55,7 +55,7 @@ export default function Resume() {
         <h1 className="mt-4 font-playfair text-4xl italic leading-none text-foreground md:text-5xl">
           Resume
         </h1>
-        <p className="mt-4 max-w-[68ch] text-base leading-7 text-foreground">
+        <p className="mt-4 text-base leading-7 text-foreground">
           {resume.description}
         </p>
       </div>
