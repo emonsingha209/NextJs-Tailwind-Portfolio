@@ -37,7 +37,7 @@ const About = () => {
                   aria-label={exp.ariaLabel}
                   className="block border-t border-border py-5 transition-colors hover:bg-secondary/70"
                 >
-                  <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                  <div className="flex flex-col gap-2 lg:flex-row lg:items-baseline lg:justify-between">
                     <div>
                       <h3
                         className={`text-xl text-foreground ${
@@ -85,7 +85,7 @@ const About = () => {
                   aria-label={edu.ariaLabel}
                   className="block border-t border-border py-5 transition-colors hover:bg-secondary/70"
                 >
-                  <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                  <div className="flex flex-col gap-2 lg:flex-row lg:items-baseline lg:justify-between">
                     <div>
                       <p className="font-playfair text-xl italic text-foreground">{edu.title}</p>
                       <p className="mt-1 text-base text-foreground">{edu.institution}</p>
