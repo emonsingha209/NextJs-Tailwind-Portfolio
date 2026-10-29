@@ -26,7 +26,7 @@ const socialIcons = [
   {
     Icon: FaFacebookMessenger,
     link: "https://m.me/thounaojam.emon",
-    label: "Messanger",
+    label: "Messenger",
   },
   {
     Icon: FaInstagram,

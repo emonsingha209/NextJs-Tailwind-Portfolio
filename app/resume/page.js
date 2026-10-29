@@ -1,21 +1,29 @@
-import ResumeViewer from "@/components/ResumeViewer";
+import { PortfolioData } from "@/public/data/portfolio-data";
+import dynamic from "next/dynamic";
+
+const ResumeViewer = dynamic(() => import("@/components/ResumeViewer"), {
+  ssr: false,
+});
+
+const resumeDescription = `Resume of ${PortfolioData.name}, a ${PortfolioData.title} focused on React, Next.js, Node.js, and Express.`;
+
 export const metadata = {
-  title: "Resume | Emon Singha",
-  description:
-    "Explore the professional resume of Emon Singha, a passionate Jr. Software Engineer with expertise in React and Next.js.",
+  title: `Resume | ${PortfolioData.name}`,
+  description: resumeDescription,
   robots: "index, follow",
-  canonical: "https://emonsingha.vercel.app/resume",
+  canonical: `${PortfolioData.website}/resume`,
   openGraph: {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Resume",
-    url: "https://emonsingha.vercel.app/resume",
+    url: `${PortfolioData.website}/resume`,
     image: {
-      url: "https://emonsingha.vercel.app/img/ogImage.webp",
-      alt: "Emon Singha's Resume",
+      url: `${PortfolioData.website}/img/ogImage.webp`,
+      width: 1200,
+      height: 630,
+      alt: `${PortfolioData.name}, ${PortfolioData.title}`,
     },
-    description:
-      "Explore the professional resume of Emon Singha, a passionate Jr. Software Engineer with expertise in React and Next.js.",
+    description: resumeDescription,
   },
 };
 export default function Resume() {

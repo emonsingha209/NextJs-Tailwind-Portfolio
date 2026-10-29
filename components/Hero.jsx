@@ -1,194 +1,234 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { MdConnectWithoutContact } from "react-icons/md";
-import { TbFileCv } from "react-icons/tb";
-import socialIcons from "./icon/Social";
-import Typewriter from "./ui/Typewriter";
-import emon from "/public/img/emon.webp";
 import useScrollSpy from "@/hook/useScrollSpy";
+import { PortfolioData } from "@/public/data/portfolio-data";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
-import { PortfolioData } from "@/public/data/portfolio-data";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+import socialIcons from "./icon/Social";
+import Typewriter from "./ui/Typewriter";
+import emon from "/public/img/emon-singha.jpeg";
 
-const uptoDown = {
-  initial: { opacity: 0 },
+const ease = [0.16, 1, 0.3, 1];
+
+const intro = {
   animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      staggerChildren: 0.3,
-    },
+    transition: { staggerChildren: 0.08 },
   },
 };
-const uptoDownItem = {
-  initial: { y: 400, opacity: 0 },
+
+const introItem = {
+  initial: { y: 16 },
   animate: {
     y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-};
-const scaling = {
-  initial: { opacity: 0, scale: 0 },
-  animate: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      type: "spring",
-      stiffness: 100,
-    },
+    transition: { duration: 0.7, ease },
   },
 };
 
 const Hero = () => {
   const containerRef = useRef(null);
   const circlesRefs = useRef([]);
+  const releaseTimer = useRef(null);
+  const hovering = useRef(false);
+  const heldRef = useRef(false);
+  const inViewRef = useRef(false);
+  const reduceRef = useRef(false);
+  const angleRef = useRef(0);
+  const speedRef = useRef(0);
   const isInView = useInView(containerRef);
+  const reduce = useReducedMotion();
   const { scrollToSection } = useScrollSpy();
 
-  const handleClick = (item) => {
-    scrollToSection(item);
+  const holdOrbit = () => {
+    window.clearTimeout(releaseTimer.current);
+    heldRef.current = true;
+  };
+
+  const releaseOrbit = () => {
+    window.clearTimeout(releaseTimer.current);
+    releaseTimer.current = window.setTimeout(() => {
+      if (!hovering.current) heldRef.current = false;
+    }, 280);
   };
 
   useEffect(() => {
-    const container = containerRef.current;
-    const circles = circlesRefs.current;
-    if (isInView) {
-      if (container && circles.length > 0) {
-        const radius = container.offsetWidth / 2;
-        const rotation = 360 / circles.length;
-
-        circles.forEach((circle, i) => {
-          const value = `rotate(${
-            i * rotation
-          }deg) translate(${radius}px) rotate(-${i * rotation}deg)`;
-          circle.style.transform = value;
-        });
-      }
-    } else {
-      if (circles.length > 0) {
-        circles.forEach((circle) => {
-          circle.style.transform = "";
-        });
-      }
-    }
+    inViewRef.current = Boolean(isInView);
   }, [isInView]);
+
+  useEffect(() => {
+    reduceRef.current = Boolean(reduce);
+  }, [reduce]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let frame = 0;
+    let last = performance.now();
+    const cruise = 360 / 28;
+    const settle = 0.22;
+
+    const place = () => {
+      const circles = circlesRefs.current.filter(Boolean);
+      if (circles.length === 0) return;
+
+      const radius = container.offsetWidth / 2;
+      const step = 360 / circles.length;
+      circles.forEach((circle, i) => {
+        const angle = i * step + angleRef.current;
+        circle.style.transform = `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)`;
+      });
+    };
+
+    const tick = (now) => {
+      const dt = Math.min(0.032, (now - last) / 1000);
+      last = now;
+
+      if (inViewRef.current && !reduceRef.current) {
+        const target = heldRef.current ? 0 : cruise;
+        speedRef.current += (target - speedRef.current) * (1 - Math.exp(-dt / settle));
+        angleRef.current = (angleRef.current + speedRef.current * dt) % 360;
+        place();
+      }
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    place();
+    frame = requestAnimationFrame(tick);
+    const observer = new ResizeObserver(place);
+    observer.observe(container);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.clearTimeout(releaseTimer.current);
+    };
+  }, []);
 
   const multipleSpaces = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0";
 
   return (
-    <section id="home" className="relative z-10">
-      <div className="dark:bg-[url('/img/bg-image.svg')] bg-cover absolute z-0 w-full md:h-full aspect-square"></div>
-      <div className="lg:h-[calc(100vh-64px)] container h-full py-5 pt-16 md:py-10 lg:py-0 lg:pt-0 flex flex-wrap flex-col-reverse md:flex-row items-center justify-center overflow-hidden ">
+    <section id="home" className="relative scroll-mt-28 bg-background">
+      <div className="container flex min-h-[calc(100svh-7.5rem)] flex-col-reverse items-center justify-center gap-10 py-12 md:min-h-[calc(100svh-4rem)] md:flex-row md:gap-8 md:py-0">
         <motion.div
-          variants={uptoDown}
-          initial="initial"
-          whileInView="animate"
-          className="flex flex-col w-full gap-4 md:pr-4 md:w-7/12 lg:w-2/3"
+          variants={reduce ? undefined : intro}
+          initial={reduce ? false : "initial"}
+          animate="animate"
+          className="flex w-full flex-col gap-5 md:w-7/12 lg:w-2/3"
         >
           <motion.h1
-            variants={uptoDownItem}
-            className="h-16 text-4xl font-extrabold tracking-tight text-left text-transparent capitalize xs:text-5xl md:h-20 md:text-6xl lg:text-7xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text w-fit scroll-m-20"
+            variants={reduce ? undefined : introItem}
+            className="text-balance font-playfair text-5xl italic leading-[0.95] text-foreground md:text-7xl"
           >
             {PortfolioData.name}
           </motion.h1>
           <motion.h2
-            variants={uptoDownItem}
-            className="pb-2 text-3xl font-semibold tracking-tight border-b min-h-12 lg:mt-3 border-b-border scroll-m-20 first:mt-0"
+            variants={reduce ? undefined : introItem}
+            className="min-h-12 border-b border-border pb-2 font-oswald text-2xl tracking-[0.04em] text-foreground md:text-3xl"
           >
             <Typewriter
-              texts={PortfolioData.typewriterTexts.map(text => `${text}${multipleSpaces}`)}
+              texts={PortfolioData.typewriterTexts.map(
+                (text) => `${text}${multipleSpaces}`
+              )}
               speed={100}
               isInView={isInView}
             />
           </motion.h2>
           <motion.p
-            variants={uptoDownItem}
-            className="text-lg lg:text-justify leading-7 [&:not(:first-child)]:mt-3"
+            variants={reduce ? undefined : introItem}
+            className="max-w-[68ch] text-lg leading-7 text-foreground"
           >
             {PortfolioData.profileDescription}
           </motion.p>
-          <motion.div
-            variants={uptoDownItem}
-            className="flex flex-col justify-center gap-3 mt-3 xs:flex-row md:justify-start md:gap-5 "
+          <motion.p
+            variants={reduce ? undefined : introItem}
+            className="font-oswald text-sm uppercase tracking-[0.08em] text-muted-foreground"
           >
-            <Button asChild size="hero">
-              <Link
-                href="/"
-                scroll={false}
-                onClick={() => handleClick("contact")}
-                className="relative overflow-hidden transition-all bg-transparent border-2 dark:bg-cardBg border-accent-foreground hover:bg-transparent group"
-              >
-                <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
-                <span className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
-                  Contact Me
-                  <MdConnectWithoutContact className="w-6 h-6" />
-                </span>
-              </Link>
-            </Button>
-            <Button asChild size="hero" className="bg-card">
-              <Link
-                href="/resume"
-                className="relative overflow-hidden transition-all border-2 dark:bg-cardBg border-accent-foreground group"
-                aria-label="Read more about me in Resume"
-              >
-                <span className="absolute z-10 w-full h-full transition-all duration-300 ease-in-out -translate-x-full group-hover:translate-x-0 bg-accent-foreground"></span>
-                <div className="z-20 flex items-center justify-center gap-1 text-base font-bold tracking-widest uppercase md:gap-3 md:text-xl text-primary group-hover:text-muted font-oswald">
-                  Get Resume
-                  <div className="relative w-6 h-6 ">
-                    <span className="absolute w-12 h-12 border rounded-full opacity-0 pointer-events-none -top-1/2 -left-1/2 border-primary group-hover:border-muted animate-ringOne -z-10"></span>
-                    <span className="absolute w-12 h-12 border rounded-full opacity-0 pointer-events-none -top-1/2 -left-1/2 border-primary group-hover:border-muted animate-ringTwo -z-10"></span>
-                    <span className="absolute w-12 h-12 border rounded-full opacity-0 pointer-events-none -top-1/2 -left-1/2 border-primary group-hover:border-muted animate-ringThree -z-10"></span>
-                    <TbFileCv className="z-40 w-6 h-6 rounded-full bg-card group-hover:bg-accent-foreground" />
-                  </div>
-                </div>
-              </Link>
-            </Button>
+            {PortfolioData.location}
+          </motion.p>
+          <motion.div
+            variants={reduce ? undefined : introItem}
+            className="flex flex-col gap-3 xs:flex-row"
+          >
+            <Link
+              href="mailto:emonsingha209@gmail.com"
+              className="inline-flex min-h-12 items-center justify-center bg-navy px-8 font-oswald text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-deep dark:bg-signal dark:text-navy dark:hover:bg-paper"
+            >
+              Email
+            </Link>
+            <Link
+              href="/resume"
+              aria-label="Read more about me in Resume"
+              className="inline-flex min-h-12 items-center justify-center border border-navy px-8 font-oswald text-sm uppercase tracking-[0.08em] text-navy transition-colors hover:bg-navy hover:text-paper dark:border-paper dark:text-paper dark:hover:bg-paper dark:hover:text-navy"
+            >
+              Resume
+            </Link>
+            <button
+              type="button"
+              onClick={() => scrollToSection("contact")}
+              className="inline-flex min-h-12 items-center justify-center px-4 font-oswald text-sm uppercase tracking-[0.08em] text-navy underline-offset-4 hover:underline dark:text-paper"
+            >
+              Contact form
+            </button>
           </motion.div>
         </motion.div>
-        <div className="w-full p-8 md:w-5/12 lg:w-1/3">
+        <div className="w-full max-w-sm md:w-5/12 md:max-w-none lg:w-1/3">
           <div
-            className="relative z-20 grid p-8 border-2 border-gray-800 rounded-full dark:border-border place-items-center"
+            className="relative z-20 grid place-items-center rounded-full border border-navy/30 p-11 dark:border-paper/40 md:p-14"
             ref={containerRef}
           >
             <motion.div
-              variants={scaling}
-              initial="initial"
-              whileInView="animate"
+              initial={reduce ? false : { scale: 0.94 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 80, damping: 18 }}
               className="z-30 overflow-hidden rounded-full"
             >
               <Image
                 src={emon}
-                width={600}
-                height={600}
+                width={720}
+                height={720}
                 priority
                 alt="Emon Singha"
+                className="object-cover"
               />
             </motion.div>
 
-            {socialIcons.map((item, index) => (
-              <Link
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={index}
-                className="absolute z-10 grid w-12 h-12 transition-transform duration-1000 rounded-full bg-border dark:bg-border ease-primary place-items-center group"
-                ref={(el) => (circlesRefs.current[index] = el)}
-                aria-label={item.label}
-              >
-                <div className="z-10 grid w-full h-full bg-gray-800 rounded-full place-items-center">
-                  <item.Icon className="w-6 h-6 transition-all duration-300 ease-in-out group-hover:rotate-[360deg] text-[#F8FAFC]" />
-                </div>
-              </Link>
-            ))}
+            <div
+              className="absolute inset-0 grid place-items-center"
+              onPointerEnter={() => {
+                hovering.current = true;
+                holdOrbit();
+              }}
+              onPointerLeave={() => {
+                hovering.current = false;
+                releaseOrbit();
+              }}
+              onPointerDown={holdOrbit}
+              onPointerUp={(event) => {
+                if (event.pointerType !== "touch") return;
+                hovering.current = false;
+                releaseOrbit();
+              }}
+              onPointerCancel={() => {
+                hovering.current = false;
+                releaseOrbit();
+              }}
+            >
+              {socialIcons.map((item, index) => (
+                <Link
+                  href={item.link}
+                  target={item.link.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={item.link.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  key={item.label}
+                  className="group absolute z-10 grid h-12 w-12 touch-manipulation place-items-center rounded-full bg-navy text-paper dark:bg-paper dark:text-navy"
+                  ref={(el) => (circlesRefs.current[index] = el)}
+                  aria-label={item.label}
+                >
+                  <item.Icon className="h-5 w-5" />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

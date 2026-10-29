@@ -1,4 +1,4 @@
-import { FaPhoneSquareAlt } from "react-icons/fa";
+import { FaLinkedin, FaPhoneSquareAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
@@ -26,8 +26,15 @@ const contactDetails = [
   },
   {
     id: 4,
-    type: "Address",
-    value: "M. Saifur Rahman Road, Moulvibazar - 3200, Sylhet, Bangladesh",
+    type: "LinkedIn",
+    value: "linkedin.com/in/emon-singha209",
+    link: "https://www.linkedin.com/in/emon-singha209/",
+    icon: FaLinkedin,
+  },
+  {
+    id: 5,
+    type: "Location",
+    value: "Maulvibazar, Sylhet, Bangladesh",
     link: "#",
     icon: FaLocationDot,
   },

@@ -2,88 +2,59 @@
 import { Button } from "@/components/ui/button";
 import useScrollSpy from "@/hook/useScrollSpy";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { BiLogoGmail } from "react-icons/bi";
 import { TbFileCv } from "react-icons/tb";
-import letters from "../public/data/name.json";
 import NavbarItem from "./NavbarItem";
-
-const navbarAnimate = {
-  initial: {
-    y: -400,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      ease: [0.47, 1.64, 0.41, 0.8],
-    },
-  },
-};
 
 const Navbar = () => {
   const { scrollToSection } = useScrollSpy();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else if (theme === "dark") {
-      setTheme("light");
-    }
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
-  const handleClick = (item) => {
-    scrollToSection(item);
-  };
   return (
-    <motion.header
-      variants={navbarAnimate}
-      initial="initial"
-      animate="animate"
-      className="sticky top-0 z-50 flex items-center justify-around w-full h-16 shadow-md shadow-ring/10 backdrop-blur-md "
-    >
-      <Link href="/" scroll={false} onClick={() => handleClick("home")}>
-        <div className="flex text-base uppercase xs:text-2xl lg:text-3xl font-playfair">
-          {letters.map((letter, index) => (
-            <div
-              key={index}
-              className="animate-glow"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              {letter === " " ? <>&nbsp;</> : letter}
-            </div>
-          ))}
-        </div>
-      </Link>
-      <div className="absolute top-[70px] flex justify-center w-full md:w-fit md:block md:static left-0 ">
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <div className="container flex flex-wrap items-center gap-x-8 pt-3 md:h-16 md:flex-nowrap md:py-0">
+        <Link
+          href="/"
+          scroll={false}
+          onClick={() => scrollToSection("home")}
+          className="font-playfair text-2xl italic leading-none text-foreground"
+        >
+          Emon Singha
+        </Link>
         <NavbarItem />
-      </div>
-      <div className="flex items-center justify-center gap-1 md:gap-3">
-        <Button asChild variant="ghost" size="icon">
-          <Link href="/resume" aria-label="Read more about me in Resume">
-            <TbFileCv className="w-6 h-6" />
-          </Link>
-        </Button>
-        <Button asChild variant="ghost" size="icon">
-          <Link
-            href="mailto:emonsingha209@gmail.com"
-            aria-label="Contact with me via mail"
+        <div className="ml-auto flex items-center md:ml-0">
+          <Button asChild variant="ghost" size="icon" className="h-11 w-11 hover:bg-transparent hover:text-[#2451c4] dark:hover:text-signal">
+            <Link href="/resume" aria-label="Read more about me in Resume">
+              <TbFileCv className="h-5 w-5" />
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="icon" className="h-11 w-11 hover:bg-transparent hover:text-[#2451c4] dark:hover:text-signal">
+            <Link
+              href="mailto:emonsingha209@gmail.com"
+              aria-label="Contact with me via mail"
+            >
+              <BiLogoGmail className="h-5 w-5" />
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="h-11 w-11 hover:bg-transparent hover:text-[#2451c4] dark:hover:text-signal"
           >
-            <BiLogoGmail className="w-6 h-6" />
-          </Link>
-        </Button>
-        <Button variant="ghost" size="icon" onClick={toggleTheme}>
-          <SunIcon className="block w-6 h-6 transition-all duration-1000 scale-100 rotate-0 dark:hidden dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className="hidden w-6 h-6 transition-all duration-1000 scale-0 rotate-90 dark:block dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+            <SunIcon className="block h-5 w-5 dark:hidden" />
+            <MoonIcon className="hidden h-5 w-5 dark:block" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        </div>
       </div>
-    </motion.header>
+    </header>
   );
 };
 

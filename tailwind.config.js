@@ -31,6 +31,10 @@ module.exports = {
         playfair: ["var(--font-playfair)"],
       },
       colors: {
+        navy: "#021257",
+        paper: "#f4f6fb",
+        signal: "#7aa2ff",
+        deep: "#040b6e",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

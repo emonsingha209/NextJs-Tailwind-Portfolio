@@ -1,207 +1,160 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import expertise from "@/public/data/expertise"
-import { motion } from "framer-motion"
-import Marquee from "react-fast-marquee"
-import { MdDateRange } from "react-icons/md"
-import icons from "./icon/Skill"
-import Link from "next/link"
-import { PortfolioData } from "@/public/data/portfolio-data"
+import Pair, { pairMark } from "@/components/Pair";
+import { PortfolioData } from "@/public/data/portfolio-data";
+import projects from "@/public/data/projects";
+import Image from "next/image";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
-const leftToRight = {
-  initial: {
-    x: -200,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-}
-const rightToLeft = {
-  initial: {
-    x: 200,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-}
+const mocktaker = projects.find((project) => project.name === "MockTaker");
 
 const About = () => {
+  const roles = PortfolioData.about.experience.slice().reverse();
+
   return (
-    <section className="container flex flex-wrap py-5" id="about">
-      <div className="w-full md:w-1/2">
-        <motion.h1
-          variants={leftToRight}
-          initial="initial"
-          whileInView="animate"
-          className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl"
-        >
-          About Me
-        </motion.h1>
-        <motion.h2
-          variants={leftToRight}
-          initial="initial"
-          whileInView="animate"
-          className="pb-2 mt-8 text-3xl font-semibold tracking-tight transition-colors border-b md:mt-10 scroll-m-20 first:mt-0"
-        >
-          {PortfolioData.about.greeting}
-        </motion.h2>
-        <motion.p
-          variants={leftToRight}
-          initial="initial"
-          whileInView="animate"
-          className="leading-7 [&:not(:first-child)]:mt-6"
-        >
-          {PortfolioData.about.aboutDescription}
-        </motion.p>
-        <motion.h2
-          variants={leftToRight}
-          initial="initial"
-          whileInView="animate"
-          className="pb-2 mt-10 text-3xl font-semibold tracking-tight transition-colors border-b scroll-m-20 first:mt-0"
-        >
-          {PortfolioData.about.expertiseTitle}
-        </motion.h2>
-        {expertise.map((item, index) => (
-          <motion.div key={index} className="mt-6" variants={leftToRight} initial="initial" whileInView="animate">
-            <Card className="dark:bg-cardBg">
-              <CardHeader>
-                <CardTitle>{item.title}</CardTitle>
-                <CardDescription>
-                  <span className="flex flex-wrap gap-3 mt-1 text-lg">
-                    {item.icons.map((Icon, i) => (
-                      <Icon key={i} />
-                    ))}
-                  </span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="leading-7 [&:not(:first-child)]:mt-6">{item.description}</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
-      <div className="w-full mt-8 md:w-1/2 md:mt-0 sticky h-[calc(100vh-64px)] top-16 overflow-hidden grid place-items-center">
-        <motion.div
-          variants={rightToLeft}
-          initial="initial"
-          whileInView="animate"
-          className="w-full space-y-5 overflow-auto md:w-4/5"
-        >
-          <Marquee pauseOnHover>
-            <ul className="flex gap-5 pr-5 text-5xl flex-nowrap cursor-grabbing">
-              {icons.map((IconSlider, iconIndex) => (
-                <li key={iconIndex}>
-                  <IconSlider />
-                </li>
-              ))}
-            </ul>
-          </Marquee>
-          <Tabs defaultValue="experience">
-            <TabsList className="grid w-full grid-cols-2 p-1 mb-4 rounded-lg bg-violet-100 dark:bg-violet-900/30">
-              <TabsTrigger
-                value="experience"
-                className="rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-violet-800 data-[state=active]:text-violet-700 dark:data-[state=active]:text-violet-100 data-[state=active]:shadow-sm"
-              >
-                Experience
-              </TabsTrigger>
-              <TabsTrigger
-                value="education"
-                className="rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-violet-800 data-[state=active]:text-violet-700 dark:data-[state=active]:text-violet-100 data-[state=active]:shadow-sm"
-              >
-                Education
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="experience">
-              <Card className="overflow-hidden shadow-lg">
-                <CardHeader className="border-b">
-                  <CardTitle>{PortfolioData.about.experienceCard.title}</CardTitle>
-                  <CardDescription>
-                    {PortfolioData.about.experienceCard.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  {PortfolioData.about.experience.slice().reverse().map((exp, index) => (
-                    <Link
-                      key={index}
-                      href={exp.link}
-                      className="group block p-4 hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all duration-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={exp.ariaLabel}
+    <Pair
+      id="about"
+      record={
+        <div>
+          <h2 className="text-balance font-playfair text-4xl italic leading-none text-foreground md:text-5xl">
+            Experience
+          </h2>
+          <p className="mt-6 max-w-[68ch] font-playfair text-2xl italic leading-snug text-foreground">
+            {PortfolioData.about.greeting}
+          </p>
+          <p className="mt-4 max-w-[68ch] text-base leading-7 text-foreground">
+            {PortfolioData.about.aboutDescription}
+          </p>
+
+          <ol className="mt-10">
+            {roles.map((exp, index) => (
+              <li key={`${exp.title}-${exp.dateRange}`}>
+                <Link
+                  href={exp.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={exp.ariaLabel}
+                  className="block border-t border-border py-5 transition-colors hover:bg-secondary/70"
+                >
+                  <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                    <div>
+                      <h3
+                        className={`text-xl text-foreground ${
+                          index === 0 ? "font-playfair text-2xl italic md:text-3xl" : "font-oswald tracking-[0.02em]"
+                        }`}
+                      >
+                        {exp.title}
+                      </h3>
+                      <p className="mt-1 text-base text-foreground">{exp.company}</p>
+                      {exp.location ? (
+                        <p className="text-sm leading-6 text-muted-foreground">{exp.location}</p>
+                      ) : null}
+                    </div>
+                    <p
+                      className={`font-oswald text-sm uppercase tracking-[0.08em] ${
+                        index === 0 ? pairMark : "text-muted-foreground"
+                      }`}
                     >
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                        <div className="space-y-1">
-                          <h3 className="font-bold text-lg group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
-                            {exp.title}
-                          </h3>
-                          <p className="text-muted-foreground font-medium">{exp.company}</p>
-                        </div>
-                        <div className="flex items-center gap-1 text-sm px-3 py-1 text-nowrap  rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 w-fit">
-                          <MdDateRange className="shrink-0" /> {exp.dateRange}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="education">
-              <Card className="overflow-hidden shadow-lg">
-                <CardHeader className="border-b">
-                  <CardTitle>{PortfolioData.about.educationCard.title}</CardTitle>
-                  <CardDescription className="text-violet-100">
-                    {PortfolioData.about.educationCard.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  {PortfolioData.about.education.map((edu, index) => (
-                    <Link
-                      key={index}
-                      href={edu.link}
-                      className="group block p-4 hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all duration-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={edu.ariaLabel}
-                    >
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                        <div className="space-y-1">
-                          <h3 className="font-bold text-lg group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
-                            {edu.title}
-                          </h3>
-                          <p className="text-muted-foreground font-medium">{edu.institution}</p>
-                        </div>
-                        <div className="flex items-center gap-1 text-sm px-3 py-1 text-nowrap rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 w-fit">
-                          <MdDateRange className="shrink-0" /> {edu.dateRange}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </motion.div>
+                      {exp.dateRange}
+                    </p>
+                  </div>
+                  {exp.highlights?.length ? (
+                    <ul className="mt-3 max-w-[68ch] list-disc space-y-1 pl-5 text-sm leading-6 text-foreground">
+                      {exp.highlights.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </Link>
+              </li>
+            ))}
+          </ol>
+
+          <h3 className="mt-12 font-playfair text-3xl italic text-foreground">Education</h3>
+          <p className="mt-3 max-w-[68ch] text-base leading-7 text-muted-foreground">
+            {PortfolioData.about.educationCard.description}
+          </p>
+          <ul className="mt-4">
+            {PortfolioData.about.education.map((edu) => (
+              <li key={edu.title}>
+                <Link
+                  href={edu.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={edu.ariaLabel}
+                  className="block border-t border-border py-5 transition-colors hover:bg-secondary/70"
+                >
+                  <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                    <div>
+                      <p className="font-playfair text-xl italic text-foreground">{edu.title}</p>
+                      <p className="mt-1 text-base text-foreground">{edu.institution}</p>
+                    </div>
+                    <p className="font-oswald text-sm uppercase tracking-[0.08em] text-muted-foreground">
+                      {edu.dateRange}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      }
+      work={
+        mocktaker ? (
+          <WorkColumn project={mocktaker} />
+        ) : null
+      }
+    />
+  );
+};
+
+function WorkColumn({ project }) {
+  const live = project.liveDemoLinks?.[0];
+
+  return (
+    <div>
+      <h2 className="text-balance font-playfair text-4xl italic leading-none text-foreground md:text-5xl">
+        {project.name}
+      </h2>
+      <div className="relative mt-8 h-52 w-full overflow-hidden shadow-[0_18px_40px_-28px_rgba(2,18,87,0.55)] sm:h-60">
+        <Image
+          src={project.image}
+          alt={`${project.name} preview`}
+          fill
+          sizes="(min-width: 768px) 42vw, 100vw"
+          className="object-cover object-left-top"
+        />
       </div>
-    </section>
-  )
+      <p className="mt-6 max-w-[68ch] text-base leading-7 text-foreground">{project.description}</p>
+      {project.technologies?.length ? (
+        <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2">
+          {project.technologies.map(({ Icon, label }) => (
+            <li key={label} className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+              <Icon aria-hidden="true" className="h-4 w-4" />
+              {label}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {project.stack?.length ? (
+        <p className="mt-3 max-w-[68ch] text-sm leading-6 text-muted-foreground">
+          {project.stack.join(" · ")}
+        </p>
+      ) : null}
+      {live ? (
+        <a
+          href={live.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`mt-8 inline-flex min-h-11 items-center gap-2 font-oswald text-sm uppercase tracking-[0.08em] underline-offset-4 hover:underline ${pairMark}`}
+        >
+          Open {project.name}
+          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+        </a>
+      ) : null}
+    </div>
+  );
 }
 
-export default About
-
+export default About;

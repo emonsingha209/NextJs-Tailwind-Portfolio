@@ -5,6 +5,7 @@ import projects from "@/public/data/projects";
 import expertise from "@/public/data/expertise";
 import { PortfolioData } from "@/public/data/portfolio-data";
 import socialIcons from "@/components/icon/Social";
+import { prepareConversation } from "@/lib/chat-history";
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -12,12 +13,14 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // Helper functions to format data into prompt-friendly text
 const formatProjects = () => {
   return projects
-    .map(
-      (p) =>
-        `- **${p.name}**: ${p.description} (Technologies: ${p.technologies
-          .map((t) => t.name || t.displayName || "Tech")
-          .join(", ")})`
-    )
+    .map((p) => {
+      const links = (p.liveDemoLinks || [])
+        .map((link) => `[${link.label}](${link.url})`)
+        .join(", ");
+      return `- **${p.name}**: ${p.description} (Technologies: ${p.stack.join(
+        ", "
+      )})${links ? ` Live: ${links}` : ""}`;
+    })
     .join("\n");
 };
 
@@ -37,21 +40,63 @@ const formatSocialIcons = () => {
 
 const formatExperience = () => {
   return PortfolioData.about.experience
-    .map(
-      (exp) =>
-        `- **${exp.title}** at ${exp.company} (${exp.dateRange}): Gained valuable industry insights.`
-    )
+    .map((exp) => {
+      const highlights = exp.highlights?.length
+        ? `\n${exp.highlights.map((item) => `  - ${item}`).join("\n")}`
+        : "";
+      const location = exp.location ? `, ${exp.location}` : "";
+      return `- **${exp.title}** at ${exp.company}${location} (${exp.dateRange})${highlights}`;
+    })
     .join("\n");
 };
 
 const formatEducation = () => {
   return PortfolioData.about.education
     .map(
-      (edu) =>
-        `- **${edu.title}** at ${edu.institution} (${edu.dateRange}): Academic foundation in Computer Science & Engineering.`
+      (edu) => `- **${edu.title}** at ${edu.institution} (${edu.dateRange})`
     )
     .join("\n");
 };
+
+const buildSystemPrompt = (earlierContext) => `
+You are Emon Singha, talking with someone who opened the chat on your portfolio. Speak in the first person, the way you would on a call with a recruiter or a hiring manager: calm, specific, and easy to follow.
+
+This is one continuous conversation. Use the earlier messages to understand what "that", "the second one", "tell me more", or "what about the stack" refers to. If you already introduced yourself or listed your projects, don't repeat that whole answer. Add the new detail they asked for. A history line that says [reply unavailable] means that answer was not saved. Use the visitor's question before it, and don't mention the marker.
+
+Only use the profile below. Never invent employers, titles, dates, projects, metrics, skills, responsibilities, or links. If the profile doesn't cover it, say you don't have that detail and stay with what you do know.
+
+Keep most replies to a few sentences. Use a short list only when they ask you to break something down. Write like a person, not a brochure. Skip filler such as "certainly", "great question", or "I'd be happy to". Share a URL as a Markdown link when you mention one.
+
+If they change the subject, follow them. If the question isn't about your work, say so briefly and offer to talk about your experience, projects, or how to reach you.
+
+${
+  earlierContext
+    ? `Older turns from this same chat, kept so you can still resolve references:\n${earlierContext}\n`
+    : ""
+}
+### Profile
+- **Name**: ${PortfolioData.name}
+- **Title**: ${PortfolioData.title}
+- **Location**: ${PortfolioData.location}
+- **Summary**: ${PortfolioData.profileDescription}
+- **About**: ${PortfolioData.about.aboutDescription}
+
+### Projects
+${formatProjects()}
+
+### Expertise
+${formatExpertise()}
+
+### Experience
+${formatExperience()}
+
+### Education
+${formatEducation()}
+
+### Contact
+${formatContact()}
+${formatSocialIcons()}
+`;
 
 export async function POST(req) {
   try {
@@ -70,69 +115,43 @@ export async function POST(req) {
       );
     }
 
-    // Professional system prompt with dynamic data and updated role
-    const systemPrompt = `
-      You are me, Emon Singha, responding professionally to visitors on my Next.js portfolio website. My goal is to showcase my expertise and assist users with information about my work. Here’s my profile, dynamically pulled from my portfolio data:
-
-      ### About Me
-      - **Name**: Emon Singha
-      - **Profession**: Jr. Software Engineer
-      - **Bio**: ${PortfolioData.profileDescription}
-      - **About**: ${PortfolioData.about.aboutDescription}
-
-      ### Projects
-      ${formatProjects()}
-
-      ### Expertise
-      ${formatExpertise()}
-
-      ### Contact Details
-      ${formatContact()}
-      ### Social Media
-      ${formatSocialIcons()}
-
-      ### Experience
-      ${formatExperience()}
-
-      ### Education
-      ${formatEducation()}
-
-      ### How I Communicate
-      - Speak as I would in a professional setting: clear, concise, and approachable.
-      - Maintain a confident yet friendly tone, e.g., “I’m pleased to share more about that” or “That’s an excellent question.”
-      - If I don’t have the info, say: “I don’t have specific details on that, but I’d be happy to discuss my projects or expertise instead.”
-      - Keep responses under 150 words for brevity and professionalism.
-      - For off-topic questions (e.g., weather), redirect politely: “I’m here to focus on my portfolio—may I tell you about my projects or experience instead?”
-      - When sharing links (e.g., social media), use Markdown format: [label](URL) to ensure they’re clickable.
-
-      ### Rules
-      - Respond as if I’m personally addressing the user—no robotic or generic phrasing.
-      - Highlight my professionalism and expertise in every answer.
-
-      Now, reply as me in a professional tone!
-    `;
-
+    const conversation = prepareConversation(history, message);
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash-lite",
-      systemInstruction: systemPrompt,
+      model: "gemini-3.5-flash-lite",
+      systemInstruction: buildSystemPrompt(conversation.earlierContext),
     });
-
-    const chatHistory = (history || []).map((msg) => ({
-      role: msg.sender === "user" ? "user" : "model",
-      parts: [{ text: msg.text }],
-    }));
 
     const chat = model.startChat({
-      history: chatHistory,
+      history: conversation.history,
+    });
+    const streamResult = await chat.sendMessageStream(conversation.message);
+    const encoder = new TextEncoder();
+    const stream = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of streamResult.stream) {
+            let piece = "";
+            try {
+              piece = chunk.text();
+            } catch {
+              piece = "";
+            }
+            if (piece) controller.enqueue(encoder.encode(piece));
+          }
+          controller.close();
+        } catch (error) {
+          controller.error(error);
+        }
+      },
     });
 
-    const result = await chat.sendMessage(message);
-    let response = await result.response.text();
-
-    // Clean up response while preserving Markdown structure
-    response = response.trim().replace(/\s+/g, " ");
-
-    return NextResponse.json({ reply: response });
+    return new Response(stream, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache, no-transform",
+        "X-Accel-Buffering": "no",
+      },
+    });
   } catch (error) {
     console.error("Chat API Error:", {
       message: error.message,
