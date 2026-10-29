@@ -18,17 +18,17 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background">
-      <div className="container flex flex-wrap items-center gap-x-8 pt-3 md:h-16 md:flex-nowrap md:py-0">
+      <div className="container flex min-w-0 flex-wrap items-center gap-x-2 pt-3 sm:gap-x-4 md:h-16 md:flex-nowrap md:gap-x-8 md:py-0">
         <Link
           href="/"
           scroll={false}
           onClick={() => scrollToSection("home")}
-          className="font-playfair text-2xl italic leading-none text-foreground"
+          className="min-w-0 font-playfair text-xl italic leading-none text-foreground xs:text-2xl"
         >
           Emon Singha
         </Link>
         <NavbarItem />
-        <div className="ml-auto flex items-center md:ml-0">
+        <div className="ml-auto flex shrink-0 items-center md:ml-0">
           <Button asChild variant="ghost" size="icon" className="h-11 w-11 hover:bg-transparent hover:text-[#2451c4] dark:hover:text-signal">
             <Link href="/resume" aria-label="Read more about me in Resume">
               <TbFileCv className="h-5 w-5" />

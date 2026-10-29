@@ -105,11 +105,11 @@ const Contact = () => {
                   const body = (
                     <>
                       <detail.icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-oswald text-sm uppercase tracking-[0.08em] text-foreground">
                           {detail.type}
                         </p>
-                        <p className="text-sm leading-6 text-muted-foreground">
+                        <p className="break-words text-sm leading-6 text-muted-foreground">
                           {detail.value}
                         </p>
                       </div>

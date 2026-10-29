@@ -21,6 +21,7 @@
     --accent-foreground: 229 95% 17%;
     --destructive: 0 72% 42%;
     --destructive-foreground: 0 0% 100%;
+    --error: 0 72% 42%;
     --border: 226 28% 84%;
     --input: 226 28% 84%;
     --ring: 229 95% 17%;
@@ -45,6 +46,7 @@
     --accent-foreground: 220 40% 97%;
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
+    --error: 0 90% 78%;
     --border: 230 35% 32%;
     --input: 230 35% 32%;
     --ring: 220 100% 74%;
@@ -57,6 +59,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
   }
 }
 

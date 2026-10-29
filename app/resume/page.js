@@ -59,7 +59,7 @@ export default function Resume() {
           {resume.description}
         </p>
       </div>
-      <div className="grid w-full place-items-center overflow-auto pb-10 pt-6">
+      <div className="container pb-10 pt-6">
         <ResumeViewer file={resume.pdfPath} downloadName="Emon-Singha-Resume" />
       </div>
     </main>

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Markdown from "react-markdown";
 import emon from "@/public/img/emon-singha.jpeg";
@@ -17,13 +16,6 @@ export default function Chatbot() {
   const messagesEndRef = useRef(null);
   const messagesRef = useRef([]);
   const isSendingRef = useRef(false);
-
-  const templateQuestions = [
-    "Tell me about yourself",
-    "What projects have you worked on?",
-    "What are your skills?",
-    "How can I contact you?",
-  ];
 
   useEffect(() => {
     if (!messages.length && !isTyping) return;
@@ -125,20 +117,22 @@ export default function Chatbot() {
     }
   };
 
+  const waiting = isTyping && !messages.at(-1)?.text;
+
   return (
     <section id="chat" className="scroll-mt-28 border-t border-border bg-background">
-      <div className="container grid gap-8 py-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:py-28">
-        <div>
+      <div className="container grid gap-10 py-16 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start md:gap-16 md:py-28">
+        <div className="md:sticky md:top-24">
           <h2 className="text-balance font-playfair text-4xl italic leading-none text-foreground md:text-5xl">
             Ask Emon
           </h2>
-          <div className="mt-6 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-4">
             <Image
               src={emon}
               alt=""
               width={64}
               height={64}
-              className="h-16 w-16 rounded-full object-cover"
+              className="h-16 w-16 shrink-0 rounded-full object-cover"
             />
             <p className="max-w-[36ch] text-base leading-7 text-foreground">
               {PortfolioData.name}, {PortfolioData.title}. Ask about the work,
@@ -147,67 +141,40 @@ export default function Chatbot() {
           </div>
         </div>
 
-        <div>
-          <div className="flex max-h-[28rem] flex-col gap-4 overflow-y-auto custom-scrollbar pr-1">
-            {messages.length === 0 ? (
-              <p className="max-w-[68ch] text-base leading-7 text-muted-foreground">
+        <div className="min-w-0">
+          <div
+            className={cn(
+              "flex flex-col",
+              messages.length > 0 && "max-h-[28rem] overflow-y-auto [scrollbar-width:thin]"
+            )}
+          >
+            <article className="border-t border-border py-5">
+              <p className="font-oswald text-sm uppercase tracking-[0.08em] text-muted-foreground">
+                Emon
+              </p>
+              <p className="mt-2 max-w-[68ch] text-base leading-7 text-foreground">
                 Welcome. I&apos;m Emon Singha. Ask about the work or the engineering.
               </p>
-            ) : (
-              messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={cn(
-                    "flex items-end gap-3",
-                    msg.sender === "user" ? "justify-end" : "justify-start"
-                  )}
-                >
-                  {msg.sender === "bot" ? (
-                    <Image
-                      src={emon}
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="h-8 w-8 rounded-full object-cover"
-                    />
-                  ) : null}
-                  <div
-                    className={cn(
-                      "max-w-[75%] px-4 py-3 text-sm leading-6",
-                      msg.sender === "user"
-                        ? "bg-navy text-paper dark:bg-signal dark:text-navy"
-                        : "bg-secondary text-foreground"
-                    )}
-                  >
+            </article>
+            {messages.map((msg, idx) =>
+              msg.text ? (
+                <article key={idx} className="border-t border-border py-5">
+                  <p className="font-oswald text-sm uppercase tracking-[0.08em] text-muted-foreground">
+                    {msg.sender === "user" ? "You" : "Emon"}
+                    <span className="ml-3">{msg.timestamp}</span>
+                  </p>
+                  <div className="mt-2 max-w-[68ch] break-words text-base leading-7 text-foreground [&_a]:underline [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p+p]:mt-3 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5">
                     <Markdown>{msg.text}</Markdown>
-                    <span className="mt-1 block font-oswald text-xs uppercase tracking-[0.06em] opacity-70">
-                      {msg.timestamp}
-                    </span>
                   </div>
-                </div>
-              ))
+                </article>
+              ) : null
             )}
-            {isTyping ? (
-              <p className="font-oswald text-sm uppercase tracking-[0.08em] text-muted-foreground">
-                <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-current align-middle" />
+            {waiting ? (
+              <p className="border-t border-border py-5 font-oswald text-sm uppercase tracking-[0.08em] text-muted-foreground">
                 Writing
               </p>
             ) : null}
             <div ref={messagesEndRef} />
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {templateQuestions.map((question) => (
-              <button
-                key={question}
-                type="button"
-                onClick={() => handleSend(question)}
-                disabled={isTyping}
-                className="inline-flex min-h-11 items-center border border-border px-4 text-left text-sm text-foreground transition-colors hover:border-signal disabled:opacity-50"
-              >
-                {question}
-              </button>
-            ))}
           </div>
 
           <form
@@ -215,27 +182,31 @@ export default function Chatbot() {
               event.preventDefault();
               handleSend(input);
             }}
-            className="mt-4 flex gap-2"
+            className="border-t border-border pt-5"
           >
-            <label className="sr-only" htmlFor="chat-question">
+            <label
+              htmlFor="chat-question"
+              className="font-oswald text-sm uppercase tracking-[0.08em] text-foreground"
+            >
               Your question
             </label>
-            <Input
-              id="chat-question"
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder="Ask about the work"
-              disabled={isTyping}
-              className="min-h-11 flex-1"
-            />
-            <Button
-              type="submit"
-              disabled={isTyping || !input.trim()}
-              aria-label="Send question"
-              className="min-h-11 min-w-11 bg-navy text-paper hover:bg-deep dark:bg-signal dark:text-navy dark:hover:bg-paper"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
+            <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Input
+                id="chat-question"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                placeholder="Ask about the work"
+                disabled={isTyping}
+                className="min-h-12 min-w-0 flex-1"
+              />
+              <Button
+                type="submit"
+                disabled={isTyping || !input.trim()}
+                className="min-h-12 bg-navy text-paper hover:bg-deep dark:bg-signal dark:text-navy dark:hover:bg-paper sm:px-8"
+              >
+                Send
+              </Button>
+            </div>
           </form>
         </div>
       </div>
