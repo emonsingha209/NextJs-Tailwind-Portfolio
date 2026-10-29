@@ -6,6 +6,7 @@ import { useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { socialLinkRel } from "@/lib/seo";
 import socialIcons from "./icon/Social";
 import Typewriter from "./ui/Typewriter";
 import emon from "/public/img/emon-singha.jpeg";
@@ -189,7 +190,7 @@ const Hero = () => {
                 width={720}
                 height={720}
                 priority
-                alt="Emon Singha"
+                alt="Portrait of Emon Singha, Software Engineer"
                 className="object-cover"
               />
             </motion.div>
@@ -218,8 +219,8 @@ const Hero = () => {
               {socialIcons.map((item, index) => (
                 <Link
                   href={item.link}
-                  target={item.link.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={item.link.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  target={item.link.startsWith("http") ? "_blank" : undefined}
+                  rel={socialLinkRel(item.link)}
                   key={item.label}
                   className="group absolute z-10 grid h-12 w-12 touch-manipulation place-items-center rounded-full bg-navy text-paper dark:bg-paper dark:text-navy"
                   ref={(el) => (circlesRefs.current[index] = el)}

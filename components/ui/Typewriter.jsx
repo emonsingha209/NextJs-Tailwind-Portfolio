@@ -37,7 +37,16 @@ const Typewriter = ({ texts, speed, isInView }) => {
     return () => clearInterval(interval);
   }, [texts, speed, currentTextIndex, isInView]);
 
-  return <span>{displayText}</span>;
+  const readable = texts
+    .map((text) => text.replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+
+  return (
+    <>
+      <span className="sr-only">{readable.join(". ")}</span>
+      <span aria-hidden="true">{displayText}</span>
+    </>
+  );
 };
 
 export default Typewriter;

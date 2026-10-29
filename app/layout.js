@@ -6,9 +6,8 @@ import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lato, Oswald, Playfair_Display } from "next/font/google";
-import { PortfolioData } from "@/public/data/portfolio-data";
+import { rootMetadata, rootViewport } from "@/lib/seo";
 import "./globals.css";
-import { openGraphImage } from "./shared-metadata";
 
 const oswald = Oswald({
   weight: ["400", "500"],
@@ -34,31 +33,8 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-const pageTitle = `${PortfolioData.name} | ${PortfolioData.title}`;
-
-export const metadata = {
-  title: pageTitle,
-  description: PortfolioData.metaDescription,
-  keywords: PortfolioData.keywords,
-  author: PortfolioData.name,
-  robots: "index, follow",
-  canonical: PortfolioData.website,
-  openGraph: {
-    ...openGraphImage,
-    title: pageTitle,
-    type: "website",
-    url: `${PortfolioData.website}/`,
-    description: PortfolioData.metaDescription,
-    site_name: `${PortfolioData.name} Portfolio`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@EmonSingha209",
-    title: pageTitle,
-    description: PortfolioData.metaDescription,
-    image: `${PortfolioData.website}/img/ogImage.webp`,
-  },
-};
+export const metadata = rootMetadata;
+export const viewport = rootViewport;
 
 export default function RootLayout({ children }) {
   return (

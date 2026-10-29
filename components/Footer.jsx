@@ -1,3 +1,4 @@
+import { socialLinkRel } from "@/lib/seo";
 import Link from "next/link";
 import { FaRegCopyright, FaStar } from "react-icons/fa";
 import { GoRepoForked } from "react-icons/go";
@@ -13,7 +14,7 @@ const Footer = () => {
             <Link
               href="https://www.linkedin.com/in/emon-singha209/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               aria-label="Linkedin Via Credit"
             >
               Emon Singha.
@@ -49,8 +50,8 @@ const Footer = () => {
               <li key={index}>
                 <Link
                   href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={item.link.startsWith("http") ? "_blank" : undefined}
+                  rel={socialLinkRel(item.link)}
                   aria-label={item.label}
                   className="grid h-11 w-11 place-items-center text-foreground transition-colors hover:text-signal"
                 >

@@ -3,6 +3,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { socialLinkRel } from "@/lib/seo";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -97,7 +98,7 @@ const Contact = () => {
             <p className="mt-4 max-w-[68ch] text-base leading-7 text-muted-foreground">
               Email, phone, or LinkedIn. The location is where I am based.
             </p>
-            <div className="mt-8 grid gap-3">
+            <address className="mt-8 grid gap-3 not-italic">
                 {contactDetails.map((detail) => {
                   const rowClass =
                     "flex min-h-11 items-center gap-4 border border-border px-4 py-3 transition-colors";
@@ -130,14 +131,14 @@ const Contact = () => {
                       href={detail.link}
                       key={detail.id}
                       target={external ? "_blank" : undefined}
-                      rel={external ? "noopener noreferrer" : undefined}
+                      rel={socialLinkRel(detail.link)}
                       className={`${rowClass} hover:border-signal`}
                     >
                       {body}
                     </Link>
                   );
                 })}
-            </div>
+            </address>
           </div>
         </motion.div>
         <motion.div

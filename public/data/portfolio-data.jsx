@@ -1,8 +1,10 @@
+import { siteUrl } from "@/lib/site";
+
 export const PortfolioData = {
   name: "Emon Singha",
   title: "Software Engineer",
   location: "Maulvibazar, Sylhet, Bangladesh",
-  website: "https://emonsingha.vercel.app",
+  website: siteUrl,
   typewriterTexts: ["Software Engineer", "React, Next.js, and Node.js"],
   profileDescription:
     "Software Engineer focused on frontend development with React and Next.js. I turn product and design requirements into production-ready interfaces, and I also work across the stack with Node.js, Express, and relational and NoSQL databases.",
