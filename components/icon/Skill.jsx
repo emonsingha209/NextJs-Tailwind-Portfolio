@@ -1,19 +1,24 @@
 import { BiLogoPostgresql } from "react-icons/bi";
-import { DiDotnet } from "react-icons/di";
 import {
   FaBootstrap,
   FaCss3,
+  FaGit,
+  FaGithub,
   FaHtml5,
-  FaPhp,
+  FaNodeJs,
   FaReact,
-  FaShopify,
 } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
 import {
-  SiMicrosoftsqlserver,
-  SiMysql,
-  SiNestjs,
+  SiAngular,
+  SiExpress,
+  SiMongodb,
+  SiNetlify,
+  SiOpenai,
   SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+  SiWordpress,
 } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 
@@ -21,17 +26,22 @@ const icons = [
   FaHtml5,
   FaCss3,
   IoLogoJavascript,
+  SiTypescript,
   FaReact,
   TbBrandNextjs,
+  SiAngular,
   FaBootstrap,
   SiTailwindcss,
-  FaShopify,
-  DiDotnet,
-  SiNestjs,
-  FaPhp,
-  SiMicrosoftsqlserver,
-  SiMysql,
+  FaNodeJs,
+  SiExpress,
+  SiMongodb,
   BiLogoPostgresql,
+  FaGit,
+  FaGithub,
+  SiVercel,
+  SiNetlify,
+  SiWordpress,
+  SiOpenai,
 ];
 
 export default icons;

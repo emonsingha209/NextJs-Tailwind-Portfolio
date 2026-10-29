@@ -1,64 +1,87 @@
+import { siteUrl } from "@/lib/site";
+
 export const PortfolioData = {
   name: "Emon Singha",
-  typewriterTexts: [
-    "Jr. Software Engineer",
-    "Converting Ideas to User Interface",
-  ],
-  profileDescription: `
-      As a Jr. Software Engineer, I specialize in bringing ideas to life
-      through captivating user interfaces. With expertise in CSS,
-      Bootstrap, and Tailwind CSS, I meticulously craft designs that
-      exceed expectations. Every line of code is dedicated to transforming
-      concepts into visually stunning digital experiences.
-    `,
+  title: "Software Engineer",
+  location: "Maulvibazar, Sylhet, Bangladesh",
+  website: siteUrl,
+  typewriterTexts: ["Software Engineer", "React, Next.js, and Node.js"],
+  profileDescription:
+    "Software Engineer focused on frontend development with React and Next.js. I turn product and design requirements into production-ready interfaces, and I also work across the stack with Node.js, Express, and relational and NoSQL databases.",
+  metaDescription:
+    "Emon Singha is a Software Engineer focused on frontend development with React and Next.js. He also works across the stack with Node.js, Express, PostgreSQL, and MongoDB.",
+  keywords:
+    "Emon Singha, Software Engineer, React, Next.js, TypeScript, JavaScript, Angular, Node.js, Express, MongoDB, PostgreSQL, Tailwind CSS",
   about: {
     greeting: "Hello, I'm Emon Singha",
-    aboutDescription: `
-        I'm a passionate Jr. Software Engineer dedicated to creating
-        immersive UI experiences that resonate with users. With a keen eye for
-        detail and a love for clean code, I bring ideas to life through
-        elegant and functional interfaces.
-      `,
-    expertiseTitle: "Experties Area",
+    aboutDescription:
+      "I write software that stays maintainable as products grow. Recent work includes full-stack product features, AI-assisted writing and coaching workflows, manuscript editing tools, and MockTaker, a multi-tenant IELTS platform for coaching centres in Bangladesh.",
+    expertiseTitle: "Expertise",
     experience: [
       {
-        dateRange: "3 Sept 2023 - 31 Dec 2023",
-        title: "Web Developer - Intern",
-        company: "Aamra Infotainment Ltd.",
+        dateRange: "September 2023 – December 2023",
+        title: "Intern Web Developer",
+        company: "aamra infotainment ltd",
         link: "https://aamrainfotainment.com/",
-        ariaLabel: "AIL",
+        ariaLabel: "aamra infotainment ltd",
+        highlights: [
+          "Helped build user-friendly web interfaces.",
+          "Built reusable UI components with HTML, CSS, JavaScript, and Bootstrap.",
+          "Developed pages with page builders, customized templates, and managed WordPress content.",
+        ],
       },
       {
-        dateRange: "3 June 2024 - 30 November 2024",
+        dateRange: "June 2024 – November 2024",
         title: "Intern Frontend Developer",
         company: "SJ Innovation LLC",
+        location: "Sylhet, Bangladesh",
         link: "https://sjinnovation.com/",
-        ariaLabel: "SJI",
+        ariaLabel: "SJ Innovation LLC",
       },
       {
-        dateRange: "1 December 2024 - Present",
-        title: "Jr. Software Engineer",
+        dateRange: "December 2024 – November 2025",
+        title: "Junior Software Engineer L1",
         company: "SJ Innovation LLC",
+        location: "Sylhet, Bangladesh",
         link: "https://sjinnovation.com/",
-        ariaLabel: "SJI",
+        ariaLabel: "SJ Innovation LLC",
+      },
+      {
+        dateRange: "December 2025 – April 2026",
+        title: "Junior Software Engineer L3",
+        company: "SJ Innovation LLC",
+        location: "Sylhet, Bangladesh",
+        link: "https://sjinnovation.com/",
+        ariaLabel: "SJ Innovation LLC",
+      },
+      {
+        dateRange: "May 2026 – Present",
+        title: "Software Engineer L1",
+        company: "SJ Innovation LLC",
+        location: "Sylhet, Bangladesh",
+        link: "https://sjinnovation.com/",
+        ariaLabel: "SJ Innovation LLC",
+        highlights: [
+          "Built and maintained full-stack features with React, Node.js/Express, and MongoDB, from the UI through REST APIs and database logic.",
+          "Built AI writing and coaching workflows on OpenAI APIs, including prompts, conversation state, intent resolution, and chapter reviews, while keeping token use efficient.",
+          "Built the manuscript editing pipeline: DOC/DOCX/PDF parsing, chapter and section detection, rich-text editing, autosave, and document export.",
+          "Integrated AWS S3, Stripe, Google authentication, and SendGrid/Nodemailer, plus JWT authorization, email verification, and rate limiting.",
+          "Improved performance and reliability through MongoDB query optimization, error handling, and streaming responses, and supported regression testing and production releases.",
+        ],
       },
     ],
     education: [
       {
-        dateRange: "2020 - 2023",
-        title: "Bachelor of Science in Computer Science & Engineering",
+        dateRange: "2020 – 2023",
+        title: "Bachelor of Science in Computer Science and Engineering",
         institution: "American International University-Bangladesh (AIUB)",
         link: "https://www.aiub.edu/",
         ariaLabel: "AIUB",
       },
     ],
-    experienceCard: {
-      title: "Experience",
-      description: "Gained valuable industry insights.",
-    },
     educationCard: {
       title: "Education",
-      description: "Academic Background and Qualifications.",
+      description: "B.Sc. in Computer Science and Engineering, AIUB.",
     },
   },
 };

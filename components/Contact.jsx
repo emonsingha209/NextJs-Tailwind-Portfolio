@@ -3,20 +3,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "framer-motion";
+import { socialLinkRel } from "@/lib/seo";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FaHourglassEnd } from "react-icons/fa";
 import { IoIosDoneAll, IoMdSend } from "react-icons/io";
 import { z } from "zod";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import contactDetails from "@/public/data/contact-details";
 
 import { Button } from "@/components/ui/button";
@@ -42,41 +36,10 @@ const formSchema = z.object({
     message: "Message must be at least 5 characters.",
   }),
 });
-const contactLeft = {
-  initial: {
-    opacity: 0,
-    translateX: "100%",
-  },
+const ease = [0.16, 1, 0.3, 1];
 
-  animate: {
-    translateX: "0%",
-    opacity: 1,
-    transition: {
-      delay: 0.2,
-      duration: 0.5,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-};
-const contactRight = {
-  initial: {
-    opacity: 0,
-    translateX: "-100%",
-  },
-
-  animate: {
-    translateX: "0%",
-    opacity: 1,
-    transition: {
-      delay: 0.2,
-      duration: 0.5,
-      type: "spring",
-      stiffness: 50,
-    },
-  },
-};
 const Contact = () => {
+  const reduce = useReducedMotion();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
@@ -111,76 +74,91 @@ const Contact = () => {
       });
     } catch (error) {
       console.error("Error sending email:", error);
+      toast({
+        description: "The message did not send. Check the fields and try again.",
+      });
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <section id="contact" className="relative z-10 mt-5">
-      <div className="dark:bg-[url('/img/bg-image.svg')] bg-cover absolute z-0 w-full h-full rotate-180"></div>
-      <div className="flex md:flex-row flex-col py-8 gap-5 md:gap-0 overflow-hidden container">
+    <section id="contact" className="scroll-mt-28 border-t border-border bg-background">
+      <div className="container grid gap-10 py-16 md:grid-cols-2 md:gap-16 md:py-28">
         <motion.div
-          variants={contactLeft}
-          initial="initial"
-          whileInView="animate"
-          className="grid md:basis-1/2 place-items-center"
+          initial={reduce ? false : { x: -16 }}
+          whileInView={{ x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease }}
         >
-          <Card className="w-full xns:w-11/12 flex flex-col justify-between">
-            <CardHeader>
-              <CardTitle>Reach Out</CardTitle>
-              <CardDescription>
-                Reach out to me anytime using the following contact details.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4 ">
-                {contactDetails.map((detail) => (
-                  <Link
-                    href={detail.link}
-                    key={detail.id}
-                    className={`${
-                      detail.link === "#"
-                        ? "cursor-not-allowed pointer-events-none"
-                        : "cursor-pointer "
-                    }`}
-                  >
-                    <div className="flex items-center space-x-4 rounded-lg transition-colors duration-1000 ease-primary border p-4 dark:hover:border-violet-500 hover:border-gray-300  cursor-pointer ">
-                      <div>{<detail.icon className="w-6 h-6" />}</div>
-                      <div className="flex-1 space-y-1">
-                        <p className="text-sm font-medium leading-none">
+          <div>
+            <h2 className="text-balance font-playfair text-4xl italic leading-none text-foreground md:text-5xl">
+              Reach out
+            </h2>
+            <p className="mt-4 max-w-[68ch] text-base leading-7 text-muted-foreground">
+              Email, phone, or LinkedIn. The location is where I am based.
+            </p>
+            <address className="mt-8 grid gap-3 not-italic">
+                {contactDetails.map((detail) => {
+                  const rowClass =
+                    "flex min-h-11 items-center gap-4 border border-border px-4 py-3 transition-colors";
+                  const body = (
+                    <>
+                      <detail.icon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                      <div>
+                        <p className="font-oswald text-sm uppercase tracking-[0.08em] text-foreground">
                           {detail.type}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm leading-6 text-muted-foreground">
                           {detail.value}
                         </p>
                       </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                    </>
+                  );
+
+                  if (!detail.link || detail.link === "#") {
+                    return (
+                      <div key={detail.id} className={rowClass}>
+                        {body}
+                      </div>
+                    );
+                  }
+
+                  const external = detail.link.startsWith("http");
+
+                  return (
+                    <Link
+                      href={detail.link}
+                      key={detail.id}
+                      target={external ? "_blank" : undefined}
+                      rel={socialLinkRel(detail.link)}
+                      className={`${rowClass} hover:border-signal`}
+                    >
+                      {body}
+                    </Link>
+                  );
+                })}
+            </address>
+          </div>
         </motion.div>
         <motion.div
-          variants={contactRight}
-          initial="initial"
-          whileInView="animate"
-          className="grid md:basis-1/2 place-items-center"
+          initial={reduce ? false : { x: 16 }}
+          whileInView={{ x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease }}
         >
-          <Card className="w-full xns:w-11/12 ">
-            <CardHeader>
-              <CardTitle>Get in Touch With Me</CardTitle>
-              <CardDescription>
-                Use the form below to send me a message or ask any questions.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...form}>
+          <div>
+            <h2 className="text-balance font-playfair text-4xl italic leading-none text-foreground md:text-5xl">
+              Write to me
+            </h2>
+            <p className="mt-4 max-w-[68ch] text-base leading-7 text-muted-foreground">
+              Use the form to send a message or ask a question.
+            </p>
+            <Form {...form}>
                 <form
                   ref={formRef}
                   onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-4"
+                  className="mt-8 space-y-4"
                 >
                   <FormField
                     control={form.control}
@@ -189,7 +167,7 @@ const Contact = () => {
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your Name" {...field} />
+                          <Input placeholder="Your Name" className="min-h-11" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -205,6 +183,7 @@ const Contact = () => {
                           <Input
                             type="email"
                             placeholder="you@example.com"
+                            className="min-h-11"
                             {...field}
                           />
                         </FormControl>
@@ -229,10 +208,10 @@ const Contact = () => {
                       </FormItem>
                     )}
                   />
-                  <div className="flex justify-center w-full">
+                  <div>
                     <Button
                       type="submit"
-                      className="w-full xns:w-3/5"
+                      className="min-h-12 w-full bg-navy text-paper hover:bg-deep dark:bg-signal dark:text-navy dark:hover:bg-paper"
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -247,11 +226,15 @@ const Contact = () => {
                         </>
                       )}
                     </Button>
+                    {isEmailSent ? (
+                      <p className="mt-3 text-sm leading-6 text-foreground">
+                        Your message has been sent.
+                      </p>
+                    ) : null}
                   </div>
                 </form>
               </Form>
-            </CardContent>
-          </Card>
+          </div>
         </motion.div>
       </div>
     </section>
