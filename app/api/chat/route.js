@@ -7,6 +7,8 @@ import { PortfolioData } from "@/public/data/portfolio-data";
 import socialIcons from "@/components/icon/Social";
 import { prepareConversation } from "@/lib/chat-history";
 
+export const maxDuration = 60;
+
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -119,6 +121,10 @@ export async function POST(req) {
     const model = genAI.getGenerativeModel({
       model: "gemini-3.5-flash-lite",
       systemInstruction: buildSystemPrompt(conversation.earlierContext),
+      generationConfig: {
+        maxOutputTokens: 512,
+        thinkingConfig: { thinkingLevel: "minimal" },
+      },
     });
 
     const chat = model.startChat({
