@@ -6,8 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import Project from "@/components/Project";
 import { homeJsonLd } from "@/lib/seo";
 
-export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 25000));
+export default function Home() {
   return (
     <main>
       <JsonLd data={homeJsonLd()} />

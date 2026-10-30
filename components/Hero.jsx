@@ -141,7 +141,7 @@ const Hero = () => {
             variants={reduce ? undefined : introItem}
             className="max-w-[68ch] text-lg leading-7 text-foreground"
           >
-            {PortfolioData.profileDescription}
+            {PortfolioData.metaDescription}
           </motion.p>
           <motion.p
             variants={reduce ? undefined : introItem}
