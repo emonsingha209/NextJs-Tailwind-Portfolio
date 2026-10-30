@@ -1,3 +1,5 @@
+import { PortfolioData } from "@/public/data/portfolio-data";
+
 export default function Loading() {
   return (
     <div
@@ -5,6 +7,8 @@ export default function Loading() {
       aria-live="polite"
       className="container flex min-h-[calc(100svh-7.5rem)] flex-col-reverse items-center justify-center gap-10 py-12 md:min-h-[calc(100svh-4rem)] md:flex-row md:gap-8 md:py-0"
     >
+      <h1 className="sr-only">{PortfolioData.name}</h1>
+      <p className="sr-only">{PortfolioData.metaDescription}</p>
       <p className="sr-only">Loading</p>
       <div className="flex w-full flex-col gap-5 md:w-7/12 lg:w-2/3">
         <div className="h-12 w-[12ch] max-w-full bg-foreground/10 motion-safe:animate-pulse md:h-[4.5rem]" />

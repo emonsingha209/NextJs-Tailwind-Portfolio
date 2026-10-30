@@ -14,26 +14,10 @@ export default function manifest() {
     lang: "en",
     categories: ["portfolio"],
     icons: [
-      { src: "/icon", sizes: "32x32", type: "image/png" },
-      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
-      {
-        src: "/brand-icon/192",
-        sizes: "192x192",
-        type: "image/png",
-        purpose: "any",
-      },
-      {
-        src: "/brand-icon/512",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "any",
-      },
-      {
-        src: "/img/emon-singha.jpeg",
-        sizes: "720x720",
-        type: "image/jpeg",
-        purpose: "any",
-      },
+      { src: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { src: "/favicon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/favicon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   };
 }

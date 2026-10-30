@@ -9,7 +9,7 @@ export const PortfolioData = {
   profileDescription:
     "Software Engineer focused on frontend development with React and Next.js. I turn product and design requirements into production-ready interfaces, and I also work across the stack with Node.js, Express, and relational and NoSQL databases.",
   metaDescription:
-    "Emon Singha is a Software Engineer focused on frontend development with React and Next.js. He also works across the stack with Node.js, Express, PostgreSQL, and MongoDB.",
+    "Emon Singha is a Software Engineer focused on frontend development with React and Next.js, and also works with Node.js, Express, and databases.",
   keywords:
     "Emon Singha, Software Engineer, React, Next.js, TypeScript, JavaScript, Angular, Node.js, Express, MongoDB, PostgreSQL, Tailwind CSS",
   about: {
